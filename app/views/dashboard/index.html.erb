@@ -1,0 +1,18 @@
+
+<% if user_signed_in? %>
+    
+    <% if current_user.type == "Administrator" %>
+
+    <%= render 'dashboard/administrator' %>
+
+    <% elsif current_user.type == "JobSeeker" %>
+
+    <%= render 'dashboard/jobseeker' %>
+
+    <% elsif current_user.type == "Employer" %>
+
+    <%= render 'dashboard/employer' %>
+
+    <% end %>
+
+<% end %>
