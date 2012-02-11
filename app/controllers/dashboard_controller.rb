@@ -3,7 +3,10 @@ class DashboardController < ApplicationController
     before_filter :authenticate_user!
 
   def index
-    @job_postings = JobPosting.all
+    @pending_postings = JobPosting.where(:state=>"Pending Approval")
+    @active_postings = JobPosting.where(:state=>"Approved")
+
+    # TODO: Filter inactive postings
 
     respond_to do |format|
       format.html # index.html.erb
