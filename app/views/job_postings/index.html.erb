@@ -31,6 +31,13 @@
                     <td><%= posting.affiliation %></td>
                     <td><%= link_to posting.title, job_posting_path(posting) %></td>
                 </tr>
+                <tr>
+                    <td colspan="4">
+                        <% posting.tags.each do |tag| %>
+                            <div class="token"><%= tag.name %></div>
+                        <% end %>
+                    </td>
+                </tr>
             <% end %>
         </tbody>
     </table>
@@ -58,6 +65,13 @@
                     <td><%= posting.affiliation %></td>
                     <td><%= link_to posting.title, job_posting_path(posting) %></td>
                 </tr>
+                <tr>
+                    <td colspan="4">
+                        <% posting.tags.each do |tag| %>
+                            <div class="token"><%= tag.name %></div>
+                        <% end %>
+                    </td>
+                </tr>
             <% end %>
         </tbody>
     </table>
@@ -84,6 +98,13 @@
                     <td><%= posting.deadline.strftime("%d %B %Y") %></td>
                     <td><%= posting.affiliation %></td>
                     <td><%= link_to posting.title, job_posting_path(posting) %></td>
+                </tr>
+                <tr>
+                    <td colspan="4">
+                        <% posting.tags.each do |tag| %>
+                            <div class="token"><%= tag.name %></div>
+                        <% end %>
+                    </td>
                 </tr>
             <% end %>
         </tbody>

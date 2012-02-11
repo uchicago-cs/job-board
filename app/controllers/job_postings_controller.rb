@@ -2,9 +2,9 @@ class JobPostingsController < ApplicationController
 
   def index
     @job_postings = JobPosting.all
-    @internships = JobPosting.where("jobtype = 'Internship'")
-    @parttime = JobPosting.where("jobtype = 'Part Time'")
-    @fulltime = JobPosting.where("jobtype = 'Full Time'")
+    @internships = JobPosting.where("jobtype = 'Internship'", :include => :tags)
+    @parttime = JobPosting.where("jobtype = 'Part Time'", :include => :tags)
+    @fulltime = JobPosting.where("jobtype = 'Full Time'", :include => :tags)
 
     respond_to do |format|
       format.html # index.html.erb

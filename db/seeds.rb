@@ -27,7 +27,7 @@ employer3 = Employer.create(login: 'bs',
                         lastname: 'Doe',
                         url: 'www.ryersonhasafourthfloor.com',
                         affiliation: 'The 4th Floor')
-
+           
 JobSeeker.create(login: 'test',
                  password: 'password',
                  password_confirmation: 'password', 
@@ -35,7 +35,7 @@ JobSeeker.create(login: 'test',
                  firstname: 'Kevin',
                  lastname: 'Wang')
 
-JobPosting.create(title: 'Senior Developer',
+job1 = JobPosting.create(title: 'Senior Developer',
                   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vulputate, velit eu aliquam commodo, eros est ultricies ligula, sit amet aliquet nisl neque non nisi.',
                   comments: 'Admin comments go here',
                   jobtype: 'Full Time',
@@ -46,7 +46,7 @@ JobPosting.create(title: 'Senior Developer',
                   url: 'www.google.com/paradise',
                   affiliation: 'Company')
 
-JobPosting.create(title: 'Junior Developer',
+job2 = JobPosting.create(title: 'Junior Developer',
                   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vulputate, velit eu aliquam commodo, eros est ultricies ligula, sit amet aliquet nisl neque non nisi.',
                   comments: 'Admin comments go here',
                   jobtype: 'Part Time',
@@ -57,7 +57,7 @@ JobPosting.create(title: 'Junior Developer',
                   url: 'www.facebook.com/notreal',
                   affiliation: 'Company')
 
-JobPosting.create(title: 'Despised Intern',
+job3 = JobPosting.create(title: 'Despised Intern',
                   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vulputate, velit eu aliquam commodo, eros est ultricies ligula, sit amet aliquet nisl neque non nisi.',
                   comments: 'Admin comments go here',
                   jobtype: 'Internship',
@@ -68,3 +68,16 @@ JobPosting.create(title: 'Despised Intern',
                   url: 'www.borjasarmy.gov',
                   affiliation: 'Individual')
 
+tag1 = Tag.create(name: 'Ruby',
+           tagtype: 'language')
+
+tag2 = Tag.create(name: 'Python',
+           tagtype: 'language')
+
+tag3 = Tag.create(name: 'Java',
+           tagtype: 'language')
+
+job1.tags << tag1
+job1.tags << tag2
+job2.tags << tag3
+job3.tags << tag2

@@ -9,8 +9,14 @@
 
         <script type="text/javascript">
             $(document).ready(function() {
-                $(".jobtable > tbody > tr:nth-child(even)").addClass("even");
-                $(".jobtable > tbody > tr:nth-child(odd)").addClass("odd");
+                var i = 0;
+                $(".jobtable > tbody > tr").each(function() {
+                    if(i % 4 == 0 || i % 4 == 1) {
+                        $(this).addClass("odd");
+                    } else {
+                        $(this).addClass("even");
+                    }
+                });
             });
         </script>
         
