@@ -1,31 +1,38 @@
+<div id="formcontainer">
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Title:</b>
-  <%= @job_posting.title %>
-</p>
-
-<p>
-  <b>Description:</b>
-  <%= @job_posting.description %>
-</p>
-
-<p>
-  <b>URL:</b>
-  <%= @job_posting.url %>
-</p>
-
-<p>
-  <b>Deadline:</b>
-  <%= @job_posting.deadline %>
-</p>
-
-<p>
-  <b>Email:</b>
-  <%= @job_posting.contact %>
-</p>
-
+<table class="singlejobview">
+    <tr>
+        <th>Title</th>
+        <td><%= @job_posting.title %></td>
+    </tr>
+    <tr>
+        <th>Description</th>
+        <td><%= @job_posting.description %></td>
+    </tr>
+    <tr>
+        <th>URL</th>
+        <td><%= link_to @job_posting.url, @job_posting.url %></td>
+    </tr>
+    <tr>
+        <th>Deadline</th>
+        <td><%= @job_posting.deadline.strftime("%d %B %Y") %></td>
+    </tr>
+    <tr>
+        <th>Email</th>
+        <td><%= @job_posting.contact %>
+    </tr>
+    <tr>
+        <th>Tags</th>
+        <td>
+            <% @job_posting.tags.each do |tag| %>
+                <div class="token"><%= tag.name %></div>
+            <% end %>
+        </td>
+    </tr>
+</table>
 
 
 <%= link_to 'Edit', edit_job_posting_path(@job_posting) %> |
 <%= link_to 'Back', job_postings_path %>
+</div>
