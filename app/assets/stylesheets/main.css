@@ -23,6 +23,7 @@ body {
     border: solid 1px black;
     min-height: 90%;
     background-color: white;
+    z-index: 10;
 }
 
 #header {
@@ -198,4 +199,23 @@ table.singlejobview th {
 table.singlejobview td {
     padding: 3px 5px 3px 5px;
     vertical-align: top;
+}
+
+span.help {
+    font-size: small;
+    color: #2e83b0;
+    position: relative;
+    top: -5px;
+    cursor: help;
+    padding: 5px 5px 5px 5px;
+    z-index: 90;
+}
+
+#help {
+    position: absolute;
+    border: solid 1px black;
+    background-color: white;
+    padding: 3px;
+    font-size: small;
+    z-index: 100;
 }

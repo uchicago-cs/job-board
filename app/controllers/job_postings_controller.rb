@@ -23,6 +23,7 @@ class JobPostingsController < ApplicationController
 
   def new
     @job_posting = JobPosting.new
+    @alltags = Tag.all
 
     respond_to do |format|
       format.html # new.html.erb

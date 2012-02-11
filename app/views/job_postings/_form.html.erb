@@ -12,30 +12,34 @@
   <% end %>
 
   <div class="field">
-    <%= f.label :title %><br />
+    <%= f.label :title %><span class="help" alt="The title of the position">?</span><br />
     <%= f.text_field :title %>
   </div>
   <div class="field">
-    <%= f.label :description %><br />
+    <%= f.label :affiliation %><span class="help" alt="Your company affiliation, or 'Individual' if none">?</span><br />
+    <%= f.text_field :affiliation %>
+  </div>
+  <div class="field">
+    <%= f.label :description %><span class="help" alt="A description of the position, including requirements">?</span><br />
     <%= f.text_area :description %>
   </div>
   <div class="form_row">
-    <label for "jobtype">Job Type:</label>
+    <label for "jobtype">Job Type:</label><span class="help" alt="Is the position an internship or a part-time or full-time job?">?</span>
     <%  ['Full Time', 'Part Time', 'Internship'].each do |jobtype| %>
       <br><%= f.radio_button :jobtype, jobtype %>
       <%= jobtype.humanize %>
     <% end %>
   </div>
   <div class="field">
-    <%= f.label :deadline %><br />
+    <%= f.label :deadline %><span class="help" alt="When must all applications be received?">?</span><br />
     <%= f.date_select :deadline %>
   </div>
   <div class="field">
-    <%= f.label 'Contact Email' %><br />
+    <%= f.label 'Contact Email' %><span class="help" alt="How can you be contacted?">?</span><br />
     <%= f.text_field :contact %>
   </div>
   <div class="field">
-    <%= f.label :url %><br />
+    <%= f.label :url %><span class="help" alt="Is there a website people can visit for more information?">?</span><br />
     <%= f.text_field :url %><br />
   </div>
   <div class="actions">

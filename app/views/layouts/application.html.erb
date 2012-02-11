@@ -17,6 +17,14 @@
                         $(this).addClass("even");
                     }
                 });
+                $(".help").mouseover(function(evt) {
+                    $("<div id=\"help\"></div>").prependTo("body");
+                    $("#help")
+                        .html($(this).attr('alt'))
+                        .css({'top': evt.pageY + 3, 'left': evt.pageX + 3});
+                }).mouseout(function() {
+                    $("#help").remove();
+                });
             });
         </script>
         
