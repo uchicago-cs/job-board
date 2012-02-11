@@ -31,10 +31,25 @@ body {
     text-align: center;
 }
 
+a:link, a:visited {
+    color: #2e83b0;
+    text-decoration: none;
+}
+
+a:hover, a:active {
+    color: #990033;
+    text-decoration: none;
+}
+
 h1 {
     position: relative;
     color: #2e83b0;
     z-index: 0;
+}
+
+h2 {
+    position: relative;
+    color: #2e83b0;
 }
 
 #loginpanel {
@@ -131,4 +146,25 @@ a.joblink:link, a.joblink:visited {
 a.joblink:hover, a.joblink:active {
     color: #990033;
     text-decoration: none;
+}
+
+#formcontainer {
+    margin: 0 50px 50px 50px;
+}
+
+input[type=text], input[type=email], input[type=password], textarea {
+    border: solid 1px #2e83b0;
+    width: 50%;
+}
+
+input[type=text], input[type=email], input[type=password] {
+    font-size: large;
+}
+
+label {
+    font-style: italic;
+}
+
+div.field {
+    margin: 20px 0 20px 0;
 }
