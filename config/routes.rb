@@ -11,7 +11,7 @@ TechJobs::Application.routes.draw do
   # This route can be invoked with purchase_url(:id => product.id)
 
   # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   resources :products
+     resources :job_postings
 
   # Sample resource route with options:
   #   resources :products do
@@ -48,7 +48,7 @@ TechJobs::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+   root :to => 'job_postings#index'
 
   # See how all your routes lay out with "rake routes"
 
