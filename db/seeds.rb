@@ -35,6 +35,13 @@ JobSeeker.create(login: 'test',
                  firstname: 'Kevin',
                  lastname: 'Wang')
 
+Administrator.create(login: 'margaret',
+                 password: 'password',
+                 password_confirmation: 'password', 
+                 email: 'margaret@cs.uchicago.edu',
+                 firstname: 'Margaret',
+                 lastname: 'Jaffey')
+
 JobPosting.create(title: 'Senior Developer',
                   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vulputate, velit eu aliquam commodo, eros est ultricies ligula, sit amet aliquet nisl neque non nisi.',
                   comments: 'Admin comments go here',
