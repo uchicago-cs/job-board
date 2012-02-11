@@ -3,5 +3,9 @@
 
 <%= render 'form' %>
 
+<div id="globaltaglist">
+    <% @alltags.each do |tag| %><%= tag.name %>;<% end %>
+</div>
+
 <%= link_to 'Back', job_postings_path %>
 </div>

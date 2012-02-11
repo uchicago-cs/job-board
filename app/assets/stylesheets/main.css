@@ -219,3 +219,13 @@ span.help {
     font-size: small;
     z-index: 100;
 }
+
+#taglist {
+    border: solid 1px #2e83b0;
+    width: 50%;
+    min-height: 25px;
+}
+
+#globaltaglist {
+    display: none;
+}

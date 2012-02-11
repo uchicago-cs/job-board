@@ -25,6 +25,12 @@
                 }).mouseout(function() {
                     $("#help").remove();
                 });
+                
+                var taglistdiv = document.getElementById('globaltaglist');
+                taglistdiv.innerHTML = taglistdiv.innerHTML.substr(0, taglistdiv.innerHTML.length - 2);
+                var taglist = taglistdiv.innerHTML.split(";");
+
+
             });
         </script>
         
