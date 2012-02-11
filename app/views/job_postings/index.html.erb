@@ -8,106 +8,24 @@
 <%= link_to 'New Posting', new_job_posting_path %>
 <% end %>
 
+<% columns = ["dateposted", "deadline", "organization", "position"] %>
+
 <fieldset>
     <legend>Internships</legend>
-    <table class="jobtable">
-        <col class="dateposted">
-        <col class="deadline">
-        <col class="organization">
-        <col class="position">
-        <thead>
-            <tr>
-                <th>Date Posted</th>
-                <th>Deadline</th>
-                <th>Organization</th>
-                <th>Position</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% @internships.each do |posting| %>
-                <tr>
-                    <td><%= posting.created_at.strftime("%d %B %Y") %></td>
-                    <td><%= posting.deadline.strftime("%d %B %Y") %></td>
-                    <td><%= posting.affiliation %></td>
-                    <td><%= link_to posting.title, job_posting_path(posting) %></td>
-                </tr>
-                <tr>
-                    <td colspan="4">
-                        <% posting.tags.each do |tag| %>
-                            <div class="token"><%= tag.name %></div>
-                        <% end %>
-                    </td>
-                </tr>
-            <% end %>
-        </tbody>
-    </table>
+
+    <%= render 'job_postings/postings_table', :jobpostings => @internships, :columns => columns %>
+
 </fieldset>
 <fieldset>
     <legend>Part-Time Jobs</legend>
-    <table class="jobtable">
-        <col class="dateposted">
-        <col class="deadline">
-        <col class="organization">
-        <col class="position">
-        <thead>
-            <tr>
-                <th>Date Posted</th>
-                <th>Deadline</th>
-                <th>Organization</th>
-                <th>Position</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% @parttime.each do |posting| %>
-                <tr>
-                    <td><%= posting.created_at.strftime("%d %B %Y") %></td>
-                    <td><%= posting.deadline.strftime("%d %B %Y") %></td>
-                    <td><%= posting.affiliation %></td>
-                    <td><%= link_to posting.title, job_posting_path(posting) %></td>
-                </tr>
-                <tr>
-                    <td colspan="4">
-                        <% posting.tags.each do |tag| %>
-                            <div class="token"><%= tag.name %></div>
-                        <% end %>
-                    </td>
-                </tr>
-            <% end %>
-        </tbody>
-    </table>
+
+    <%= render 'job_postings/postings_table', :jobpostings => @parttime, :columns => columns %>
+
 </fieldset>
 <fieldset>
     <legend>Full-Time Jobs</legend>
-    <table class="jobtable">
-        <col class="dateposted">
-        <col class="deadline">
-        <col class="organization">
-        <col class="position">
-        <thead>
-            <tr>
-                <th>Date Posted</th>
-                <th>Deadline</th>
-                <th>Organization</th>
-                <th>Position</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% @fulltime.each do |posting| %>
-                <tr>
-                    <td><%= posting.created_at.strftime("%d %B %Y") %></td>
-                    <td><%= posting.deadline.strftime("%d %B %Y") %></td>
-                    <td><%= posting.affiliation %></td>
-                    <td><%= link_to posting.title, job_posting_path(posting) %></td>
-                </tr>
-                <tr>
-                    <td colspan="4">
-                        <% posting.tags.each do |tag| %>
-                            <div class="token"><%= tag.name %></div>
-                        <% end %>
-                    </td>
-                </tr>
-            <% end %>
-        </tbody>
-    </table>
+
+    <%= render 'job_postings/postings_table', :jobpostings => @fulltime, :columns => columns %>
+
 </fieldset>
 </div>
