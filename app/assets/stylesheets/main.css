@@ -177,3 +177,25 @@ div.token {
     padding: 3px;
     border-radius: 4px;
 }
+
+table.singlejobview {
+    border: solid 2px #2e83b0;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+table.singlejobview tr {
+    border: dotted 1px #2e83b0;
+}
+
+table.singlejobview th {
+    background-color: #b7e6ff;
+    font-weight: bold;
+    padding: 3px 5px 3px 5px;
+    vertical-align: top;
+}
+
+table.singlejobview td {
+    padding: 3px 5px 3px 5px;
+    vertical-align: top;
+}

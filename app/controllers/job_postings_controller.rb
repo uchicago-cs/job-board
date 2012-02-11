@@ -13,7 +13,7 @@ class JobPostingsController < ApplicationController
   end
 
   def show
-    @job_posting = JobPosting.find(params[:id])
+    @job_posting = JobPosting.find(params[:id], :include => :tags)
 
     respond_to do |format|
       format.html # show.html.erb
