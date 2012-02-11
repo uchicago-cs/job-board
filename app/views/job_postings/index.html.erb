@@ -4,10 +4,6 @@
 </div>
 <div id="content">
 
-<% if can? :create, JobPosting %>
-<%= link_to 'New Posting', new_job_posting_path %>
-<% end %>
-
 <% columns = ["dateposted", "deadline", "organization", "position"] %>
 
 <fieldset>

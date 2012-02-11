@@ -3,7 +3,10 @@
 colname = { "dateposted" => "Date Posted",
             "deadline" => "Deadline",
             "organization" => "Organization",
-            "position" => "Position" }
+            "position" => "Position",
+            "edit" => "Edit",
+            "state" => "State",
+            "remove" => "Remove" }
 
 columns ||= [] 
 includetags ||= false
@@ -42,6 +45,12 @@ includetags ||= false
 
             <% when "edit", "review" %>
                 <%= link_to col=="edit"? "Edit" : "Review", edit_job_posting_path(posting) %>
+
+            <% when "remove" %>
+                <%= link_to "Remove", job_posting_path(posting), :method => 'delete', :confirm => "Are you sure you want to remove this job posting? This will permanently delete it from our system." %>
+
+            <% when "state" %>
+                <%= posting.state %>
 
             <% end %>
             </td>

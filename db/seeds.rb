@@ -55,7 +55,6 @@ job1 = JobPosting.create(title: 'Senior Developer',
 
 job2 = JobPosting.create(title: 'Junior Developer',
                   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vulputate, velit eu aliquam commodo, eros est ultricies ligula, sit amet aliquet nisl neque non nisi.',
-                  comments: 'Admin comments go here',
                   jobtype: 'Part Time',
                   contact: 'jerry@facebook.com',
                   deadline: Date.new(1500,2,2),
