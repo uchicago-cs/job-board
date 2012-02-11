@@ -55,6 +55,9 @@
 
             $(document).ready(function() {
                 var i = 0;
+                $(".jobtable > tbody > tr:odd").addClass("odd");
+                $(".jobtable > tbody > tr:even").addClass("even");
+                /*
                 $(".jobtable > tbody > tr").each(function() {
                     if(i % 4 == 0 || i % 4 == 1) {
                         $(this).addClass("odd");
@@ -62,6 +65,7 @@
                         $(this).addClass("even");
                     }
                 });
+                */
                 $(".help").mouseover(function(evt) {
                     $("<div id=\"help\"></div>").prependTo("body");
                     $("#help")
