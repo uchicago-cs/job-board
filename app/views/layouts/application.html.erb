@@ -1,22 +1,44 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>TechJobs</title>
-  <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
-  <%= csrf_meta_tags %>
-</head>
-<body>
-
-<ul class="hmenu">
-  <%= render 'devise/menu/registration_items' %>
-  <%= render 'devise/menu/login_items' %>
-</ul>
+    <head>
+        <title>TechJobs</title>
+        
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $(".jobtable > tbody > tr:nth-child(even)").addClass("even");
+                $(".jobtable > tbody > tr:nth-child(odd)").addClass("odd");
+            });
+        </script>
+<%= stylesheet_link_tag    "application", :media => "all" %>
+<%= javascript_include_tag "application" %>
+<%= csrf_meta_tags %>
+        
+    </head>
+    <body>
+        <div id="wrap">
+            <img src="http://www.cs.uchicago.edu/i/header_background.jpg">
+            <div id="header">
+                <div id="loginpanel">
+<% if user_signed_in? %>
+<%= link_to('Sign Out', destroy_user_session_path, :method => :delete, :class=>"loginpanel") %>        
+<% else %>
+<%= link_to('Sign In', new_user_session_path, :class=>"loginpanel")  %>  
+<% end %>
+<br/>
+<% if user_signed_in? %>
+  <%= link_to('Edit Account', edit_user_registration_path, :class=>"loginpanel") %>
+<% else %>
+  <%= link_to('Create Account', new_user_registration_path, :class=>"loginpanel")  %>
+<% end %>
+                </div>
+                <h1>CS.UCHICAGO JOB POSTINGS</h1>
+            </div>
 
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 
 <%= yield %>
 
-</body>
+        </div>
+    </body>
 </html>
