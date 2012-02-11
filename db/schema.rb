@@ -11,13 +11,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120211024219) do
+ActiveRecord::Schema.define(:version => 20120211042048) do
 
   create_table "job_postings", :force => true do |t|
     t.string   "title"
     t.text     "description"
     t.text     "comments"
-    t.string   "type"
+    t.string   "jobtype"
     t.string   "contact"
     t.date     "deadline"
     t.string   "state"
