@@ -11,15 +11,21 @@
 </p>
 
 <p>
+  <b>URL:</b>
+  <%= @job_posting.url %>
+</p>
+
+<p>
   <b>Deadline:</b>
   <%= @job_posting.deadline %>
 </p>
 
 <p>
   <b>Email:</b>
-  <%= @job_posting.email %>
+  <%= @job_posting.contact %>
 </p>
 
 
-<%= link_to 'Edit', edit_job_posting_path(@job) %> |
+
+<%= link_to 'Edit', edit_job_posting_path(@job_posting) %> |
 <%= link_to 'Back', job_postings_path %>
