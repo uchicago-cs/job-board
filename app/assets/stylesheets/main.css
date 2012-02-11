@@ -1,0 +1,134 @@
+html {
+    width: 100%;
+    min-height: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    width: 100%;
+    min-height: 100%;
+    height: 100%;
+    background-image: url('http://www.cs.uchicago.edu/i/grid_tile_dot.gif');
+    margin: 0;
+    padding: 0;
+	font-family: "Helvetica", "Lucida Sans Unicode", sans;
+}
+
+#wrap {
+    position: relative;
+    width: 800px;
+    margin: 0 auto;
+    border: solid 1px black;
+    min-height: 90%;
+    background-color: white;
+}
+
+#header {
+    position: relative;
+    width: 100%;
+    text-align: center;
+}
+
+h1 {
+    position: relative;
+    color: #2e83b0;
+    z-index: 0;
+}
+
+#loginpanel {
+    position: absolute;
+    right: 10px;
+    text-align: left;
+    z-index: 1;
+}
+
+a.loginpanel:link, a.loginpanel:visited {
+    color: #2e83b0;
+    text-decoration: none;
+    font-size: small;
+    font-weight: bold;
+}
+
+a.loginpanel:hover, a.loginpanel:active {
+    color: #990033;
+    text-decoration: none;
+    font-size: small;
+    font-weight: bold;
+}
+
+#loginbanner {
+    position: relative;
+    width: 760px;
+    text-align: left;
+    padding: 5px 20px 5px 20px;
+    background-color: #66ccff;
+    margin-bottom: 20px;
+}
+
+#loginbanner p {
+    color: white;
+    font-size: small;
+    font-style: italic;
+    margin: 5px 0 5px 0;
+}
+
+#content {
+    text-align: left;
+}
+
+fieldset {
+    border: solid 2px #2e83b0;
+    margin: 0 10px 20px 10px;
+}
+
+legend {
+    color: #2e83b0;
+    font-size: normal;
+    font-weight: bold;
+}
+
+table.jobtable {
+    border: none;
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table.jobtable tr.even {
+    background-color: white;
+}
+
+table.jobtable tr.odd {
+    background-color: #b7e6ff;
+}
+
+table.jobtable td {
+    padding: 3px 5px 3px 5px;
+}
+
+col.dateposted {
+    width: 15%;
+}
+
+col.deadline {
+    width: 15%;
+}
+
+col.organization {
+    width: 30%;
+}
+
+col.position {
+    width: 30%;
+}
+
+a.joblink:link, a.joblink:visited {
+    color: #2e83b0;
+    text-decoration: none;
+}
+
+a.joblink:hover, a.joblink:active {
+    color: #990033;
+    text-decoration: none;
+}

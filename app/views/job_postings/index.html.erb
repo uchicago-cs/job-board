@@ -1,83 +1,112 @@
 <html>
     <head>
         <title></title>
+        
+        <script type="text/javascript">
+            $(document).ready(function() {
+                $(".jobtable > tbody > tr:nth-child(even)").addClass("even");
+                $(".jobtable > tbody > tr:nth-child(odd)").addClass("odd");
+            });
+        </script>
+        
     </head>
     <body>
-        <div id="header">
-            <h1>CS.UCHICAGO JOB POSTINGS</h1>
-            <div id="loginpanel">
-                <a href="">Sign In</a><br>
-                <a href="">Create Account</a>
+        <div id="wrap">
+            <img src="http://www.cs.uchicago.edu/i/header_background.jpg">
+            <div id="header">
+                <div id="loginpanel">
+                    <a href="" class="loginpanel">Sign In</a><br>
+                    <a href="" class="loginpanel">Create Account</a>
+                </div>
+                <h1>CS.UCHICAGO JOB POSTINGS</h1>
             </div>
-        </div>
-        <div id="loginbanner">
-            <p>Students: Sign in with your CNET ID to get customizable job alerts and recommendations.</p>
-            <p>Employers: Create an account to post new jobs and internships.</p>
-        </div>
-        <div id="content">
-            <fieldset>
-                <legend>Internships</legend>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Date Posted</th>
-                            <th>Deadline</th>
-                            <th>Organization</th>
-                            <th>Position</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>[Date]</td>
-                            <td>[Date]</td>
-                            <td><a href="">[Name]</a></td>
-                            <td><a href="">[Name]</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </fieldset>
-            <fieldset>
-                <legend>Part-Time Jobs</legend>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Date Posted</th>
-                            <th>Deadline</th>
-                            <th>Organization</th>
-                            <th>Position</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>[Date]</td>
-                            <td>[Date]</td>
-                            <td><a href="">[Name]</a></td>
-                            <td><a href="">[Name]</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </fieldset>
-            <fieldset>
-                <legend>Full-Time Jobs</legend>
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Date Posted</th>
-                            <th>Deadline</th>
-                            <th>Organization</th>
-                            <th>Position</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>[Date]</td>
-                            <td>[Date]</td>
-                            <td><a href="">[Name]</a></td>
-                            <td><a href="">[Name]</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </fieldset>
+            <div id="loginbanner">
+                <p><strong>Students:</strong> Sign in with your CNET ID to get customizable job alerts and recommendations.</p>
+                <p><strong>Employers:</strong> Create an account to post new jobs and internships.</p>
+            </div>
+            <div id="content">
+                <fieldset>
+                    <legend>Internships</legend>
+                    <table class="jobtable">
+                        <col class="dateposted">
+                        <col class="deadline">
+                        <col class="organization">
+                        <col class="position">
+                        <thead>
+                            <tr>
+                                <th>Date Posted</th>
+                                <th>Deadline</th>
+                                <th>Organization</th>
+                                <th>Position</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>[Date]</td>
+                                <td>[Date]</td>
+                                <td><a href="" class="joblink">[Name]</a></td>
+                                <td><a href="" class="joblink">[Name]</a></td>
+                            </tr>
+                            <tr>
+                                <td>[Date]</td>
+                                <td>[Date]</td>
+                                <td><a href="" class="joblink">[Name]</a></td>
+                                <td><a href="" class="joblink">[Name]</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </fieldset>
+                <fieldset>
+                    <legend>Part-Time Jobs</legend>
+                    <table class="jobtable">
+                        <col class="dateposted">
+                        <col class="deadline">
+                        <col class="organization">
+                        <col class="position">
+                        <thead>
+                            <tr>
+                                <th>Date Posted</th>
+                                <th>Deadline</th>
+                                <th>Organization</th>
+                                <th>Position</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>[Date]</td>
+                                <td>[Date]</td>
+                                <td><a href="" class="joblink">[Name]</a></td>
+                                <td><a href="" class="joblink">[Name]</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </fieldset>
+                <fieldset>
+                    <legend>Full-Time Jobs</legend>
+                    <table class="jobtable">
+                        <col class="dateposted">
+                        <col class="deadline">
+                        <col class="organization">
+                        <col class="position">
+                        <thead>
+                            <tr>
+                                <th>Date Posted</th>
+                                <th>Deadline</th>
+                                <th>Organization</th>
+                                <th>Position</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>[Date]</td>
+                                <td>[Date]</td>
+                                <td><a href="" class="joblink">[Name]</a></td>
+                                <td><a href="" class="joblink">[Name]</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </fieldset>
+            </div>
         </div>
     </body>
 </html>
