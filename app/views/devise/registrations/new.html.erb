@@ -1,0 +1,30 @@
+<h2>Sign up</h2>
+
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
+
+  <div><%= f.label :email, "E-Mail" %><br />
+  <%= f.email_field :email %></div>
+
+  <div><%= f.label :firstname, "First Name" %><br />
+  <%= f.text_field :firstname %></div>
+
+  <div><%= f.label :lastname, "Last Name" %><br />
+  <%= f.text_field :lastname %></div>
+
+  <div>Type: <br/>
+  <%= f.radio_button :type, "JobSeeker" %> <%= f.label :type_jobseeker, "Job Seeker" %> <br/>
+  <%= f.radio_button :type, "Employer" %> <%= f.label :type_employer, "Employer" %> <br/>
+    </div>
+
+
+  <div><%= f.label :password %><br />
+  <%= f.password_field :password %></div>
+
+  <div><%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation %></div>
+
+  <div><%= f.submit "Sign up" %></div>
+<% end %>
+
+<%= render "links" %>
