@@ -51,7 +51,7 @@ job1 = JobPosting.create(title: 'Senior Developer',
                   state: 'Approved',
                   employer_id: employer1.id,
                   url: 'www.google.com/paradise',
-                  affiliation: 'Company')
+                  affiliation: 'Google')
 
 job2 = JobPosting.create(title: 'Junior Developer',
                   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vulputate, velit eu aliquam commodo, eros est ultricies ligula, sit amet aliquet nisl neque non nisi.',
@@ -62,7 +62,7 @@ job2 = JobPosting.create(title: 'Junior Developer',
                   state: 'Pending Approval',
                   employer_id: employer2.id,
                   url: 'www.facebook.com/notreal',
-                  affiliation: 'Company')
+                  affiliation: 'Facebook')
 
 job3 = JobPosting.create(title: 'Despised Intern',
                   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vulputate, velit eu aliquam commodo, eros est ultricies ligula, sit amet aliquet nisl neque non nisi.',
