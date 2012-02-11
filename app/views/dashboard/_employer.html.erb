@@ -1,1 +1,12 @@
-Employer
+<% if can? :create, JobPosting %>
+<div class="new_posting">
+<%= link_to 'New Posting', new_job_posting_path %>
+</div>
+<% end %>
+
+<fieldset>
+    <legend>My Postings</legend>
+
+    <%= render 'job_postings/postings_table', :jobpostings => @employer_postings, :columns => ["dateposted", "deadline", "organization", "position", "state", "edit", "remove"] %>
+
+</fieldset>
