@@ -19,12 +19,19 @@
     <%= f.label :description %><br />
     <%= f.text_area :description %>
   </div>
+  <div class="form_row">
+    <label for "jobtype">Job Type:</label>
+    <%  ['Full Time', 'Part Time', 'Internship'].each do |jobtype| %>
+      <br><%= f.radio_button :jobtype, jobtype %>
+      <%= jobtype.humanize %>
+    <% end %>
+  </div>
   <div class="field">
     <%= f.label :deadline %><br />
     <%= f.date_select :deadline %>
   </div>
   <div class="field">
-    Contact Email <br>
+    <%= f.label 'Contact Email' %><br />
     <%= f.text_field :contact %>
   </div>
   <div class="field">
