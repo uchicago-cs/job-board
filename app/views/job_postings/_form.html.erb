@@ -15,10 +15,12 @@
     <%= f.label :title %><span class="help" alt="The title of the position">?</span><br />
     <%= f.text_field :title %>
   </div>
+<!--
   <div class="field">
     <%= f.label :affiliation %><span class="help" alt="Your company affiliation, or 'Individual' if none">?</span><br />
     <%= f.text_field :affiliation %>
   </div>
+-->
   <div class="field">
     <%= f.label :description %><span class="help" alt="A description of the position, including requirements">?</span><br />
     <%= f.text_area :description %>
@@ -42,13 +44,31 @@
     <%= f.label :url %><span class="help" alt="Is there a website people can visit for more information?">?</span><br />
     <%= f.text_field :url %><br />
   </div>
+<!--
   <div class="field">
     <%= f.label 'Tags' %><span class="help" alt="Identify key words that will help people with specific interests find your job listing">?</span><br />
     <%= f.hidden_field :tags %>
     <div id="taglist"></div>
     <input type="button" id="addtag" value="+">
   </div>
+-->
   <div class="actions">
-    <%= f.submit %>
+<%= f.submit %>
   </div>
+
+<% if current_user.type == "Administrator" and @job_posting.state != "Approved" %>
+<fieldset>
+    <legend>Review Job Posting</legend>
+  <div class="field">
+    <%= f.label :comments %><span class="help" alt="Administrator comments. If requesting changes, please indicate what changes need to be made for the posting to be accepted. If rejecting a post, please indicate the reason.">?</span><br />
+    <%= f.text_area :comments, :rows=>10 %><br />
+  </div>
+
+  <div class="actions">
+    <%= submit_tag "Reject", :name=>"reject", :style=>"background-color:#FF1414"  %>
+    <%= submit_tag "Request Changes", :name=>"request_changes", :style=>"background-color:#FFB62E" %>
+    <%= submit_tag "Approve", :name=>"approve", :style=>"background-color:#2DF73A" %>
+  </div>
+</fieldset>
+<% end %>
 <% end %>
