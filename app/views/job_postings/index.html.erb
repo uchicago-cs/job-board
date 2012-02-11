@@ -24,18 +24,14 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>[Date]</td>
-                <td>[Date]</td>
-                <td><a href="" class="joblink">[Name]</a></td>
-                <td><a href="" class="joblink">[Name]</a></td>
-            </tr>
-            <tr>
-                <td>[Date]</td>
-                <td>[Date]</td>
-                <td><a href="" class="joblink">[Name]</a></td>
-                <td><a href="" class="joblink">[Name]</a></td>
-            </tr>
+            <% @internships.each do |posting| %>
+                <tr>
+                    <td><%= posting.created_at.strftime("%d %B %Y") %></td>
+                    <td><%= posting.deadline.strftime("%d %B %Y") %></td>
+                    <td><%= posting.affiliation %></td>
+                    <td><%= link_to posting.title, job_posting_path(posting) %></td>
+                </tr>
+            <% end %>
         </tbody>
     </table>
 </fieldset>
@@ -55,12 +51,14 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>[Date]</td>
-                <td>[Date]</td>
-                <td><a href="" class="joblink">[Name]</a></td>
-                <td><a href="" class="joblink">[Name]</a></td>
-            </tr>
+            <% @parttime.each do |posting| %>
+                <tr>
+                    <td><%= posting.created_at.strftime("%d %B %Y") %></td>
+                    <td><%= posting.deadline.strftime("%d %B %Y") %></td>
+                    <td><%= posting.affiliation %></td>
+                    <td><%= link_to posting.title, job_posting_path(posting) %></td>
+                </tr>
+            <% end %>
         </tbody>
     </table>
 </fieldset>
@@ -80,12 +78,14 @@
             </tr>
         </thead>
         <tbody>
-            <tr>
-                <td>[Date]</td>
-                <td>[Date]</td>
-                <td><a href="" class="joblink">[Name]</a></td>
-                <td><a href="" class="joblink">[Name]</a></td>
-            </tr>
+            <% @fulltime.each do |posting| %>
+                <tr>
+                    <td><%= posting.created_at.strftime("%d %B %Y") %></td>
+                    <td><%= posting.deadline.strftime("%d %B %Y") %></td>
+                    <td><%= posting.affiliation %></td>
+                    <td><%= link_to posting.title, job_posting_path(posting) %></td>
+                </tr>
+            <% end %>
         </tbody>
     </table>
 </fieldset>
