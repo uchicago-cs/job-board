@@ -8,7 +8,12 @@ employer1 = Employer.create(login: 'j',
                         firstname: 'jesse',
                         lastname: 'ruby',
                         url: 'www.bing.com',
-                        affiliation: 'Google')
+                        affiliation: 'Google',
+                        Full_Time: false,
+                        Part_Time: false,
+                        Internship: false)
+
+
 
 employer2 = Employer.create(login: 'js',
                         password: 'jsjsjs',
@@ -17,7 +22,10 @@ employer2 = Employer.create(login: 'js',
                         firstname: 'Jane',
                         lastname: 'Smith',
                         url: 'www.myface.com',
-                        affiliation: 'Myface')
+                        affiliation: 'Myface',
+                        Full_Time: false,
+                        Part_Time: false,
+                        Internship: false)
 
 employer3 = Employer.create(login: 'bs',
                         password: 'bsbsbs',
@@ -26,21 +34,30 @@ employer3 = Employer.create(login: 'bs',
                         firstname: 'John',
                         lastname: 'Doe',
                         url: 'www.ryersonhasafourthfloor.com',
-                        affiliation: 'The 4th Floor')
+                        affiliation: 'The 4th Floor',
+                        Full_Time: false,
+                        Part_Time: false,
+                        Internship: false)
            
 JobSeeker.create(login: 'test',
                  password: 'password',
                  password_confirmation: 'password', 
-                 email: 'test@test.org',
+                 email: 'test@example.com',
                  firstname: 'Kevin',
-                 lastname: 'Wang')
+                 lastname: 'Wang',
+                 Full_Time: true,
+                 Part_Time: true,
+                 Internship: true)
 
 Administrator.create(login: 'margaret',
                  password: 'password',
                  password_confirmation: 'password', 
                  email: 'margaret@cs.uchicago.edu',
                  firstname: 'Margaret',
-                 lastname: 'Jaffey')
+                 lastname: 'Jaffey',
+                 Full_Time: false,
+                 Part_Time: false,
+                 Internship: false)
 
 job1 = JobPosting.create(title: 'Senior Developer',
                   description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque vulputate, velit eu aliquam commodo, eros est ultricies ligula, sit amet aliquet nisl neque non nisi.',
