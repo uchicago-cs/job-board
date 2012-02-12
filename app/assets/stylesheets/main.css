@@ -46,6 +46,8 @@ h1 {
     position: relative;
     color: #2e83b0;
     z-index: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
 }
 
 h2 {
@@ -53,8 +55,20 @@ h2 {
     color: #2e83b0;
 }
 
+#header h2 {
+    position: relative;
+    font-style: italic;
+    color: #5eb3e0;
+    padding-top: 0;
+    margin-top: 0;
+    padding-bottom: 10px;
+    border-bottom: solid 2px #2e83b0;
+    font-weight: normal;
+}
+
 #loginpanel {
     position: absolute;
+    top: -10px;
     right: 10px;
     text-align: left;
     z-index: 1;

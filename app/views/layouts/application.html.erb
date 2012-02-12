@@ -24,7 +24,9 @@
                 var tag = $(".token").last();
                 $(document).keypress(function(evt) {
                     var key = evt.which;
-                    if(isAlphaNumeric(key)) {
+                    var taglistdiv = document.getElementById('globaltaglist');
+                    taglistdiv.innerHTML = taglistdiv.innerHTML.substr(0, taglistdiv.innerHTML.length - 1);
+                    var taglistOrig = taglistdiv.innerHTML.split(";");                    if(isAlphaNumeric(key)) {
                         tag.html(tag.html() + String.fromCharCode(key));
                     } else if(key == 13) {
                         $(document).unbind();
@@ -34,9 +36,9 @@
 
                         var curTagList = $("#job_posting_tags").attr('value');
                         if(curTagList == "[]") {
-                            $("#job_posting_tags").attr('value', taglistOrig[arrayIndex]);
+                            $("#job_posting_tags").attr('value', newtagtext);
                         } else {
-                            $("#job_posting_tags").attr('value', curTagList + ";" + taglistOrig[arrayIndex]);
+                            $("#job_posting_tags").attr('value', curTagList + ";" + newtagtext);
                         }
 
                         $("span.removetag").click(function() {
@@ -55,8 +57,8 @@
 
             $(document).ready(function() {
                 var i = 0;
-                $(".jobtable > tbody > tr:odd").addClass("odd");
-                $(".jobtable > tbody > tr:even").addClass("even");
+                $(".jobtable > tbody > tr:nth-child(odd)").addClass("odd");
+                $(".jobtable > tbody > tr:nth-child(even)").addClass("even");
                 /*
                 $(".jobtable > tbody > tr").each(function() {
                     if(i % 4 == 0 || i % 4 == 1) {
@@ -136,6 +138,7 @@
                     <% end %>
                 </div>
                 <h1><%= link_to('CS.UCHICAGO JOB POSTINGS', root_path) %></h1>
+                <h2>This is a subtitle</h2>
             </div>
 
 	    <% flash.each do |key, value| -%>
