@@ -10,11 +10,36 @@ class Notifier < ActionMailer::Base
     mail(:to = user.email)
   end
 
-  def notify(user, posting)
+  def set_vals(user, posting, message)
     @account = user
     @posting = posting
-    @siteurl = url_for(action: index)
-    @postingurl = url_for(posting)
+    @message = message
+  end
+
+  def notify_employer(user, posting, message)
+    set_vals(user,posting)
+    mail(:to = user.email)
+  end
+
+  def notify_jobseeker(user, posting)
+    set_vals(user,posting, '')
+    mail(:to = user.email)
+  end
+
+  def posting_approved(user, posting)
+    notify_employer(user, posting, "approved")
+  end
+
+  def posting_modified(user, posting)
+    notify_employer(user, posting, "modified")
+  end
+
+  def posting_returned(user, posting)
+    notify_employer(user, posting, "returned")
+  end
+
+  def notify_administrator(user, posting)
+    set_vals(user,posting, '')
     mail(:to = user.email)
   end
 

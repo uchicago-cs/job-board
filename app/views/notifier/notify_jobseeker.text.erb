@@ -1,0 +1,11 @@
+Hi <%= @account.firstname %>,
+
+A new opportunity has been posted for a <%= @posting.title %> at <%= @posting.employer.affiliation %>
+
+<%= @posting.description %>
+
+The deadline for this position is <%= @posting.deadline.strftime("%d %B %Y") %>.
+
+For more information please visit <%= url_for(@posting) %>
+
+To change your email notification settings log in at <%= url_for(action: index) %>.

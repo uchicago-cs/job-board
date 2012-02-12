@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120211042048) do
+ActiveRecord::Schema.define(:version => 20120211233439) do
 
   create_table "job_postings", :force => true do |t|
     t.string   "title"
@@ -72,6 +72,9 @@ ActiveRecord::Schema.define(:version => 20120211042048) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.boolean  "Full_Time"
+    t.boolean  "Part_Time"
+    t.boolean  "Internship"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
