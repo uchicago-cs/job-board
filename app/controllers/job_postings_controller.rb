@@ -24,6 +24,8 @@ class JobPostingsController < ApplicationController
   def new
     @job_posting = JobPosting.new
     @alltags = Tag.all
+    
+    @job_posting.affiliation = params[:affiliation]
 
     respond_to do |format|
       format.html # new.html.erb
