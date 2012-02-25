@@ -45,18 +45,12 @@ function newTag() {
 }
 
 $(document).ready(function() {
+    notification_display();
+
     var i = 0;
     $(".jobtable > tbody > tr:nth-child(odd)").addClass("odd");
     $(".jobtable > tbody > tr:nth-child(even)").addClass("even");
-    /*
-    $(".jobtable > tbody > tr").each(function() {
-        if(i % 4 == 0 || i % 4 == 1) {
-            $(this).addClass("odd");
-        } else {
-            $(this).addClass("even");
-        }
-    });
-    */
+
     $(".help").mouseover(function(evt) {
         $("<div id=\"help\"></div>").prependTo("body");
         $("#help")
@@ -104,3 +98,24 @@ $(document).ready(function() {
             }
         });
 });
+
+function notification_display() {
+    $(".notice")
+        .prependTo("body")
+        .css({
+            "position" : "fixed",
+            "top" : "20px",
+            "right" : "20px",
+            "width" : "auto",
+            "padding" : "10px 20px 10px 20px",
+            "margin" : "0",
+            "border" : "0",
+            "background-color" : "#cccccc",
+            "display" : "none",
+            "border-radius" : "5px"
+        })
+        .delay(500)
+        .fadeIn("fast")
+        .delay(7000)
+        .fadeOut("slow");
+}
