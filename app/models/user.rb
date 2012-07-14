@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :ldap_authenticatable, :registerable,
+  devise :ldap_authenticatable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
@@ -12,9 +12,19 @@ class User < ActiveRecord::Base
 
 
   def get_ldap_info
-    self.email = Devise::LdapAdapter.get_ldap_param(self.cnet, "mail")
-    self.firstname = Devise::LdapAdapter.get_ldap_param(self.cnet, "givenName")
-    self.lastname = Devise::LdapAdapter.get_ldap_param(self.cnet, "sn")
+    if Devise::LdapAdapter.get_ldap_param(self.cnet, "uid")
+      self.email = Devise::LdapAdapter.get_ldap_param(self.cnet, "mail")
+      self.firstname = Devise::LdapAdapter.get_ldap_param(self.cnet, "givenName")
+      self.lastname = Devise::LdapAdapter.get_ldap_param(self.cnet, "sn")
+      self.type = "JobSeeker"
+    else
+      self.type = "Employer"
+    end
+  end
+
+  def password=(new_password)
+    @password = new_password
+    self.encrypted_password = password_digest(@password) if @password.present? 
   end
 
   #validate :is_in_ldap
