@@ -18,13 +18,13 @@
                     <br/>
                     <%= link_to('Sign Out', destroy_user_session_path, :method => :delete, :class=>"loginpanel") %>        
                     <% else %>
-                    <%= link_to('Students', new_user_session_path, :class=>"loginpanel")  %>  
+                    <%= link_to('Students', "/students", :class=>"loginpanel")  %>  
                     <% end %>
                     <br/>
                     <% if user_signed_in? %>
                       <%= link_to('Edit Account', edit_user_registration_path, :class=>"loginpanel") %>
                     <% else %>
-                      <%= link_to('Employers', new_user_registration_path, :class=>"loginpanel")  %>
+                      <%= link_to('Employers', "/employers", :class=>"loginpanel")  %>
                     <% end %>
                 </div>
                 <h1><%= link_to('The CS Job Board', root_path) %></h1>

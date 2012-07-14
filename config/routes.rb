@@ -1,6 +1,4 @@
 TechJobs::Application.routes.draw do
-  devise_for :users
-
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -17,6 +15,11 @@ TechJobs::Application.routes.draw do
     resources :job_postings
 
     match 'dashboard' => 'dashboard#index'
+
+    devise_for :user do
+      get 'students', :to => 'devise/sessions#new'
+      get 'employers', :to => 'devise/registrations#new'
+    end
 
   # Sample resource route with options:
   #   resources :products do
