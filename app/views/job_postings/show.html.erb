@@ -15,7 +15,7 @@
     </tr>
     <tr>
         <th>URL</th>
-        <td><%= link_to @job_posting.url, @job_posting.url %></td>
+        <td><%= link_to @job_posting.url, url_with_protocol(@job_posting.url) %></td>
     </tr>
     <tr>
         <th>Deadline</th>
