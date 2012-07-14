@@ -1,7 +1,7 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 
-employer1 = Employer.create(login: 'j',
+employer1 = Employer.create(cnet: 'j',
                         password: 'jjjjjj',
                         password_confirmation: 'jjjjjj',
                         email: 'jesse@iloverails.com',
@@ -15,7 +15,7 @@ employer1 = Employer.create(login: 'j',
 
 
 
-employer2 = Employer.create(login: 'js',
+employer2 = Employer.create(cnet: 'js',
                         password: 'jsjsjs',
                         password_confirmation: 'jsjsjs',
                         email: 'jsmith@myface.org',
@@ -27,7 +27,7 @@ employer2 = Employer.create(login: 'js',
                         Part_Time: false,
                         Internship: false)
 
-employer3 = Employer.create(login: 'bs',
+employer3 = Employer.create(cnet: 'bs',
                         password: 'bsbsbs',
                         password_confirmation: 'bsbsbs',
                         email: 'uchi@borja.org',
@@ -39,7 +39,7 @@ employer3 = Employer.create(login: 'bs',
                         Part_Time: false,
                         Internship: false)
            
-JobSeeker.create(login: 'test',
+JobSeeker.create(cnet: 'test',
                  password: 'password',
                  password_confirmation: 'password', 
                  email: 'test@example.com',
@@ -49,7 +49,7 @@ JobSeeker.create(login: 'test',
                  Part_Time: true,
                  Internship: true)
 
-Administrator.create(login: 'margaret',
+Administrator.create(cnet: 'margaret',
                  password: 'password',
                  password_confirmation: 'password', 
                  email: 'margaret@cs.uchicago.edu',
