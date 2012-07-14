@@ -9,19 +9,31 @@
 <fieldset>
     <legend>Internships</legend>
 
-    <%= render 'job_postings/postings_table', :jobpostings => @internships, :columns => columns %>
+	<% if @internships.count > 0 %>
+	    <%= render 'job_postings/postings_table', :jobpostings => @internships, :columns => columns %>
+	<% else %>
+		<p>No internships are available at this time.</p>
+	<% end %>
 
 </fieldset>
 <fieldset>
     <legend>Part-Time Jobs</legend>
 
-    <%= render 'job_postings/postings_table', :jobpostings => @parttime, :columns => columns %>
+	<% if @parttime.count > 0 %>
+	    <%= render 'job_postings/postings_table', :jobpostings => @parttime, :columns => columns %>
+	<% else %>
+		<p>No part-time jobs are available at this time.</p>
+	<% end %>
 
 </fieldset>
 <fieldset>
     <legend>Full-Time Jobs</legend>
 
-    <%= render 'job_postings/postings_table', :jobpostings => @fulltime, :columns => columns %>
+	<% if @fulltime.count > 0 %>
+	    <%= render 'job_postings/postings_table', :jobpostings => @fulltime, :columns => columns %>
+	<% else %>
+		<p>No full-time jobs are available at this time.</p>
+	<% end %>
 
 </fieldset>
 </div>

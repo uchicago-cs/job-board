@@ -269,4 +269,5 @@ div.notice {
     margin-bottom: 30px;
     padding: 20px;
     font-weight: bold;
+	z-index: 100;
 }
