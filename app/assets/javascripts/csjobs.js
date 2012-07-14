@@ -1,4 +1,16 @@
+alphaNumericExceptions = new Array(35, 43, 47); // '#', '+', '/'
+
 function isAlphaNumeric(theChar) {
+	if ((theChar >= 48 && theChar <= 57) ||						// 0-9
+        (theChar >= 65 && theChar <= 90) ||						// A-Z
+        (theChar >= 97 && theChar <= 122) ||					// a-z
+		($.inArray(theChar, alphaNumericExceptions) != -1)) {	// misc. exceptions (e.g., "C++" or "C#")
+		return true;
+	} else {
+		return false;
+	}
+
+/*
     if ((theChar < 48) || (theChar > 122) || 
        ((theChar > 57) && (theChar < 65)) || 
        ((theChar > 90) && (theChar < 97))   ) {
@@ -6,6 +18,7 @@ function isAlphaNumeric(theChar) {
     } else {
         return true;
     }
+*/
 }
 
 function newTag() {
@@ -79,29 +92,28 @@ $(document).ready(function() {
             if(isAlphaNumeric(key)) {
                 curword = curword + String.fromCharCode(key).toLowerCase();
             } else {
-                curword = "";
-            }
-                                    
-            var arrayIndex = $.inArray(curword, taglist);
-            if(arrayIndex != -1) {
-                $("<div class=\"token\">" + taglistOrig[arrayIndex] + " <span class=\"removetag\">x</span></div>").appendTo("#taglist");
-                var curTagList = $("#job_posting_tags").attr('value');
-                if(curTagList == "[]") {
-                    $("#job_posting_tags").attr('value', taglistOrig[arrayIndex]);
-                } else {
-                    $("#job_posting_tags").attr('value', curTagList + ";" + taglistOrig[arrayIndex]);
-                }
-                $("span.removetag").click(function() {
-                    var parent = $(this).parent();
-                    $(this).remove();
-                    var tagtext = $.trim(parent.html());
-                    parent.remove();
-                    
-                    var curtags = $("#job_posting_tags").attr('value');
-                    var newtags = curtags.replace(tagtext, '').replace(";;", ";");
-                    $("#job_posting_tags").attr('value', newtags);
-                });
-            }
+            	var arrayIndex = $.inArray(curword, taglist);
+            	if(arrayIndex != -1) {
+            	    $("<div class=\"token\">" + taglistOrig[arrayIndex] + " <span class=\"removetag\">x</span></div>").appendTo("#taglist");
+            	    var curTagList = $("#job_posting_tags").attr('value');
+            	    if(curTagList == "[]") {
+            	        $("#job_posting_tags").attr('value', taglistOrig[arrayIndex]);
+            	    } else {
+            	        $("#job_posting_tags").attr('value', curTagList + ";" + taglistOrig[arrayIndex]);
+            	    }
+            	    $("span.removetag").click(function() {
+            	        var parent = $(this).parent();
+            	        $(this).remove();
+            	        var tagtext = $.trim(parent.html());
+            	        parent.remove();
+            	        
+            	        var curtags = $("#job_posting_tags").attr('value');
+            	        var newtags = curtags.replace(tagtext, '').replace(";;", ";");
+            	        $("#job_posting_tags").attr('value', newtags);
+            	    });
+            	}
+				curword = "";
+			}
         });
 });
 
