@@ -9,18 +9,24 @@ function isAlphaNumeric(theChar) {
 }
 
 function newTag() {
-    $("<div class=\"token\"><i>New Tag: </i></div>").appendTo("#taglist");
+    $("<div class=\"token\"><span class=\"tokentext\"><i>New Tag: </i></span></div>").appendTo("#taglist");
     var tag = $(".token").last();
+	var tagtextfield = tag.children('span');
     $(document).keypress(function(evt) {
         var key = evt.which;
         var taglistdiv = document.getElementById('globaltaglist');
         taglistdiv.innerHTML = taglistdiv.innerHTML.substr(0, taglistdiv.innerHTML.length - 1);
-        var taglistOrig = taglistdiv.innerHTML.split(";");                    if(isAlphaNumeric(key)) {
-            tag.html(tag.html() + String.fromCharCode(key));
-        } else if(key == 13) {
+        var taglistOrig = taglistdiv.innerHTML.split(";");
+		if(isAlphaNumeric(key)) {
+            tagtextfield.html(tagtextfield.html() + String.fromCharCode(key));
+		} else if(key == 8) { // Delete/Backspace
+			tagtextfield.html(tagtextfield.html().substr(0, tagtextfield.html().length - 1));
+			evt.preventDefault();
+			evt.returnFalse = false;
+        } else if(key == 13) { // Enter
             $(document).unbind();
-            var newtagtext = tag.html().substring(16);
-            tag.html(newtagtext);
+            var newtagtext = tagtextfield.html().substring(16);
+            tagtextfield.html(newtagtext);
             tag.append(" <span class=\"removetag\">x</span>");
 
             var curTagList = $("#job_posting_tags").attr('value');
