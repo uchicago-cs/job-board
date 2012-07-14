@@ -21,10 +21,9 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
 gem 'cancan'
-
-gem 'devise'
+gem 'devise', '~> 2.0'
+gem 'devise_ldap_authenticatable'
 
 # To use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.0.0'

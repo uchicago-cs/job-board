@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120211233439) do
+ActiveRecord::Schema.define(:version => 20120714201250) do
 
   create_table "job_postings", :force => true do |t|
     t.string   "title"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(:version => 20120211233439) do
   add_index "tags_users", ["user_id"], :name => "index_tags_users_on_user_id"
 
   create_table "users", :force => true do |t|
-    t.string   "login"
+    t.string   "cnet"
     t.string   "email",                  :default => "", :null => false
     t.string   "firstname"
     t.string   "lastname"
