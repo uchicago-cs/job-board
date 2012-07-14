@@ -23,6 +23,12 @@
     <%= f.label :description %><span class="help" alt="A description of the position, including requirements">?</span><br />
     <%= f.text_area :description %>
   </div>
+  <div class="field">
+    <%= f.label 'Tags' %><span class="help" alt="Identify key words that will help people with specific interests find your job listing">?</span><br />
+    <%= f.hidden_field :tags %>
+    <div id="taglist"></div>
+    <input type="button" id="addtag" value="+">
+  </div>
   <div class="form_row">
     <label for "jobtype">Job Type</label><span class="help" alt="Is the position an internship or a part-time or full-time job?">?</span>
     <%  ['Full Time', 'Part Time', 'Internship'].each do |jobtype| %>
@@ -41,12 +47,6 @@
   <div class="field">
     <%= f.label :url %><span class="help" alt="Is there a website people can visit for more information?">?</span><br />
     <%= f.text_field :url %><br />
-  </div>
-  <div class="field">
-    <%= f.label 'Tags' %><span class="help" alt="Identify key words that will help people with specific interests find your job listing">?</span><br />
-    <%= f.hidden_field :tags %>
-    <div id="taglist"></div>
-    <input type="button" id="addtag" value="+">
   </div>
   <div class="actions">
 <%= f.submit %>

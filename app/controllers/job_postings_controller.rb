@@ -38,7 +38,28 @@ class JobPostingsController < ApplicationController
   end
 
   def create
-    @job_posting = JobPosting.new(params[:job_posting])
+    @job_posting = JobPosting.create
+    @job_posting.title = params[:job_posting][:title]
+    @job_posting.description = params[:job_posting][:description]
+    @job_posting.jobtype = params[:job_posting][:jobtype]
+    @job_posting.contact = params[:job_posting][:contact]
+    @job_posting.deadline = Date.new(params[:job_posting]["deadline(1i)"].to_i, params[:job_posting]["deadline(2i)"].to_i, params[:job_posting]["deadline(3i)"].to_i)
+	@job_posting.affiliation = params[:affiliation]
+
+	tags = params[:job_posting][:tags].split(";")
+	tags.each do |t|
+      if t != ""
+        oldtag = Tag.where("name = ?", t).first
+        if oldtag.nil?
+          newtag = Tag.create
+          newtag.name = t
+          newtag.save!
+          @job_posting.tags << newtag
+        else
+          @job_posting.tags << oldtag
+        end
+      end
+    end
 
     if current_user.type == "Employer"
        @job_posting.employer_id = current_user.id
