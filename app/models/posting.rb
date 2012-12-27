@@ -3,20 +3,22 @@ class Posting < ActiveRecord::Base
   has_and_belongs_to_many :tags
   belongs_to :employer
 
+  after_create :alert_admins_of_new_posting
+
   def active?
     active_until <= DateTime.now
   end
 
   def self.all_internships
-    Posting.where(:jobtype => jobtype_symbol_to_id(:internship))
+    Posting.where(:jobtype => jobtype_symbol_to_id(:internship), :state => state_symbol_to_id(:approved))
   end
 
   def self.all_parttime
-    Posting.where(:jobtype => jobtype_symbol_to_id(:parttime))
+    Posting.where(:jobtype => jobtype_symbol_to_id(:parttime), :state => state_symbol_to_id(:approved))
   end
 
   def self.all_fulltime
-    Posting.where(:jobtype => jobtype_symbol_to_id(:fulltime))
+    Posting.where(:jobtype => jobtype_symbol_to_id(:fulltime), :state => state_symbol_to_id(:approved))
   end
 
   # Override the state setter to take a symbol
@@ -24,6 +26,7 @@ class Posting < ActiveRecord::Base
     type = Posting.state_symbol_to_id(value)
     if not type.nil?
       write_attribute(:state, type)
+      Notifier.employer_posting_status_change(self).deliver
       return true
     else
       return false
@@ -81,5 +84,9 @@ class Posting < ActiveRecord::Base
       when :changes_needed then 2
       when :approved then 3
     end
+  end
+
+  def alert_admins_of_new_posting
+    Notifier.admin_new_posting_notification(self).deliver
   end
 end

@@ -33,8 +33,8 @@
     = f.label :jobtype
     %span.help{:alt => "Is the position an internship or a part-time or full-time job?"} ?
     %br
-    - ['Full Time', 'Part Time', 'Internship'].each do |jobtype|
-      = f.radio_button :jobtype, jobtype
+    - ['Full Time', 'Part Time', 'Internship'].each_with_index do |jobtype, i|
+      = f.radio_button :jobtype, i
       = jobtype.humanize
   .field
     = f.label :active_until

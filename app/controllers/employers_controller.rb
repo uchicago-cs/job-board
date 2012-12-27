@@ -20,7 +20,7 @@ class EmployersController < ApplicationController
     
     if current_student && current_student.is_admin?
       if params[:approve]
-        @employer.approved = true
+        @employer.approve_account
       end
     end
 

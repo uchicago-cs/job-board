@@ -41,7 +41,7 @@ class PostingsController < ApplicationController
       @posting.tags << Tag.find_or_create_by_name(tag)
     end
 
-    @posting.state= :pending
+    @posting.state = :pending
     @posting.save!
 
     flash[:notice] = "Your job posting has been submitted and is pending approval. You will be notified via e-mail once it has been reviewed by an administrator."

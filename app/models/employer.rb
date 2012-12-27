@@ -11,11 +11,24 @@ class Employer < ActiveRecord::Base
   attr_accessible :firstname, :lastname, :url, :company, :note_to_reviewer, :approved
   has_many :postings
 
+  after_create :alert_admins_of_new_employer
+
   def self.accounts_pending_approval?
     Employer.where(:approved => false).count > 0
   end
 
   def self.accounts_pending_approval
     Employer.where(:approved => false)
+  end
+
+  def approve_account
+    approved = true
+    Notifier.employer_account_approved(self).deliver
+  end
+
+  private
+
+  def alert_admins_of_new_employer
+    Notifier.admin_new_employer_notification(self).deliver
   end
 end
