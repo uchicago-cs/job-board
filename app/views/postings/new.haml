@@ -28,7 +28,7 @@
     %br
     = f.hidden_field :tags
     #taglist
-      %button#addtag +
+      %button#addtag{:type => "button"} +
   .field
     = f.label :jobtype
     %span.help{:alt => "Is the position an internship or a part-time or full-time job?"} ?
@@ -53,3 +53,6 @@
     = f.text_field :url
   .actions
     = f.submit "Submit"
+
+#globaltaglist
+  = @tags.collect {|t| "#{t.name};"}.join

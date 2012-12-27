@@ -1,0 +1,33 @@
+div.token {
+    display: inline-block;
+    background-color: darkblue;
+    color: white;
+    font-size: small;
+    padding: 3px;
+    border-radius: 4px;
+    margin: 3px;
+    z-index: 50;
+}
+
+span.removetag {
+    position: relative;
+    top: -3px;
+    padding-left: 2px;
+    color: white;
+    cursor: pointer;
+}
+
+span.removetag:hover {
+    color: red;
+}
+
+#taglist {
+    border: solid 1px #2e83b0;
+    width: 50%;
+    min-height: 25px;
+    padding: 2px;
+}
+
+#globaltaglist {
+    display: none;
+}
