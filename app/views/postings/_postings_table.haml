@@ -1,0 +1,43 @@
+- colname = { "dateposted" => "Date Posted",
+              "deadline" => "Deadline",
+              "organization" => "Organization",
+              "position" => "Position",
+              "edit" => "Edit",
+              "review" => "Review",
+              "state" => "State",
+              "remove" => "Remove" }
+- columns ||= []
+- includetags ||= false
+
+%table.jobtable
+  - columns.each do |col|
+    %col{:class => col}
+  %thead
+    %tr
+      - columns.each do |col|
+        %th= colname[col]
+  %tbody
+    - postings.each do |posting|
+      %tr
+        - columns.each do |col|
+          %td
+            - case col
+              - when "dateposted"
+                = posting.created_at.strftime("%d %B %Y")
+              - when "deadline"
+                = posting.active_until.strftime("%d %B %Y")
+              - when "organization"
+                = posting.employer.company
+              - when "position"
+                = link_to posting.title, posting_path(posting)
+              - when "edit", "review"
+                = link_to col =="edit" ? "Edit" : "Review", edit_posting_path(posting)
+              - when "remove"
+                = link_to "Remove", posting_path(posting), :method => :delete, :confirm => "Are you sure you want to remove this job posting? This will permanently delete it from our system."
+              - when "state"
+                = posting.state_as_string
+      - if includetags
+        %tr
+          %td{:colspan => 4}
+            - posting.tags.each do |tag|
+              %div.token tag.name

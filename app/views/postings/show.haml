@@ -1,0 +1,35 @@
+%h2 Job Posting
+
+%table
+  %tr
+    %th Title
+    %td= @posting.title
+  %tr
+    %th Company
+    %td= @posting.company
+  %tr
+    %th Description
+    %td= @posting.description
+  %tr
+    %th URL
+    %td= link_to @posting.url, url_with_protocol(@posting.url)
+  %tr
+    %th Deadline
+    %td= @posting.active_until.strftime("%d %B %Y")
+  %tr
+    %th Contact
+    %td= @posting.contact
+  %tr
+    %th Tags
+    %td
+      - @posting.tags.each do |tag|
+        .token= tag.name
+  %tr
+    %th Status
+    %td= @posting.state_as_string
+
+- if current_student && current_student.is_admin?
+  = form_for(@posting, :as => "posting", :url => posting_path(@posting)) do |f|
+    = f.submit "Approve", :name => "approve"
+    = f.submit "Request Changes", :name => "request_changes"
+    = f.submit "Reject", :name => "reject"

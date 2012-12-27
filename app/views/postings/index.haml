@@ -1,0 +1,52 @@
+%div#loginbanner
+  %p
+    %strong Students:
+    Sign in with your CNET ID to get customizable job alerts and recommendations.
+  %p
+    %strong Employers:
+    Create an account to post new jobs and internships.
+
+%div#content
+  - columns = ["dateposted", "deadline", "organization", "position"]
+
+  - if current_student && current_student.is_admin?
+    - columns << "review" << "remove" << "state"
+    - if Employer.accounts_pending_approval?
+      %p There are new employer accounts pending approval:
+      %ul
+        - @accounts_pending_approval.each do |employer|
+          %li= link_to "#{employer.firstname} #{employer.lastname} (#{employer.company})", employer_path(employer)
+    - else
+      %p There are no new employer accounts at the moment.
+    - if Posting.postings_pending_approval?
+      %p There are new job postings pending approval.
+      %ul
+        - @postings_pending_approval.each do |posting|
+          %li= link_to "#{posting.title} (from #{posting.employer.firstname} #{posting.employer.lastname} at #{posting.employer.company})", posting_path(posting)
+    - else
+      %p There are no new job postings at the moment.
+
+  - if current_employer
+    - columns << "edit" << "remove" << "state"
+    %p= link_to "Add a new job posting", new_posting_path
+
+  %fieldset
+    %legend Internships
+    - if @internships.count > 0
+      = render 'postings/postings_table', :postings => @internships, :columns => columns
+    - else
+      %p No internships are available at this time.
+
+  %fieldset
+    %legend Part-Time Jobs
+    - if @parttime.count > 0
+      = render 'postings/postings_table', :postings => @parttime, :columns => columns
+    - else
+      %p No part-time jobs are available at this time.
+
+  %fieldset
+    %legend Full-Time Jobs
+    -if @fulltime.count > 0
+      = render 'postings/postings_table', :postings => @fulltime, :columns => columns
+    - else
+      %p No full-time jobs are available at this time.

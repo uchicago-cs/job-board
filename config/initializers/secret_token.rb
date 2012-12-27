@@ -4,4 +4,4 @@
 # If you change this key, all old signed cookies will become invalid!
 # Make sure the secret is at least 30 characters and all random,
 # no regular words or you'll be exposed to dictionary attacks.
-TechJobs::Application.config.secret_token = 'adb25d819448ec0569e0ca1ee5c0b15809b1c4e7c4ddbfab4efe7e92981f35e28e80d629e532c9ca7b9159b98d1f3b43748e5917c21a70332b7968595dd48958'
+TechJobs::Application.config.secret_token = '170b4f6e0e3d2217a6d9d405af342e044a1a9dc49990b2c256dc779f0bdbb1f16f7cbbd97ba0419c702af11c9aed485a48ab41c582916ef3f257dca0d1cb19a6'

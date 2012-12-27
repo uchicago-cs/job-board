@@ -1,5 +1,5 @@
 ## Authorizations
-# Uncomment out the merging for each environment that you'd like to include.
+# Uncomment out the merging for each enviornment that you'd like to include.
 # You can also just copy and paste the tree (do not include the "authorizations") to each
 # enviornment if you need something different per enviornment.
 authorizations: &AUTHORIZATIONS
@@ -18,44 +18,25 @@ authorizations: &AUTHORIZATIONS
     objectClass: inetOrgPerson
     authorizationRole: postsAdmin
 
-## Enviornments
-
-#development:
-#  host: localhost
-#  port: 3389
-#  attribute: uid
-#  base: ou=people,dc=test,dc=com
-#  #admin_user: cn=admin,dc=test,dc=com
-#  #admin_password: admin_password
-#  ssl: false
-#  # <<: *AUTHORIZATIONS
+## Environments
 
 development:
   host: ldap.uchicago.edu
   port: 636
   attribute: uid
   base: ou=people,dc=uchicago,dc=edu
-  #admin_user: cn=admin,dc=test,dc=com
-  #admin_password: admin_password
   ssl: true
-  # <<: *AUTHORIZATIONS
 
 test:
-  host: localhost
-  port: 3389
+  host: ldap.uchicago.edu
+  port: 636
   attribute: uid
-  base: ou=people,dc=test,dc=com
-  #admin_user: cn=admin,dc=test,dc=com
-  #admin_password: admin_password
-  ssl: false
-  # <<: *AUTHORIZATIONS
+  base: ou=people,dc=uchicago,dc=edu
+  ssl: true
 
 production:
   host: ldap.uchicago.edu
   port: 636
   attribute: uid
-  base: ou=people,dc=uchocago,dc=edu
-  #admin_user: cn=admin,dc=test,dc=com
-  #admin_password: admin_password
+  base: ou=people,dc=uchicago,dc=edu
   ssl: true
-  # <<: *AUTHORIZATIONS

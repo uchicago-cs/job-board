@@ -1,2 +1,0 @@
-class JobSeeker < User
-end

@@ -1,0 +1,47 @@
+%h2 Employer Sign In
+
+= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
+  %div
+    = f.label :email
+    = f.email_field :email
+  %div
+    = f.label :password
+    = f.password_field :password
+  - if devise_mapping.rememberable?
+    %div
+      = f.check_box :remember_me
+      = f.label :remember_me
+  %div
+    = f.submit "Sign In"
+
+%h2 Employer Registration
+
+= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f|
+  %p Please fill in the following information about yourself to register as an employer. After registering, you will receive an email once a reviewer has looked over your information and approved your account.
+  = devise_error_messages!
+  %div
+    = f.label :firstname
+    = f.text_field :firstname
+  %div
+    = f.label :lastname
+    = f.text_field :lastname
+  %div
+    = f.label :email
+    = f.email_field :email
+  %div
+    = f.label :password
+    = f.password_field :password
+  %div
+    = f.label :password_confirmation
+    = f.password_field :password_confirmation
+  %div
+    = f.label :url
+    = f.text_field :url
+  %div
+    = f.label :company
+    = f.text_field :company
+  %div
+    = f.label :note_to_reviewer
+    = f.text_area :note_to_reviewer
+  %div
+    = f.submit "Sign Up"

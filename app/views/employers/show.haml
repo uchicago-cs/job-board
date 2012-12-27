@@ -1,0 +1,31 @@
+%h2 Employer Profile: #{@employer.firstname} #{@employer.lastname}
+
+%table
+  %tr
+    %th Name:
+    %td #{@employer.firstname} #{@employer.lastname}
+  %tr
+    %th Company:
+    %td #{@employer.company}
+  %tr
+    %th Email:
+    %td #{@employer.email}
+  %tr
+    %th URL:
+    %td #{@employer.url}
+  %tr
+    %th Note to Reviewer:
+    %td
+      %tt
+        #{@employer.note_to_reviewer}
+  %tr
+    %th Status:
+    %td
+      - if @employer.approved
+        Approved
+      - else
+        Pending Approval
+
+- if current_student && current_student.is_admin?
+  = form_for(@employer, :as => "employer", :url => employer_path(@employer)) do |f|
+    = f.submit "Approve", :name => "approve"
