@@ -1,0 +1,24 @@
+set :application, "CSJobBoard"
+set :repository,  "git@github.com:uchicago-cs/job-board.git"
+set :scm, :git
+set :branch, "master"
+set :deploy_via, :remote_cache
+set :deploy_to, "/var/www/jobboard"
+set :user, "[INSERT YOUR USERNAME HERE]"
+
+role :app, "jobboard.cs.uchicago.edu"
+role :web, "jobboard.cs.uchicago.edu"
+role :db, "jobboard.cs.uchicago.edu"
+
+ssh_options[:forward_agent] = true
+default_run_options[:pty] = true
+
+after "deploy:restart", "deploy:cleanup"
+
+namespace :deploy do
+  task :start do ; end
+  task :stop do ; end
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
+  end
+end
