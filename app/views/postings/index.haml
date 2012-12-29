@@ -31,21 +31,21 @@
     %p= link_to "Add a new job posting", new_posting_path
 
   %fieldset
-    %legend Internships
+    %h3 Internships
     - if @internships.count > 0
       = render 'postings/postings_table', :postings => @internships, :columns => columns
     - else
       %p No internships are available at this time.
 
   %fieldset
-    %legend Part-Time Jobs
+    %h3 Part-Time Jobs
     - if @parttime.count > 0
       = render 'postings/postings_table', :postings => @parttime, :columns => columns
     - else
       %p No part-time jobs are available at this time.
 
   %fieldset
-    %legend Full-Time Jobs
+    %h3 Full-Time Jobs
     -if @fulltime.count > 0
       = render 'postings/postings_table', :postings => @fulltime, :columns => columns
     - else

@@ -6,12 +6,25 @@
     = javascript_include_tag "application"
     = csrf_meta_tags
   %body
-    %p.notice= notice
-    %p.alert= alert
+    #page-wrap
+      %p.notice= notice
+      %p.alert= alert
 
-    = render :partial => "layouts/login"
+      #page-header
+        #page-header-wrapper
+          #page-title
+            %h1= link_to('Computer Science Job Board', root_path)
+          #page-wordmark
+            = link_to image_tag('uc_wordmark_phoenix.png'), 'http://www.uchicago.edu/'
 
-    %h1= link_to('The CS Job Board', root_path)
-    %h2 Employment Opportunities in IT for UChicago Students
 
-    = yield
+      #page-body
+        #page-content
+          = render :partial => "layouts/login"
+
+          %h2 Employment Opportunities in IT for UChicago Students
+
+          = yield
+    
+    #page-footer
+      #page-footer-content

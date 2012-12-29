@@ -1,0 +1,128 @@
+html {
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: #474740;
+  background-color: #EAE9E1;
+  height: 100%;
+  line-height: 1.5;
+  font-family: Verdana, sans-serif;
+  font-size: 12px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-weight: 400;
+}
+
+#page-wrap {
+  min-height: 100%;
+}
+
+#page-header {
+  background: maroon;
+  background-image: -moz-linear-gradient(center top,maroon,#700 88px,#9F2425 88px,#9F2425 89px,#971E21 89px,#971E21 96px);
+  background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,maroon),color-stop(0.92,#700),color-stop(0.92,#9F2425),color-stop(0.93,#9F2425),color-stop(0.93,#971E21),color-stop(1.0,#971E21));
+  background-image: gradient(linear,left top,left bottom,color-stop(0,maroon),color-stop(0.92,#700),color-stop(0.92,#9F2425),color-stop(0.93,#9F2425),color-stop(0.93,#971E21),color-stop(1.0,#971E21));
+  height: 96px;
+  width: 100%;
+  position: relative;
+}
+
+#page-header-wrapper {
+  margin: 0 auto;
+  width: 936px;
+}
+
+#page-title {
+  float: left;
+  margin-left: 20px;
+}
+
+#page-wordmark {
+  height: 53px;
+  width: 246px;
+  margin-top: 20px;
+  float: right;
+  margin-right: 20px;
+}
+
+#page-body {
+  padding-bottom: 105px;
+}
+
+#page-content {
+  width: 936px;
+  margin: 0 auto;
+  background-color: #F7F6ED;
+  padding: 10px;
+}
+
+#page-footer {
+  position: relative;
+  margin-top: -105px;
+  width: 100%;
+  height: 105px;
+  clear: both;
+  background-image: url('/assets/outsidefooterbg.gif');
+}
+
+#page-footer-content {
+  width: 936px;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 105px;
+  margin: 0 auto;
+  background-image: url('/assets/insidefooterbg.gif');
+}
+
+h1, h1 a {
+  color: white;
+  cursor: auto;
+  display: block;
+  font-family: ProximaNova-Regular, Helvetica, sans-serif;
+  font-size: 36px;
+  font-weight: normal;
+  text-decoration: none;
+}
+
+h3 {
+  color: #155F83;
+  text-transform: uppercase;
+  font-family: ProximaNova-Regular, Verdana, sans-serif;
+  letter-spacing: 1px;
+  font-size: 1.25em;
+  margin: 5px 0px 5px 0px;
+  padding: 0;
+  font-weight: normal;
+}
+
+fieldset {
+  border-top: solid 5px #3E7C97;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+  background-color: #EAEAE2;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.notice {
+  position: fixed;
+}
+
+.alert {
+  position: fixed;
+}
+
+/* Opera fix */
+body:before {
+  content: "";
+  height: 100%;
+  float: left;
+  width: 0;
+  margin-top: -32767px;
+}
