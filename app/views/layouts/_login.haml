@@ -1,10 +1,10 @@
-%div.login
+#login
   - if student_signed_in?
-    %p= link_to 'My Settings', edit_student_path(current_student)
-    %p= link_to 'Sign Out', destroy_student_session_path, :method => :delete
+    %p= link_to 'My Settings', edit_student_path(current_student), :class => "login_link"
+    %p= link_to 'Sign Out', destroy_student_session_path, :method => :delete, :class => "login_link"
   - elsif employer_signed_in?
-    %p= link_to 'My Settings', edit_employer_path(current_employer)
-    %p= link_to 'Sign Out', destroy_employer_session_path, :method => :delete
+    %p= link_to 'My Settings', edit_employer_path(current_employer), :class => "login_link"
+    %p= link_to 'Sign Out', destroy_employer_session_path, :method => :delete, :class => "login_link"
   - else
-    %p= link_to 'Student Sign In', new_student_session_path
-    %p= link_to 'Employer Sign In', new_employer_session_path
+    %p= link_to 'Student Sign In', new_student_session_path, :class => "login_link"
+    %p= link_to 'Employer Sign In', new_employer_session_path, :class => "login_link"

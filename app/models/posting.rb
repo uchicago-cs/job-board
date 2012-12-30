@@ -50,6 +50,10 @@ class Posting < ActiveRecord::Base
     Posting.where(:state => state_symbol_to_id(:pending))
   end
 
+  def owned_by?(c_student, c_employer)
+    (c_student && c_student.is_admin?) || (c_employer && self.employer == c_employer)
+  end
+
   private
 
   def self.jobtype_symbol_to_id(_jobtype)

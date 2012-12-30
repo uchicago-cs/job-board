@@ -1,11 +1,16 @@
 %h2 Student Sign In
 
 = form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f|
-  %div
-    = f.label :cnet
-    = f.text_field :cnet
-  %div
-    = f.label :password
-    = f.password_field :password
-  %div
-    = f.submit "Sign In"
+  %table.formtable
+    %colgroup
+      %col.form_label_col
+      %col.form_input_col
+    %tr
+      %td= f.label :cnet, "CNet ID"
+      %td= f.text_field :cnet
+    %tr
+      %td= f.label :password, "Password"
+      %td= f.password_field :password
+    %tr
+      %td
+      %td= f.submit "Sign In"

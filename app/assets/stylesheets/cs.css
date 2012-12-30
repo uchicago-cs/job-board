@@ -19,6 +19,7 @@ body {
 }
 
 #page-wrap {
+  position: relative;
   min-height: 100%;
 }
 
@@ -51,14 +52,21 @@ body {
 }
 
 #page-body {
-  padding-bottom: 105px;
+  position: relative;
+  height: 100%;
 }
 
 #page-content {
+  position: relative;
   width: 936px;
   margin: 0 auto;
   background-color: #F7F6ED;
   padding: 10px;
+  height: 100%;
+}
+
+#login {
+  float: right;
 }
 
 #page-footer {
@@ -79,7 +87,21 @@ body {
   background-image: url('/assets/insidefooterbg.gif');
 }
 
-h1, h1 a {
+a:link, a:visited {
+  color: #155F83;
+  text-decoration: none;
+}
+
+a:active, a:hover {
+  color: #20364E;
+  text-decoration: underline;
+}
+
+a.login_link {
+  font-weight: bold;
+}
+
+h1, h1 a:link, h1 a:visited, h1 a:active, h1 a:hover {
   color: white;
   cursor: auto;
   display: block;
@@ -87,6 +109,12 @@ h1, h1 a {
   font-size: 36px;
   font-weight: normal;
   text-decoration: none;
+}
+
+h2 {
+  color: #7F3735;
+  font-family: ProximaNova-Regular, Helvetica, sans-serif;
+  font-size: 24px;
 }
 
 h3 {
@@ -108,6 +136,80 @@ fieldset {
   background-color: #EAEAE2;
   margin-top: 10px;
   margin-bottom: 10px;
+}
+
+table.jobtable {
+  border: 0;
+  border-collapse: collapse;
+}
+
+table.jobtable th {
+  font-weight: bold;
+  text-align: center;
+  background-color: #CCCCCC;
+  padding: 3px;
+}
+
+table.jobtable td {
+  text-align: center;
+  padding: 3px;
+}
+
+table.job_posting {
+  border: 0;
+  border-top: solid 5px #7F3735;
+  border-collapse: collapse;
+}
+
+table.job_posting th {
+  font-weight: bold;
+  text-align: left;
+  background-color: #CCCCCC;
+  padding: 3px 10px 3px 10px;
+  vertical-align: top;
+}
+
+table.job_posting td {
+  text-align: left;
+  padding: 3px 10px 3px 20px;
+  background-color: #EEEEEE;
+  vertical-align: top;
+}
+
+col.dateposted {
+  width: 15em;
+}
+
+col.deadline {
+  width: 15em;
+}
+
+col.organization {
+  width: 20em;
+}
+
+col.position {
+  width: 20em;
+}
+
+col.posting_description {
+  width: 50em;
+}
+
+label {
+  margin: 5px 20px 5px 5px;
+}
+
+input[type="text"], input[type="password"] {
+  border: solid 1px gray;
+  padding: 3px;
+  width: 20em;
+}
+
+input[type="submit"] {
+  border: solid 1px gray;
+  padding: 3px;
+  width: 10em;
 }
 
 .notice {

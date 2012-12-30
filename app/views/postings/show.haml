@@ -1,6 +1,9 @@
 %h2 Job Posting
 
-%table
+%table.job_posting
+  %colgroup
+    %col.posting_label
+    %col.posting_description
   %tr
     %th Title
     %td= @posting.title
@@ -12,7 +15,7 @@
     %td= @posting.description
   %tr
     %th URL
-    %td= link_to @posting.url, url_with_protocol(@posting.url)
+    %td= link_to url_with_protocol(@posting.url), url_with_protocol(@posting.url)
   %tr
     %th Deadline
     %td= @posting.active_until.strftime("%d %B %Y")
@@ -24,9 +27,10 @@
     %td
       - @posting.tags.each do |tag|
         .token= tag.name
-  %tr
-    %th Status
-    %td= @posting.state_as_string
+  - if @posting.owned_by?(current_student, current_employer)
+    %tr
+      %th Status
+      %td= @posting.state_as_string
 
 - if current_student && current_student.is_admin?
   = form_for(@posting, :as => "posting", :url => posting_path(@posting)) do |f|
