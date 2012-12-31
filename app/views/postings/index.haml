@@ -1,12 +1,13 @@
 %h2 Employment Opportunities in IT for UChicago Students
 
-%div#loginbanner
-  %p
-    %strong Students:
-    Sign in with your CNET ID to get customizable job alerts and recommendations.
-  %p
-    %strong Employers:
-    Create an account to post new jobs and internships.
+- if current_student.nil? && current_employer.nil?
+  %div#loginbanner
+    %p
+      %strong Students:
+      Sign in with your CNET ID to get customizable job alerts and recommendations.
+    %p
+      %strong Employers:
+      Create an account to post new jobs and internships.
 
 %div#content
   - columns = ["dateposted", "deadline", "organization", "position"]

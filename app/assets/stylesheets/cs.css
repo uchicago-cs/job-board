@@ -263,6 +263,10 @@ a.reject_btn {
   width: 20em;
 }
 
+p.greeting {
+  font-weight: bold;
+}
+
 .notice {
   position: fixed;
 }
