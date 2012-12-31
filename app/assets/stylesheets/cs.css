@@ -69,6 +69,10 @@ body {
   float: right;
 }
 
+#spacer {
+  height: 150px;
+}
+
 #page-footer {
   position: relative;
   margin-top: -105px;
@@ -176,6 +180,15 @@ table.job_posting td {
   vertical-align: top;
 }
 
+table.formtable {
+  border: 0;
+  border-collapse: collapse;
+}
+
+table.formtable td {
+  vertical-align: top;
+}
+
 col.dateposted {
   width: 15em;
 }
@@ -197,10 +210,12 @@ col.posting_description {
 }
 
 label {
+  position: relative;
   margin: 5px 20px 5px 5px;
+  top: 2px;
 }
 
-input[type="text"], input[type="password"] {
+input[type="text"], input[type="password"], input[type="email"], textarea {
   border: solid 1px gray;
   padding: 3px;
   width: 20em;
@@ -210,6 +225,26 @@ input[type="submit"] {
   border: solid 1px gray;
   padding: 3px;
   width: 10em;
+}
+
+textarea.posting_comments {
+  width: 30em;
+  height: 5em;
+}
+
+input.approve_btn {
+  background-color: #00C800;
+  margin: 10px;
+}
+
+input.request_changes_btn {
+  background-color: #FFC800;
+  margin: 10px;
+}
+
+input.reject_btn {
+  background-color: #C80000;
+  margin: 10px;
 }
 
 .notice {
