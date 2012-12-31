@@ -66,6 +66,7 @@ class PostingsController < ApplicationController
         @posting.state = :approved
         flash[:notice] = "Job posting was approved."
       end
+      @posting.comments = params[:posting][:comments]
       next_page = postings_path
     end
 

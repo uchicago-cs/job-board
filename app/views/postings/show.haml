@@ -15,7 +15,7 @@
     %td= @posting.description
   %tr
     %th URL
-    %td= link_to url_with_protocol(@posting.url), url_with_protocol(@posting.url)
+    %td= link_to url_with_protocol(@posting.url), url_with_protocol(@posting.url), :target => "_blank"
   %tr
     %th Deadline
     %td= @posting.active_until.strftime("%d %B %Y")
@@ -34,6 +34,10 @@
 
 - if current_student && current_student.is_admin?
   = form_for(@posting, :as => "posting", :url => posting_path(@posting)) do |f|
-    = f.submit "Approve", :name => "approve"
-    = f.submit "Request Changes", :name => "request_changes"
-    = f.submit "Reject", :name => "reject"
+    = f.label :comments, "Comments"
+    %br
+    = f.text_area :comments, :class => "posting_comments"
+    %br
+    = f.submit "Approve", :name => "approve", :class => "approve_btn"
+    = f.submit "Request Changes", :name => "request_changes", :class => "request_changes_btn"
+    = f.submit "Reject", :name => "reject", :class => "reject_btn"
