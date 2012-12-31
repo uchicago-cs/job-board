@@ -21,8 +21,21 @@ class Employer < ActiveRecord::Base
     Employer.where(:approved => false)
   end
 
+  def internship_postings
+    Posting.all_internships.where(:employer_id => self)
+  end
+
+  def parttime_postings
+    Posting.all_parttime.where(:employer_id => self)
+  end
+
+  def fulltime_postings
+    Posting.all_fulltime.where(:employer_id => self)
+  end
+
   def approve_account
-    approved = true
+    self.approved = true
+    save
     Notifier.employer_account_approved(self).deliver
   end
 

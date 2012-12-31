@@ -231,6 +231,10 @@ input[type="submit"] {
   width: 10em;
 }
 
+input.view_change {
+  width: 5em;
+}
+
 textarea.posting_comments {
   width: 30em;
   height: 5em;

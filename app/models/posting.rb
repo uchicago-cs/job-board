@@ -10,14 +10,26 @@ class Posting < ActiveRecord::Base
   end
 
   def self.all_internships
-    Posting.where(:jobtype => jobtype_symbol_to_id(:internship), :state => state_symbol_to_id(:approved))
+    Posting.where(:jobtype => jobtype_symbol_to_id(:internship))
   end
 
   def self.all_parttime
-    Posting.where(:jobtype => jobtype_symbol_to_id(:parttime), :state => state_symbol_to_id(:approved))
+    Posting.where(:jobtype => jobtype_symbol_to_id(:parttime))
   end
 
   def self.all_fulltime
+    Posting.where(:jobtype => jobtype_symbol_to_id(:fulltime))
+  end
+
+  def self.all_approved_internships
+    Posting.where(:jobtype => jobtype_symbol_to_id(:internship), :state => state_symbol_to_id(:approved))
+  end
+
+  def self.all_approved_parttime
+    Posting.where(:jobtype => jobtype_symbol_to_id(:parttime), :state => state_symbol_to_id(:approved))
+  end
+
+  def self.all_approved_fulltime
     Posting.where(:jobtype => jobtype_symbol_to_id(:fulltime), :state => state_symbol_to_id(:approved))
   end
 
