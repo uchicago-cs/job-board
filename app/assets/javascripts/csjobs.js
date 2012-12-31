@@ -108,22 +108,31 @@ $(document).ready(function() {
 });
 
 function notification_display() {
-  $(".notice")
-    .prependTo("body")
-    .css({
-      "position" : "fixed",
-      "top" : "20px",
-      "right" : "20px",
-      "width" : "auto",
-      "padding" : "10px 20px 10px 20px",
-      "margin" : "0",
-      "border" : "0",
-      "background-color" : "#cccccc",
-      "display" : "none",
-      "border-radius" : "5px"
-    })
-    .delay(500)
-    .fadeIn("fast")
-    .delay(7000)
-    .fadeOut("slow");
+  if($(".alert").first().html() != "") {
+    var notification = $(".alert");
+  } else if($(".notice").first().html() != "") {
+    var notification = $(".notice");
+  }
+
+  if(notification) {
+    notification
+      .prependTo("body")
+      .css({
+        "position" : "fixed",
+        "top" : "20px",
+        "right" : "20px",
+        "width" : "auto",
+        "padding" : "10px 20px 10px 20px",
+        "margin" : "0",
+        "border" : "0",
+        "background-color" : "#cccccc",
+        "display" : "none",
+        "border-radius" : "5px",
+        "z-index" : "10"
+      })
+      .delay(500)
+      .fadeIn("fast")
+      .delay(7000)
+      .fadeOut("slow");
+  }
 }

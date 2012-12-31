@@ -159,13 +159,13 @@ table.jobtable td {
   padding: 3px;
 }
 
-table.job_posting {
+table.job_posting, table.employer_listing {
   border: 0;
   border-top: solid 5px #7F3735;
   border-collapse: collapse;
 }
 
-table.job_posting th {
+table.job_posting th, table.employer_listing th {
   font-weight: bold;
   text-align: left;
   background-color: #CCCCCC;
@@ -173,7 +173,7 @@ table.job_posting th {
   vertical-align: top;
 }
 
-table.job_posting td {
+table.job_posting td, table.employer_listing td {
   text-align: left;
   padding: 3px 10px 3px 20px;
   background-color: #EEEEEE;
@@ -187,6 +187,10 @@ table.formtable {
 
 table.formtable td {
   vertical-align: top;
+}
+
+td.preformatted * {
+  margin: 0;
 }
 
 col.dateposted {
@@ -245,6 +249,14 @@ input.request_changes_btn {
 input.reject_btn {
   background-color: #C80000;
   margin: 10px;
+}
+
+a.reject_btn {
+  background-color: #C80000;
+  margin: 10px;
+  border: solid 1px gray;
+  padding: 3px;
+  width: 20em;
 }
 
 .notice {

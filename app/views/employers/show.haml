@@ -1,6 +1,6 @@
 %h2 Employer Profile: #{@employer.firstname} #{@employer.lastname}
 
-%table
+%table.employer_listing
   %tr
     %th Name:
     %td #{@employer.firstname} #{@employer.lastname}
@@ -12,12 +12,11 @@
     %td #{@employer.email}
   %tr
     %th URL:
-    %td #{@employer.url}
+    %td= link_to(url_with_protocol(@employer.url), url_with_protocol(@employer.url))
   %tr
     %th Note to Reviewer:
-    %td
-      %tt
-        #{@employer.note_to_reviewer}
+    %td.preformatted
+      #{simple_format @employer.note_to_reviewer}
   %tr
     %th Status:
     %td
@@ -28,4 +27,5 @@
 
 - if current_student && current_student.is_admin?
   = form_for(@employer, :as => "employer", :url => employer_path(@employer)) do |f|
-    = f.submit "Approve", :name => "approve"
+    = f.submit "Approve", :name => "approve", :class => "approve_btn"
+    = f.submit "Reject", :name => "reject", :class => "reject_btn", :confirm => "Are you sure you want to remove this employer? This will permanently delete it from our system."

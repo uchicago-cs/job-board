@@ -10,6 +10,8 @@ TechJobs::Application.routes.draw do
   resources :students
   resources :employers
 
+  match '/employers/:id/delete' => 'employers#destroy', :as => "employer_delete"
+
   root :to => "postings#index"
 
 end
