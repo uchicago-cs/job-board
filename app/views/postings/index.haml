@@ -36,11 +36,11 @@
   - if current_student && current_student.is_admin?
     %form{:action => postings_path, :method => :get}
       = posting_view_select(current_student, @view)
-      %input{:type => "submit", :value => "Go", :class => "view_change"}
+      %input{:type => "submit", :value => "Go →", :class => "view_change"}
   - elsif current_employer
-    = form_tag(postings_path, :method => :get) do |f|
+    %form{:action => postings_path, :method => :get}
       = posting_view_select(current_employer, @view)
-      = submit_tag("Go →", :class => "view_change")
+      %input{:type => "submit", :value => "Go →", :class => "view_change"}
 
   %fieldset
     %h3 Internships

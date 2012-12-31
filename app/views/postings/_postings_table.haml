@@ -31,11 +31,11 @@
               - when "position"
                 = link_to posting.title, posting_path(posting)
               - when "edit", "review"
-                = link_to col =="edit" ? "Edit" : "Review", edit_posting_path(posting)
+                = link_to col =="edit" ? "Edit" : "Review", edit_posting_path(posting) unless current_employer && posting.employer != current_employer
               - when "remove"
-                = link_to "Remove", posting_path(posting), :method => :delete, :confirm => "Are you sure you want to remove this job posting? This will permanently delete it from our system."
+                = link_to "Remove", posting_path(posting), :method => :delete, :confirm => "Are you sure you want to remove this job posting? This will permanently delete it from our system." unless current_employer && posting.employer != current_employer
               - when "state"
-                = posting.state_as_string
+                = posting.state_as_string unless current_employer && posting.employer != current_employer
       - if includetags
         %tr
           %td{:colspan => 4}

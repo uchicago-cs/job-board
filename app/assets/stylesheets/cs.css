@@ -219,6 +219,10 @@ label {
   top: 2px;
 }
 
+label.label_with_help {
+  margin: 5px 0px 5px 5px;
+}
+
 input[type="text"], input[type="password"], input[type="email"], textarea {
   border: solid 1px gray;
   padding: 3px;
@@ -273,6 +277,25 @@ p.greeting {
 
 .alert {
   position: fixed;
+}
+
+.help {
+  font-size: small;
+  color: #2e83b0;
+  position: relative;
+  top: -5px;
+  cursor: help;
+  padding: 5px 5px 5px 0px;
+  z-index: 90;
+}
+
+#help {
+  position: absolute;
+  border: solid 1px black;
+  background-color: white;
+  padding: 3px;
+  font-size: small;
+  z-index: 100;
 }
 
 /* Opera fix */
