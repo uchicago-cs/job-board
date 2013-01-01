@@ -1,6 +1,6 @@
 %h2 New Job Posting
 
-= form_for(@posting, :as => "posting", :url => postings_path) do |f|
+= form_for(@posting, :as => "posting", :url => postings_path, :html => {:multipart => true}) do |f|
   - if @posting.errors.any?
     #error_explanation
       %h2 #{pluralize(posting.errors.count, "error")} prohibited this job from being saved:
@@ -58,6 +58,11 @@
         = f.label :url, "URL", :class => "label_with_help"
         %span.help{:alt => "Is there a website people can visit for more information?"} ?
       %td= f.text_field :url
+    %tr
+      %td
+        = f.label :attachment, "Attachment", :class => "label_with_help"
+        %span.help{:alt => "Do you have a PDF, DOC, or some other file that you want to include with this posting?"} ?
+      %td= f.file_field :attachment
     %tr
       %td
       %td= f.submit "Submit"

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121226075703) do
+ActiveRecord::Schema.define(:version => 20130101072607) do
 
   create_table "employers", :force => true do |t|
     t.string   "email"
@@ -48,8 +48,12 @@ ActiveRecord::Schema.define(:version => 20121226075703) do
     t.integer  "state"
     t.string   "url"
     t.integer  "employer_id"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",              :null => false
+    t.datetime "updated_at",              :null => false
+    t.string   "attachment_file_name"
+    t.string   "attachment_content_type"
+    t.integer  "attachment_file_size"
+    t.datetime "attachment_updated_at"
   end
 
   create_table "postings_tags", :force => true do |t|

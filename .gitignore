@@ -21,3 +21,6 @@
 
 # Ignore personal config files
 /config/deploy.rb
+
+# Ignore paperclip inventory
+/public/system

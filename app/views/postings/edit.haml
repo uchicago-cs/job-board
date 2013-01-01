@@ -5,7 +5,7 @@
     %h3 Reviewer Comments
     = simple_format @posting.comments
 
-= form_for(@posting, :as => "posting", :url => posting_path(@posting), :method => :put) do |f|
+= form_for(@posting, :as => "posting", :url => posting_path(@posting), :html => {:method => :put, :multipart => true}) do |f|
   = f.error_messages
   %table.formtable
     %colgroup
@@ -61,6 +61,15 @@
         = f.label :url, "URL", :class => "label_with_help"
         %span.help{:alt => "Is there a website people can visit for more information?"} ?
       %td= f.text_field :url
+    %tr
+      %td
+        = f.label :attachment, "Attachment", :class => "label_with_help"
+        %span.help{:alt => "Do you have a PDF, DOC, or some other file that you want to include with this posting?"} ?
+      %td
+        = f.file_field :attachment
+        - if @posting.attachment.exists?
+          %br
+          Current Attachment: #{link_to File.basename(@posting.attachment.url)[/^([^\?]*)/], @posting.attachment.url}
     %tr
       %td
       %td= f.submit "Submit"

@@ -32,6 +32,10 @@
     %td
       - @posting.tags.each do |tag|
         .token= tag.name
+  - if @posting.attachment.exists?
+    %tr
+      %th Attachment
+      %td= link_to File.basename(@posting.attachment.url)[/^([^\?]*)/], @posting.attachment.url
   - if @posting.owned_by?(current_student, current_employer)
     %tr
       %th Status
