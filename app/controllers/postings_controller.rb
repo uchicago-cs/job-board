@@ -47,6 +47,9 @@ class PostingsController < ApplicationController
     if current_student && current_student.is_admin?
       @accounts_pending_approval = Employer.accounts_pending_approval
       @postings_pending_approval = Posting.postings_pending_approval
+    elsif current_employer
+      @postings_rejected = Posting.where(:employer_id => current_employer, :state => 0)
+      @postings_needing_revision = Posting.where(:employer_id => current_employer, :state => 2)
     end
   end
 
@@ -93,7 +96,15 @@ class PostingsController < ApplicationController
     @posting = Posting.find(params[:id])
 
     if current_employer
+      @posting.assign_attributes(params[:posting].except(:tags))
+      @posting.comments = nil
       @posting.state = :pending
+      tags = params[:posting][:tags].split(";")
+      @posting.tags.clear
+      tags.each do |tag|
+        tag_obj = Tag.find_or_create_by_name(tag)
+        @posting.tags << tag_obj unless @posting.tags.include?(tag)
+      end
       flash[:notice] = "Your job posting has been updated. Your changes will have to be approved by an administrator before the updated posting is published."
       next_page = @posting
     elsif current_student && current_student.is_admin?

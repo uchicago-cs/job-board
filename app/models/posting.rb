@@ -1,5 +1,5 @@
 class Posting < ActiveRecord::Base
-  attr_accessible :title, :description, :comments, :jobtype, :contact, :active_until, :state, :url
+  attr_accessible :title, :company, :description, :comments, :jobtype, :contact, :active_until, :state, :url
   has_and_belongs_to_many :tags
   belongs_to :employer
 
@@ -64,6 +64,10 @@ class Posting < ActiveRecord::Base
 
   def owned_by?(c_student, c_employer)
     (c_student && c_student.is_admin?) || (c_employer && self.employer == c_employer)
+  end
+
+  def has_comments?
+    !self.comments.nil? && !self.comments.empty?
   end
 
   private

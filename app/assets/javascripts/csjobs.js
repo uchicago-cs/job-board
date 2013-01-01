@@ -38,17 +38,6 @@ function newTag() {
       } else {
         $("#posting_tags").attr('value', curTagList + ";" + newtagtext);
       }
-
-      $("span.removetag").click(function() {
-        var parent = $(this).parent();
-        $(this).remove();
-        var tagtext = $.trim(parent.html());
-        parent.remove();
-                
-        var curtags = $("#posting_tags").attr('value');
-        var newtags = curtags.replace(tagtext, '').replace(";;", ";");
-        $("#posting_tags").attr('value', newtags);
-      });
     }
   });
 }
@@ -73,6 +62,17 @@ $(document).ready(function() {
   taglistdiv.innerHTML = taglistdiv.innerHTML.substr(0, taglistdiv.innerHTML.length - 1);
   var taglistOrig = taglistdiv.innerHTML.split(";");
   var taglist = taglistdiv.innerHTML.toLowerCase().split(";");
+
+  $("span.removetag").live('click', function() {
+    var textspan = $(this).parent().find('.tokentext');
+    $(this).remove();
+    var tagtext = $.trim(textspan.html());
+    textspan.parent().remove();
+
+    var curtags = $("#posting_tags").attr('value');
+    var newtags = curtags.replace(tagtext, '').replace(";;", ";");
+    $("#posting_tags").attr('value', newtags);
+  });
 
   $("#addtag").click(newTag);
   var curword = "";

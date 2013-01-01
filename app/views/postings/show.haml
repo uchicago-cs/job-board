@@ -1,5 +1,10 @@
 %h2 Job Posting
 
+- if @posting.has_comments?
+  %fieldset
+    %h3 Reviewer Comments
+    = simple_format @posting.comments
+
 %table.job_posting
   %colgroup
     %col.posting_label
@@ -12,7 +17,7 @@
     %td= @posting.company
   %tr
     %th Description
-    %td= @posting.description
+    %td.preformatted= simple_format @posting.description
   %tr
     %th URL
     %td= link_to url_with_protocol(@posting.url), url_with_protocol(@posting.url), :target => "_blank"

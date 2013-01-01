@@ -1,6 +1,11 @@
 %h2 Edit Job Posting
 
-= form_for(@posting, :as => "posting", :url => postings_path) do |f|
+- if @posting.has_comments?
+  %fieldset
+    %h3 Reviewer Comments
+    = simple_format @posting.comments
+
+= form_for(@posting, :as => "posting", :url => posting_path(@posting), :method => :put) do |f|
   = f.error_messages
   %table.formtable
     %colgroup
@@ -26,7 +31,7 @@
         = f.label 'Tags', :class => "label_with_help"
         %span.help{:alt => "Identify key words that will help people with specific interests find your job listing"} ?
       %td
-        = f.hidden_field :tags
+        = f.hidden_field :tags, :value => @posting.tags.collect{|t| t.name}.join(';')
         #taglist
           %button#addtag{:type => "button"} +
           - @posting.tags.each do |tag|

@@ -31,6 +31,16 @@
 
   - if current_employer
     - columns << "edit" << "remove" << "state"
+    - if not @postings_needing_revision.empty?
+      %p Changes have been requested for the following postings before they are made public:
+      %ul
+        - @postings_needing_revision.each do |posting|
+          %li= link_to posting.title, edit_posting_path(posting)
+    - if not @postings_rejected.empty?
+      %p The following posts have been rejected:
+      %ul
+        - @postings_rejected.each do |posting|
+          %li= link_to posting.title, edit_posting_path(posting)
     %p= link_to "Add a new job posting", new_posting_path
 
   - if current_student && current_student.is_admin?
