@@ -63,6 +63,7 @@ class PostingsController < ApplicationController
 
   def edit
     @posting = Posting.find(params[:id])
+    @tags = Tag.all
   end
 
   def create

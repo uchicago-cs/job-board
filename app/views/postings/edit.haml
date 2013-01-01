@@ -1,0 +1,64 @@
+%h2 Edit Job Posting
+
+= form_for(@posting, :as => "posting", :url => postings_path) do |f|
+  = f.error_messages
+  %table.formtable
+    %colgroup
+      %col.form_label_col
+      %col.form_input_col
+    %tr
+      %td
+        = f.label :title, "Title", :class => "label_with_help"
+        %span.help{:alt => "The title of the position"} ?
+      %td= f.text_field :title
+    %tr
+      %td
+        = f.label :company, "Company", :class => "label_with_help"
+        %span.help{:alt => "Your company affiliation, or 'Individual' if none"} ?
+      %td= f.text_field :company
+    %tr
+      %td
+        = f.label :description, "Description", :class => "label_with_help"
+        %span.help{:alt => "A description of the position, including requirements"} ?
+      %td= f.text_area :description
+    %tr
+      %td
+        = f.label 'Tags', :class => "label_with_help"
+        %span.help{:alt => "Identify key words that will help people with specific interests find your job listing"} ?
+      %td
+        = f.hidden_field :tags
+        #taglist
+          %button#addtag{:type => "button"} +
+          - @posting.tags.each do |tag|
+            .token
+              %span.tokentext= tag.name
+              %span.removetag x
+    %tr
+      %td
+        = f.label :jobtype, "Job Type", :class => "label_with_help"
+        %span.help{:alt => "Is the position an internship or a part-time or full-time job?"} ?
+      %td
+        - ['Full Time', 'Part Time', 'Internship'].each_with_index do |jobtype, i|
+          = f.radio_button :jobtype, i
+          = jobtype.humanize
+    %tr
+      %td
+        = f.label :active_until, "Deadline", :class => "label_with_help"
+        %span.help{:alt => "When must all applications be received?"} ?
+      %td= f.date_select :active_until
+    %tr
+      %td
+        = f.label :contact, "Contact", :class => "label_with_help"
+        %span.help{:alt => "How can you be contacted?"} ?
+      %td= f.text_field :contact
+    %tr
+      %td
+        = f.label :url, "URL", :class => "label_with_help"
+        %span.help{:alt => "Is there a website people can visit for more information?"} ?
+      %td= f.text_field :url
+    %tr
+      %td
+      %td= f.submit "Submit"
+
+#globaltaglist
+  = @tags.collect {|t| "#{t.name};"}.join
