@@ -1,0 +1,22 @@
+%h2 Edit Settings
+
+%fieldset
+  %h3 Change Password
+  = form_for(@employer, :url => employer_update_password_path, :method => :post) do |f|
+    = f.error_messages
+    %table.formtable
+      %colgroup
+        %col.form_label_col
+        %col.form_field_col
+      %tr
+        %td= f.label :current_password, "Current Password"
+        %td= f.password_field :current_password
+      %tr
+        %td= f.label :password, "New Password"
+        %td= f.password_field :password, :autocomplete => "off"
+      %tr
+        %td= f.label :password_confirmation, "Confirm New Password"
+        %td= f.password_field :password_confirmation
+      %tr
+        %td
+        %td= f.submit "Update"

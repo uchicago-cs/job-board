@@ -53,6 +53,7 @@ GEM
     devise_ldap_authenticatable (0.6.1)
       devise (>= 2.0.0)
       net-ldap (~> 0.2.2)
+    dynamic_form (1.1.4)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -142,6 +143,7 @@ DEPENDENCIES
   coffee-rails (~> 3.2.1)
   devise
   devise_ldap_authenticatable
+  dynamic_form
   haml
   jquery-rails
   mysql2

@@ -10,6 +10,7 @@ class EmployersController < ApplicationController
   end
 
   def edit
+    @employer = Employer.find(params[:id])
   end
 
   def create
@@ -25,6 +26,8 @@ class EmployersController < ApplicationController
       if params[:approve]
         @employer.approve_account
       end
+    elsif current_employer
+      
     end
 
     if @employer.save
@@ -33,6 +36,17 @@ class EmployersController < ApplicationController
     else
       flash[:alert] = "An error occurred."
       render :action => "edit"
+    end
+  end
+
+  def update_password
+    @employer = Employer.find(params[:id])
+    if @employer.update_with_password(params[:employer])
+      sign_in @employer, :bypass => true
+      flash[:notice] = "Password successfully updated."
+      redirect_to root_path
+    else
+      render "edit"
     end
   end
 
