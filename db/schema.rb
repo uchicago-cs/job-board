@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130102025218) do
+ActiveRecord::Schema.define(:version => 20130102044318) do
 
   create_table "employers", :force => true do |t|
     t.string   "email"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(:version => 20130102025218) do
     t.datetime "attachment_updated_at"
     t.string   "location"
     t.text     "contact"
+    t.boolean  "rich_description"
   end
 
   create_table "postings_tags", :force => true do |t|

@@ -17,7 +17,10 @@
     %td= @posting.company
   %tr
     %th Description
-    %td.preformatted= simple_format @posting.description
+    - if @posting.rich_description
+      %td.preformatted= @posting.description.html_safe
+    - else
+      %td.preformatted= simple_format @posting.description
   %tr
     %th Location
     %td= @posting.location

@@ -26,7 +26,13 @@
       %td
         = f.label :description, "Description", :class => "label_with_help"
         %span.help{:alt => "A description of the position, including requirements"} ?
-      %td= f.text_area :description
+        %br
+        %br
+        %br
+        %a.richtext [Rich Text]
+      %td
+        = f.text_area :description
+        = f.hidden_field :rich_description
     %tr
       %td
         = f.label :location, "Location", :class => "label_with_help"

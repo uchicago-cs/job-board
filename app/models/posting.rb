@@ -1,5 +1,5 @@
 class Posting < ActiveRecord::Base
-  attr_accessible :title, :company, :description, :comments, :jobtype, :contact, :active_until, :state, :url, :location
+  attr_accessible :title, :company, :description, :comments, :jobtype, :contact, :active_until, :state, :url, :location, :rich_description
   has_attached_file :attachment
   has_and_belongs_to_many :tags
   belongs_to :employer

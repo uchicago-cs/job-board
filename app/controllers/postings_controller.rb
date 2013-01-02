@@ -81,6 +81,7 @@ class PostingsController < ApplicationController
     @posting.location = params[:posting][:location]
     @posting.attachment = params[:posting][:attachment]
     @posting.employer = current_employer
+    @posting.rich_description = (params[:posting][:rich_description] == "t")
 
     tags = params[:posting][:tags].split(";")
     tags.each do |tag|
@@ -98,7 +99,8 @@ class PostingsController < ApplicationController
     @posting = Posting.find(params[:id])
 
     if current_employer
-      @posting.assign_attributes(params[:posting].except(:tags))
+      @posting.assign_attributes(params[:posting].except(:tags, :rich_description))
+      @posting.rich_description = (params[:posting][:rich_description] == "t")
       @posting.comments = nil
       @posting.state = :pending
       tags = params[:posting][:tags].split(";")
