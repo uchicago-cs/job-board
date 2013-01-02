@@ -19,6 +19,9 @@
     %th Description
     %td.preformatted= simple_format @posting.description
   %tr
+    %th Location
+    %td= @posting.location
+  %tr
     %th URL
     %td= link_to url_with_protocol(@posting.url), url_with_protocol(@posting.url), :target => "_blank"
   %tr
@@ -26,7 +29,7 @@
     %td= @posting.active_until.strftime("%d %B %Y")
   %tr
     %th Contact
-    %td= @posting.contact
+    %td.preformatted= simple_format @posting.contact
   %tr
     %th Tags
     %td

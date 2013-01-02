@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130101072607) do
+ActiveRecord::Schema.define(:version => 20130102025218) do
 
   create_table "employers", :force => true do |t|
     t.string   "email"
@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(:version => 20130101072607) do
     t.text     "description"
     t.text     "comments"
     t.integer  "jobtype"
-    t.string   "contact"
     t.string   "company"
     t.datetime "active_until"
     t.integer  "state"
@@ -54,6 +53,8 @@ ActiveRecord::Schema.define(:version => 20130101072607) do
     t.string   "attachment_content_type"
     t.integer  "attachment_file_size"
     t.datetime "attachment_updated_at"
+    t.string   "location"
+    t.text     "contact"
   end
 
   create_table "postings_tags", :force => true do |t|

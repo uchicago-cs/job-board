@@ -28,6 +28,11 @@
       %td= f.text_area :description
     %tr
       %td
+        = f.label :location, "Location", :class => "label_with_help"
+        %span.help{:alt => "Where will applicants be working?"} ?
+      %td= f.text_field :location
+    %tr
+      %td
         = f.label 'Tags', :class => "label_with_help"
         %span.help{:alt => "Identify key words that will help people with specific interests find your job listing"} ?
       %td
@@ -55,7 +60,7 @@
       %td
         = f.label :contact, "Contact", :class => "label_with_help"
         %span.help{:alt => "How can you be contacted?"} ?
-      %td= f.text_field :contact
+      %td= f.text_area :contact, :class => "posting_contact"
     %tr
       %td
         = f.label :url, "URL", :class => "label_with_help"

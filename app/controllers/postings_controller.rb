@@ -78,6 +78,7 @@ class PostingsController < ApplicationController
     @posting.active_until = Date.new(params[:posting]["active_until(1i)"].to_i, params[:posting]["active_until(2i)"].to_i, params[:posting]["active_until(3i)"].to_i)
     @posting.company = params[:posting][:company]
     @posting.url = params[:posting][:url]
+    @posting.location = params[:posting][:location]
     @posting.attachment = params[:posting][:attachment]
     @posting.employer = current_employer
 

@@ -223,7 +223,7 @@ label.label_with_help {
   margin: 5px 0px 5px 5px;
 }
 
-input[type="text"], input[type="password"], input[type="email"], textarea {
+input[type="text"], input[type="password"], input[type="email"] {
   border: solid 1px gray;
   padding: 3px;
   width: 20em;
@@ -235,6 +235,13 @@ input[type="submit"] {
   width: 10em;
 }
 
+textarea {
+  border: solid 1px gray;
+  padding: 3px;
+  width: 20em;
+  height: 30em;
+}
+
 input.view_change {
   width: 5em;
 }
@@ -242,6 +249,10 @@ input.view_change {
 textarea.posting_comments {
   width: 30em;
   height: 5em;
+}
+
+textarea.posting_contact {
+  height: 15em;
 }
 
 input.approve_btn {
