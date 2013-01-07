@@ -27,7 +27,7 @@ class EmployersController < ApplicationController
         @employer.approve_account
       end
     elsif current_employer
-      
+      @employer.update_attributes(params[:employer])
     end
 
     if @employer.save

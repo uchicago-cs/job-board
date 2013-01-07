@@ -8,7 +8,7 @@ class Employer < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
-  attr_accessible :firstname, :lastname, :url, :company, :note_to_reviewer, :approved
+  attr_accessible :firstname, :lastname, :url, :company, :note_to_reviewer, :approved, :alert_on_approve, :alert_on_reject, :alert_on_changes_needed, :digests
   has_many :postings
 
   after_create :alert_admins_of_new_employer

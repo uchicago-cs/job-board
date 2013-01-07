@@ -20,3 +20,39 @@
       %tr
         %td
         %td= f.submit "Update"
+
+%fieldset
+  %h3 Email Settings
+  = form_for(@employer, :url => employer_path(@employer), :method => :put) do |f|
+    = f.error_messages
+    %table.formtable
+      %colgroup
+        %col.form_label_col
+        %col.form_field_col
+      %tr
+        %td= f.label :email, "Email"
+        %td= @employer.email
+      %tr
+        %td= label_tag :settings, "Message Options"
+        %td
+          = f.check_box :alert_on_approve
+          = f.label :alert_on_approve, "Alert me when one of my jobs is approved."
+          %br
+          = f.check_box :alert_on_reject
+          = f.label :alert_on_reject, "Alert me when one of my jobs is rejected."
+          %br
+          = f.check_box :alert_on_changes_needed
+          = f.label :alert_on_changes_need, "Alert me when a reviewer requests changes to a posting."
+          %br
+      %tr
+        %td= label_tag :digests, "Digests"
+        %td
+          %p Do you want to receive email alerts as soon as they happen, or would you prefer to have a single summary sent at the end of the day?
+          = f.radio_button :digests, "true"
+          = f.label :digests_true, "Yes, send me summaries of any changes to my job postings."
+          %br
+          = f.radio_button :digests, "false"
+          = f.label :digest_false, "No, send me an email right away every time one of my job postings changes."
+      %tr
+        %td
+          %td= f.submit "Update"

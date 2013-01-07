@@ -189,6 +189,10 @@ table.formtable td {
   vertical-align: top;
 }
 
+table.formtable p {
+  margin-top: 0;
+}
+
 td.preformatted * {
   margin: 0;
 }
@@ -217,6 +221,7 @@ label {
   position: relative;
   margin: 5px 20px 5px 5px;
   top: 2px;
+  white-space: nowrap;
 }
 
 label.label_with_help {
