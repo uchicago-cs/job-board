@@ -17,7 +17,7 @@ $(document).ready(function() {
     $(this).html('[Plain Text]').removeClass('richtext').addClass('plaintext');
     $("#posting_rich_description").attr('value', 't');
 
-    $('#new_posting').submit(function() {
+    $('#new_posting').add('#edit_posting').submit(function() {
       editor.post();
       return true;
     });
