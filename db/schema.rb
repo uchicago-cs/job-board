@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130107032530) do
+ActiveRecord::Schema.define(:version => 20130107034849) do
 
   create_table "employers", :force => true do |t|
     t.string   "email"
@@ -85,6 +85,7 @@ ActiveRecord::Schema.define(:version => 20130107032530) do
     t.boolean  "alert_on_updated_posting",    :default => true
     t.boolean  "alert_on_my_updated_posting", :default => true
     t.boolean  "digests",                     :default => false
+    t.boolean  "alert_on_new_recommendation", :default => true
   end
 
   add_index "students", ["email"], :name => "index_students_on_email", :unique => true

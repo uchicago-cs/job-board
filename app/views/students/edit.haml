@@ -1,6 +1,9 @@
 %h2 Edit Settings
 
 %fieldset
+  %h3 My Interests
+
+%fieldset
   %h3 Email Settings
   = form_for(@student, :url => student_path(@student), :method => :put) do |f|
     = f.error_messages
@@ -14,17 +17,11 @@
       %tr
         %td= label_tag :settings, "Message Options"
         %td
-          = f.check_box :alert_on_new_employer
-          = f.label :alert_on_new_employer, "Alert me when a new employer needs approval."
-          %br
           = f.check_box :alert_on_new_posting
-          = f.label :alert_on_new_posting, "Alert me when a new job posting new approval."
+          = f.label :alert_on_new_posting, "Alert me whenever a new job is posted."
           %br
-          = f.check_box :alert_on_updated_posting
-          = f.label :alert_on_updated_posting, "Alert me when any employer has resubmitted a job posting after making changes."
-          %br
-          = f.check_box :alert_on_my_updated_posting
-          = f.label :alert_on_my_updated_posting, "Alert me when an employer has resubmitted a job posting after I requested they make changes."
+          = f.check_box :alert_on_new_recommendation
+          = f.label :alert_on_new_recommendation, "Alert me when a new job matching my interests is posted."
       %tr
         %td= label_tag :digests, "Digests"
         %td

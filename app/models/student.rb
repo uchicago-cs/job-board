@@ -5,10 +5,11 @@ class Student < ActiveRecord::Base
   devise :trackable, :ldap_authenticatable, :authentication_keys => [:cnet]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :cnet, :firstname, :lastname, :role, :alert_on_new_employer, :alert_on_new_posting, :alert_on_updated_posting, :alert_on_my_updated_posting, :digests
+  attr_accessible :cnet, :firstname, :lastname, :role, :alert_on_new_employer, :alert_on_new_posting, :alert_on_updated_posting, :alert_on_my_updated_posting, :alert_on_new_recommendation, :digests, :email
   has_and_belongs_to_many :tags
 
   before_create :get_ldap_info
+  after_create :init_student
 
   def get_ldap_info
     if Devise::LdapAdapter.get_ldap_param(self.cnet, "uid")
@@ -21,6 +22,11 @@ class Student < ActiveRecord::Base
 
   def is_admin?
     role == role_symbol_to_id(:admin)
+  end
+
+  def make_admin
+    self.role = role_symbol_to_id(:admin)
+    init_admin
   end
 
   private
@@ -37,5 +43,21 @@ class Student < ActiveRecord::Base
       when 0 then :user
       when 1 then :admin
     end
+  end
+
+  def init_student
+    self.alert_on_new_posting = false
+    self.alert_on_new_recommendation = false
+    self.digests = false
+    self.save
+  end
+
+  def init_admin
+    self.alert_on_new_employer = true
+    self.alert_on_new_posting = true
+    self.alert_on_updated_posting = true
+    self.alert_on_my_updated_posting = true
+    self.digests = false
+    self.save
   end
 end
