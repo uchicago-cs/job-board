@@ -7,6 +7,7 @@ class Student < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :cnet, :firstname, :lastname, :role, :alert_on_new_employer, :alert_on_new_posting, :alert_on_updated_posting, :alert_on_my_updated_posting, :alert_on_new_recommendation, :digests, :email
   has_and_belongs_to_many :tags
+  has_many :postings, :foreign_key => 'reviewed_by'
 
   before_create :get_ldap_info
   after_create :init_student
@@ -27,6 +28,14 @@ class Student < ActiveRecord::Base
   def make_admin
     self.role = role_symbol_to_id(:admin)
     init_admin
+  end
+
+  def reviewed_pending_posts
+    if self.is_admin?
+      return self.postings.select {|p| p.state_as_string == "Pending"}
+    else
+      return []
+    end
   end
 
   private

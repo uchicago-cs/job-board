@@ -123,6 +123,7 @@ class PostingsController < ApplicationController
         flash[:notice] = "Job posting was approved."
       end
       @posting.comments = params[:posting][:comments]
+      @posting.reviewer = current_student
       next_page = postings_path
     end
 

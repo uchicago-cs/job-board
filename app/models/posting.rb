@@ -3,6 +3,8 @@ class Posting < ActiveRecord::Base
   has_attached_file :attachment
   has_and_belongs_to_many :tags
   belongs_to :employer
+  belongs_to :student
+  belongs_to :reviewer, :foreign_key => 'reviewed_by', :class_name => "Student"
 
   after_create :alert_admins_of_new_posting
 

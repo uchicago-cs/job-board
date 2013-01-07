@@ -28,6 +28,11 @@
           %li= link_to "#{posting.title} (from #{posting.employer.firstname} #{posting.employer.lastname} at #{posting.employer.company})", posting_path(posting)
     - else
       %p There are no new job postings at the moment.
+    - if current_student.reviewed_pending_posts.count > 0
+      %p The following posts you requested changes for have been resubmitted for approval:
+      %ul
+        - current_student.reviewed_pending_posts.each do |posting|
+          %li= link_to "#{posting.title} (from #{posting.employer.firstname} #{posting.employer.lastname} at #{posting.employer.company})", posting_path(posting)
 
   - if current_employer
     - columns << "edit" << "remove" << "state"
