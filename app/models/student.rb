@@ -5,7 +5,7 @@ class Student < ActiveRecord::Base
   devise :trackable, :ldap_authenticatable, :authentication_keys => [:cnet]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :cnet, :firstname, :lastname, :role
+  attr_accessible :cnet, :firstname, :lastname, :role, :alert_on_new_employer, :alert_on_new_posting, :alert_on_updated_posting, :alert_on_my_updated_posting, :digests
   has_and_belongs_to_many :tags
 
   before_create :get_ldap_info
