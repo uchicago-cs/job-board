@@ -30,6 +30,15 @@ class Student < ActiveRecord::Base
     init_admin
   end
 
+  def remove_admin
+    self.role = role_symbol_to_id(:user)
+    init_student
+  end
+
+  def self.admins
+    where(:role => 1)
+  end
+
   def reviewed_pending_posts
     if self.is_admin?
       return self.postings.select {|p| p.state_as_string == "Pending"}

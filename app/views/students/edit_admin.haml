@@ -37,3 +37,24 @@
       %tr
         %td
         %td= f.submit "Update"
+%fieldset
+  %h3 Administrators
+  %table.formtable
+    %colgroup
+      %col.form_label_col
+      %col.form_field_col
+    %tr
+      %td Current Administrators
+      %td
+        %table
+          - Student.admins.each do |admin|
+            %tr
+              %td= "#{admin.firstname} #{admin.lastname} (#{admin.cnet})"
+              %td= link_to "Revoke", admin_path(admin), :method => :delete, :data => {:confirm => "Are you sure you want to revoke #{admin.firstname} #{admin.lastname}'s administrative privileges?"}
+    %tr
+      %td Add New Administrator
+      %td
+        %p To grant a user administrative privileges, enter their CNet ID below. They must already have logged into this site once before.
+        = form_tag(admins_path, :method => :post) do |f|
+          = text_field_tag :cnet
+          = submit_tag "Add Administrator"
