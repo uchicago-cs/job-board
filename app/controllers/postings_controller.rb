@@ -3,29 +3,15 @@ class PostingsController < ApplicationController
     @view = params[:view]
 
     # Validate the "view" mode
-    if @view == "all" && (!current_student || !current_student.is_admin?)
-      # Only admins can use "all"
-      if current_employer
-        @view = "owned"
-      else
-        @view = "active"
-      end
-    elsif @view == "owned" && !current_employer
-      # "owned" is meaningless for anyone but employers
-      if current_student && current_student.is_admin?
-        @view = "all"
-      else
-        @view = "active"
-      end
-    elsif @view != "active"
-      # Anything else other than "active" is invalid (or set defaults if nil)
-      if current_employer
-        @view = "owned"
-      elsif current_student && current_student.is_admin?
-        @view = "all"
-      else
-        @view = "active"
-      end
+    # "all" => admins only
+    # "owned" => employers only
+    # "interests" => students only
+    # "active" => all
+    if (@view == "all" && (!current_student || !current_student.is_admin?)) ||
+       (@view == "owned" && !current_employer) ||
+       (@view == "interests" && (!current_student || current_student.is_admin?)) ||
+       (!["all", "owned", "interests", "active"].include?(@view))
+      @view = "active"
     end
 
     # Get the appropriate postings for the given view
@@ -42,6 +28,10 @@ class PostingsController < ApplicationController
         @internships = current_employer.internship_postings.where("? >= ?", :active_until, DateTime.now)
         @parttime = current_employer.parttime_postings.where("? >= ?", :active_until, DateTime.now)
         @fulltime = current_employer.fulltime_postings.where("? >= ?", :active_until, DateTime.now)
+      when "interests"
+        @internships = Posting.all_approved_internships.where("? >= ?", :active_until, DateTime.now) if current_student.interested_in_internships?
+        @parttime = Posting.all_approved_parttime.where("? >= ?", :active_until, DateTime.now) if current_student.interested_in_part_time?
+        @fulltime = Posting.all_approved_fulltime.where("? >= ?", :active_until, DateTime.now) if current_student.interested_in_full_time?
     end
 
     if current_student && current_student.is_admin?

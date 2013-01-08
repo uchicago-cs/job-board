@@ -5,7 +5,7 @@ class Student < ActiveRecord::Base
   devise :trackable, :ldap_authenticatable, :authentication_keys => [:cnet]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :cnet, :firstname, :lastname, :role, :alert_on_new_employer, :alert_on_new_posting, :alert_on_updated_posting, :alert_on_my_updated_posting, :alert_on_new_recommendation, :digests, :email
+  attr_accessible :cnet, :firstname, :lastname, :role, :alert_on_new_employer, :alert_on_new_posting, :alert_on_updated_posting, :alert_on_my_updated_posting, :alert_on_new_recommendation, :digests, :email, :interested_in_internships, :interested_in_full_time, :interested_in_part_time
   has_and_belongs_to_many :tags
   has_many :postings, :foreign_key => 'reviewed_by'
 
@@ -45,6 +45,18 @@ class Student < ActiveRecord::Base
     else
       return []
     end
+  end
+
+  def interested_in_internships?
+    interested_in_internships
+  end
+
+  def interested_in_part_time?
+    interested_in_part_time
+  end
+
+  def interested_in_full_time?
+    interested_in_full_time
   end
 
   private

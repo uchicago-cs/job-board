@@ -2,6 +2,27 @@
 
 %fieldset
   %h3 My Interests
+  = form_for(@student, :url => student_path(@student), :method => :put) do |f|
+    %p Update your interests to narrow down job postings to what fits you best.
+    = f.error_messages
+    %table.formtable
+      %colgroup
+        %col.form_label_col
+        %col.form_field_col
+      %tr
+        %td= f.label :jobtyps, "Job Types"
+        %td
+          = f.check_box :interested_in_internships
+          = f.label :interested_in_internships, "Internships"
+          %br
+          = f.check_box :interested_in_part_time
+          = f.label :interested_in_part_time, "Part-Time Jobs"
+          %br
+          = f.check_box :interested_in_full_time
+          = f.label :interested_in_full_time, "Full-Time Jobs"
+      %tr
+        %td
+        %td= f.submit "Update"
 
 %fieldset
   %h3 Email Settings

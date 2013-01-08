@@ -5,7 +5,7 @@ module PostingsHelper
     elsif user.kind_of?(Student) && user.is_admin?
       options = [["View All Active Posts", "active"], ["View All Posts", "all"]]
     else
-      options = nil
+      options = [["View All Active Posts", "active"], ["Recommended for Me", "interests"]]
     end
 
     if not options.nil?

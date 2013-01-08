@@ -13,7 +13,7 @@
   - columns = ["dateposted", "deadline", "organization", "position"]
 
   - if current_student && current_student.is_admin?
-    - columns << "review" << "remove" << "state"
+    - columns << "remove" << "state"
     - if Employer.accounts_pending_approval?
       %p There are new employer accounts pending approval:
       %ul
@@ -48,32 +48,33 @@
           %li= link_to posting.title, edit_posting_path(posting)
     %p= link_to "Add a new job posting", new_posting_path
 
-  - if current_student && current_student.is_admin?
-    %form{:action => postings_path, :method => :get}
+  %form{:action => postings_path, :method => :get}
+    - if current_student
       = posting_view_select(current_student, @view)
-      %input{:type => "submit", :value => "Go →", :class => "view_change"}
-  - elsif current_employer
-    %form{:action => postings_path, :method => :get}
+    - elsif current_employer
       = posting_view_select(current_employer, @view)
-      %input{:type => "submit", :value => "Go →", :class => "view_change"}
+    %input{:type => "submit", :value => "Go →", :class => "view_change"}
 
-  %fieldset
-    %h3 Internships
-    - if @internships.count > 0
-      = render 'postings/postings_table', :postings => @internships, :columns => columns
-    - else
-      %p No internships are available at this time.
+  - unless @internships.nil?
+    %fieldset
+      %h3 Internships
+      - if @internships.count > 0
+        = render 'postings/postings_table', :postings => @internships, :columns => columns
+      - else
+        %p No internships are available at this time.
 
-  %fieldset
-    %h3 Part-Time Jobs
-    - if @parttime.count > 0
-      = render 'postings/postings_table', :postings => @parttime, :columns => columns
-    - else
-      %p No part-time jobs are available at this time.
+  - unless @parttime.nil?
+    %fieldset
+      %h3 Part-Time Jobs
+      - if @parttime.count > 0
+        = render 'postings/postings_table', :postings => @parttime, :columns => columns
+      - else
+        %p No part-time jobs are available at this time.
 
-  %fieldset
-    %h3 Full-Time Jobs
-    -if @fulltime.count > 0
-      = render 'postings/postings_table', :postings => @fulltime, :columns => columns
-    - else
-      %p No full-time jobs are available at this time.
+  - unless @fulltime.nil?
+    %fieldset
+      %h3 Full-Time Jobs
+      -if @fulltime.count > 0
+        = render 'postings/postings_table', :postings => @fulltime, :columns => columns
+      - else
+        %p No full-time jobs are available at this time.
