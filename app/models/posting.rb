@@ -12,6 +12,10 @@ class Posting < ActiveRecord::Base
     active_until <= DateTime.now
   end
 
+  def visible?
+    (active_until <= DateTime.now) && (state == Posting.state_symbol_to_id(:approved))
+  end
+
   def self.all_internships
     Posting.where(:jobtype => jobtype_symbol_to_id(:internship))
   end
