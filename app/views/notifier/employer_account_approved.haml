@@ -1,0 +1,5 @@
+%h1{:style => "color: #7F3735; font-family: Helvetica, sans-serif; font-size: 24px;"} Account Approved
+
+%p Hi #{@employer.firstname}! Your account on the UChicago Computer Science Department job board has been approved! You can now begin adding new job listings.
+
+%p To get started, go to #{link_to 'http://jobboard.cs.uchicago.edu', 'http://jobboard.cs.uchicago.edu', :style => "color: #155F83; text-decoration: none;"} and log in using your email address (#{@employer.email}) and the password you created when you first registered.

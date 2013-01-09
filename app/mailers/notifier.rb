@@ -3,7 +3,13 @@ class Notifier < ActionMailer::Base
   layout 'mailer'
 
   def employer_account_approved(employer)
-
+    @to = employer.email
+    @subject = "Your UChicago CS Jobs Board account has been approved!"
+    @employer = employer
+    mail(:to => @to, :subject => @subject) do |format|
+      format.text { render 'employer_account_approved' }
+      format.html { render 'employer_account_approved' }
+    end
   end
 
   def employer_posting_status_change(posting)
