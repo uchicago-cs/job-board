@@ -1,0 +1,15 @@
+!!!
+%html
+  %body{:style => "font-family: Verdana, sans-serif; background-color: #EAE9E1;"}
+    %table{:width => "100%", :style => "border: none; border-collapse: collapse;"}
+      %tr{:style => "background-color: maroon; height: 96px;"}
+        %td
+          %div{:style => "float: left; margin-left: 20px; margin-top: 15px;"}
+            %a{:style => "color: white; font-family: Helvetica, sans-serif; font-size: 36px; font-weight: normal; text-decoration: none;", :href => "http://jobboard.cs.uchicago.edu"} Computer Science Job Board
+          %div{:style => "float: right; height: 53px; width: 246px; margin-top: 20px; margin-right: 20px;"}
+            %a{:style => "border: none;", :href => "http://www.uchicago.edu"}
+              %img{:src => "http://jobboard.cs.uchicago.edu/assets/uc_wordmark_phoenix.png"}
+      %tr
+        %td
+          %div{:style => "background-color: #F7F6ED; margin: 0px 20px 0px 20px; padding: 20px;"}
+            = yield

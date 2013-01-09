@@ -51,9 +51,10 @@
   %form{:action => postings_path, :method => :get}
     - if current_student
       = posting_view_select(current_student, @view)
+      %input{:type => "submit", :value => "Go →", :class => "view_change"}
     - elsif current_employer
       = posting_view_select(current_employer, @view)
-    %input{:type => "submit", :value => "Go →", :class => "view_change"}
+      %input{:type => "submit", :value => "Go →", :class => "view_change"}
 
   - unless @internships.nil?
     %fieldset

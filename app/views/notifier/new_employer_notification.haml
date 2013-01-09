@@ -1,0 +1,33 @@
+%h1{:style => "color: #7F3735; font-family: Helvetica, sans-serif; font-size: 24px;"} New Employer Notification
+
+%p Hi #{@admin.firstname}! A new employer has registered on the UChicago job board and needs an admin to approve their account in order to create new job postings. Here are their details:
+
+%table{:style => "border: 0; border-top: solid 5px #7F3735; border-collapse: collapse;"}
+  %tr
+    %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left;"} Name
+    %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"} #{@employer.firstname} #{@employer.lastname}
+  %tr
+    %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left;"} Company
+    %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= @employer.company
+  %tr
+    %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left;"} Email
+    %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= @employer.email
+  %tr
+    %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left"} URL
+    %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= @employer.url
+  %tr
+    %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left"} Note to Reviewer
+    %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= simple_format @employer.note_to_reviewer
+
+%p
+  You may either approve or reject this account by logging into
+  %a{:style => "color: #155F83; text-decoration: none", :href => "http://jobboard.cs.uchicago.edu"} http://jobboard.cs.uchicago.edu
+  or following this link:
+  %a{:style => "color: #155F83; text-decoration: none", :href => employer_path(@employer)} View Employer Profile
+
+%br
+%br
+%div{:style => "width: 100%; border: 0; border-top: solid 1px 7F3735;"}
+%br
+%br
+%p{:style => "font-size: small;"} You received this notification because you are currently set up as administrator willing to approve new employer accounts. You may edit this preference by logging into the job board and going to your settings page.

@@ -1,0 +1,13 @@
+Hi <%= @admin.firstname %>! A new employer has registered on the UChicago job board and needs an admin to approve their account in order to create new job postings. Here are their details:
+
+Name: <%= @employer.firstname %> <%= @employer.lastname %>
+Company: <%= @employer.company %>
+Email: <%= @employer.email %>
+URL: <%= @employer.url %>
+Note to Reviewer: <%= @employer.note_to_reviewer %>
+
+You may either approve or reject this account by logging into http://jobboard.cs.uchicago.edu.
+
+
+
+You received this notification because you are currently set up as administrator willing to approve new employer accounts. You may edit this preference by logging into the job board and going to your settings page.
