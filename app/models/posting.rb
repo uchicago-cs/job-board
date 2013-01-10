@@ -1,5 +1,5 @@
 class Posting < ActiveRecord::Base
-  attr_accessible :title, :company, :description, :comments, :jobtype, :contact, :active_until, :state, :url, :location, :rich_description
+  attr_accessible :title, :company, :description, :comments, :jobtype, :contact, :active_until, :state, :url, :location, :rich_description, :tags, :attachment
   has_attached_file :attachment
   has_and_belongs_to_many :tags
   belongs_to :employer
@@ -49,6 +49,14 @@ class Posting < ActiveRecord::Base
       return true
     else
       return false
+    end
+  end
+
+  # Override the tags setter to parse a string (needed for proper CanCan parsing and just to simplify code elsewhere)
+  def tags=(value)
+    taglist = value.split(";")
+    taglist.each do |tag|
+      tags << Tag.find_or_create_by_name(tag)
     end
   end
 

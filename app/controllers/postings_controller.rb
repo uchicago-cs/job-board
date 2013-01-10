@@ -62,7 +62,7 @@ class PostingsController < ApplicationController
   end
 
   def create
-    @posting = Posting.create
+    @posting = Posting.new
     @posting.title = params[:posting][:title]
     @posting.description = params[:posting][:description]
     @posting.jobtype = params[:posting][:jobtype]
@@ -74,13 +74,11 @@ class PostingsController < ApplicationController
     @posting.attachment = params[:posting][:attachment]
     @posting.employer = current_employer
     @posting.rich_description = (params[:posting][:rich_description] == "t")
+    @posting.save
 
-    tags = params[:posting][:tags].split(";")
-    tags.each do |tag|
-      @posting.tags << Tag.find_or_create_by_name(tag)
-    end
-
+    @posting.tags = params[:posting][:tags]
     @posting.state = :pending
+
     @posting.save!
 
     flash[:notice] = "Your job posting has been submitted and is pending approval. You will be notified via e-mail once it has been reviewed by an administrator."
@@ -95,12 +93,8 @@ class PostingsController < ApplicationController
       @posting.rich_description = (params[:posting][:rich_description] == "t")
       @posting.comments = nil
       @posting.state = :pending
-      tags = params[:posting][:tags].split(";")
       @posting.tags.clear
-      tags.each do |tag|
-        tag_obj = Tag.find_or_create_by_name(tag)
-        @posting.tags << tag_obj unless @posting.tags.include?(tag)
-      end
+      @posting.tags = params[:posting][:tags]
       flash[:notice] = "Your job posting has been updated. Your changes will have to be approved by an administrator before the updated posting is published."
       next_page = @posting
     elsif current_student && current_student.is_admin?

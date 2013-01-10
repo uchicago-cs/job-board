@@ -6,7 +6,7 @@ class Ability
       can :manage, Employer, :id => user.id
       can [:create, :update, :destroy], Posting, :employer_id => user.id
       can :read, Posting do |posting|
-        posting.visible?
+        posting.visible? || posting.employer_id == user.id
       end
     elsif user.kind_of?(Student) && user.is_admin?
       can :manage, Posting
