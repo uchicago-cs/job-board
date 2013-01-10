@@ -1,0 +1,11 @@
+<% if @posting.approved? %>
+Hi <%= @employer.firstname %>! Your job posting on the UChicago Computer Science Department job board for a(n) <%= @posting.title %> at <%= @posting.company %> has been approved! It is now publicly visible to everyone, and will be up until <%= @posting.active_until.strftime("%d %B %Y") %>.
+<% elsif @posting.changes_needed? %>
+Hi <%= @employer.firstname %>! An administrator on the UChicago Computer Science Department job board has requested some changes to your posting for a(n) <%= @posting.title %> at <%= @posting.company %>. Please log in to view comments or go to http://jobboard.cs.uchicago.edu<%= edit_posting_path(@posting) %>.
+<% elsif @posting.rejected? %>
+Hi <%= @employer.firstname %>! Your job posting on the UChicago Computer Science Department job board for a(n) <%= @posting.title %> at <%= @posting.company %> has been rejected by an administrator. Please log in to view comments or go to http://jobboard.cs.uchicago.edu<%= edit_posting_path(@posting) %>.
+<% end %>
+
+
+
+You received this notification because your account is currently set up to send notifications whenever the status of one of your job postings changes. You may edit this preference by logging into the job board and going to your settings page.

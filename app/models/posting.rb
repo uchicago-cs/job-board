@@ -45,7 +45,8 @@ class Posting < ActiveRecord::Base
     type = Posting.state_symbol_to_id(value)
     if not type.nil?
       write_attribute(:state, type)
-      Notifier.employer_posting_status_change(self).deliver
+      save
+      Notifier.employer_posting_status_change(self).deliver unless value == :pending
       return true
     else
       return false
@@ -83,6 +84,22 @@ class Posting < ActiveRecord::Base
 
   def has_comments?
     !self.comments.nil? && !self.comments.empty?
+  end
+
+  def approved?
+    Posting.state_id_to_symbol(state) == :approved
+  end
+
+  def rejected?
+    Posting.state_id_to_symbol(state) == :rejected
+  end
+
+  def changes_needed?
+    Posting.state_id_to_symbol(state) == :changes_needed
+  end
+
+  def pending?
+    Posting.state_id_to_symbol(state) == :pending
   end
 
   private

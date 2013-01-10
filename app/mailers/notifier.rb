@@ -13,7 +13,30 @@ class Notifier < ActionMailer::Base
   end
 
   def employer_posting_status_change(posting)
+    @employer = posting.employer
+    @posting = posting
 
+    unless @employer.digests
+      @to = @employer.email
+      to_mail = true
+
+      if @posting.approved? && @employer.alert_on_approve
+        @subject = "UChicago CS Jobs Board: Your post has been approved"
+      elsif @posting.rejected? && @employer.alert_on_reject
+        @subject = "UChicago CS Jobs Board: Your post has been rejected"
+      elsif @posting.changes_needed? && @employer.alert_on_changes_needed
+        @subject = "UChicago CS Jobs Board: Changes requested to your post"
+      else
+        to_mail = false
+      end
+
+      if to_mail
+        mail(:to => @to, :subject => @subject) do |format|
+          format.text { render 'employer_posting_status_change' }
+          format.html { render 'employer_posting_status_change' }
+        end
+      end
+    end
   end
 
   def admin_new_employer_notification(employer)

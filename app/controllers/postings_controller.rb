@@ -98,6 +98,8 @@ class PostingsController < ApplicationController
       flash[:notice] = "Your job posting has been updated. Your changes will have to be approved by an administrator before the updated posting is published."
       next_page = @posting
     elsif current_student && current_student.is_admin?
+      @posting.comments = params[:posting][:comments]
+      @posting.reviewer = current_student
       if params[:reject]
         @posting.state = :rejected
         flash[:notice] = "Job posting was rejected."
@@ -108,8 +110,6 @@ class PostingsController < ApplicationController
         @posting.state = :approved
         flash[:notice] = "Job posting was approved."
       end
-      @posting.comments = params[:posting][:comments]
-      @posting.reviewer = current_student
       next_page = postings_path
     end
 

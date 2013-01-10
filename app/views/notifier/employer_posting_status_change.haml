@@ -1,0 +1,32 @@
+- if @posting.approved?
+
+  %h1{:style => "color: #7F3735; font-family: Helvetica, sans-serif; font-size: 24px;"} Job Posting Approved
+
+  %p Hi #{@employer.firstname}! Your job posting on the UChicago Computer Science Department job board for a(n) #{@posting.title} at #{@posting.company} has been approved! It is now publicly visible to everyone, and will be up until #{@posting.active_until.strftime("%d %B %Y")}.
+
+- elsif @posting.changes_needed?
+
+  %h1{:style => "color: #7F3735; font-family: Helvetica, sans-serif; font-size: 24px;"} Changes Requested to Job Posting
+
+  %p Hi #{@employer.firstname}! An administrator on the UChicago Computer Science Department job board has requested some changes to your posting for a(n) #{@posting.title} at #{@posting.company}.
+  - unless @posting.comments.nil? || @posting.comments.length.zero?
+    %p The following comments were made:
+    %div{:style => "border: 0; border-top: solid 5px #3E7C97; margin: 10px; padding: 10px; background-color: #EAEAE2;"}= simple_format @posting.comments
+
+  %p To make changes, go to #{link_to 'http://jobboard.cs.uchicago.edu', 'http://jobboard.cs.uchicago.edu', :style => "color: #155F83; text-decoration: none;"} and edit your posting, or follow this link: #{link_to "#{@posting.title} at #{@posting.company}", "http://jobboard.cs.uchicago.edu#{edit_posting_path(@posting)}", :style => "color: #155F83; text-decoration: none;"}.
+
+- elsif @posting.rejected?
+  %h1{:style => "color: #7F3735; font-family: Helvetica, sans-serif; font-size: 24px;"} Job Posting Rejected
+
+  %p Hi #{@employer.firstname}! Your job posting on the UChicago Computer Science Department job board for a(n) #{@posting.title} at #{@posting.company} has been rejected by an administrator.
+  - unless @posting.comments.nil? || @posting.comments.length.zero?
+    %p The following comments were made:
+    %div{:style => "border: 0; border-top: solid 5px #3E7C97; margin: 10px; padding: 10px; background-color: #EAEAE2;"}= simple_format @posting.comments
+
+%br
+%br
+%div{:style => "width: 100%; border: 0; border-top: solid 1px 7F3735;"}
+%br
+%br
+
+%p{:style => "font-size: small;"} You received this notification because your account is currently set up to send notifications whenever the status of one of your job postings changes. You may edit this preference by logging into the job board and going to your settings page.
