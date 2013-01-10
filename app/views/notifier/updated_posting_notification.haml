@@ -1,6 +1,8 @@
-%h1{:style => "color: #7F3735; font-family: Helvetica, sans-serif; font-size: 24px;"} New Job Posting Notification
+%h1{:style => "color: #7F3735; font-family: Helvetica, sans-serif; font-size: 24px;"} Updated Job Posting Notification
 
-%p Hi #{@admin.firstname}! #{@posting.employer.firstname} #{@posting.employer.lastname} from #{@posting.employer.company} has submitted a new job posting to the UChicago CS job board. It needs your approval before it will become visible to everyone. Here are the details:
+%p Hi #{@admin.firstname}! #{@posting.employer.firstname} #{@posting.employer.lastname} from #{@posting.employer.company} has resubmitted a job posting (#{@posting.title} at #{@posting.company}) after making changes. These changes were requested by #{(@posting.reviewer == @admin) ? "you" : "#{@posting.reviewer.firstname} #{@posting.reviewer.lastname}"}.
+
+%p Here is the updated post:
 
 %table{:style => "border: 0; border-top: solid 5px #7F3735; border-collapse: collapse;"}
   %tr
@@ -33,7 +35,7 @@
     %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= (@posting.attachment.exists?) ? "Yes" : "No"
 
 %p
-  You may either approve or reject this posting, or request the employer make changes first, by logging into
+  You may either approve or reject this posting, or request the employer make further changes, by logging into
   %a{:style => "color: #155F83; text-decoration: none", :href => "http://jobboard.cs.uchicago.edu"} http://jobboard.cs.uchicago.edu
   or following this link:
   %a{:style => "color: #155F83; text-decoration: none", :href => "http://jobboard.cs.uchicago.edu#{posting_path(@posting)}"} View Posting
@@ -43,4 +45,7 @@
 %div{:style => "width: 100%; border: 0; border-top: solid 1px 7F3735;"}
 %br
 %br
-%p{:style => "font-size: small;"} You received this notification because you are currently set up as an administrator willing to approve new job postings. You may edit this preference by logging into the job board and going to your settings page.
+- if @admin.alert_on_updated_posting
+  %p{:style => "font-size: small;"} You received this notification because you are currently set up as an administrator willing to approve updated job postings. You may edit this preference by logging into the job board and going to your settings page.
+- elsif @admin.alert_on_my_updated_posting
+  %p{:style => "font-size: small;"} You received this notification because you are currently set up as an administrator willing to approve updated job postings that you have previously requested changes to, but not any other updated postings. You may edit this preference by logging into the job board and going to your settings page.

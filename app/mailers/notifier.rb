@@ -70,7 +70,18 @@ class Notifier < ActionMailer::Base
   end
 
   def admin_updated_posting_notification(posting)
-
+    Student.admins.each do |admin|
+      if (admin.alert_on_updated_posting || (posting.reviewer == admin && admin.alert_on_my_updated_posting)) && !admin.digests
+        @admin = admin
+        @posting = posting
+        @to = admin.email
+        @subject = "UChicago CS Jobs Board: Updated Posting Notification"
+        mail(:to => @to, :subject => @subject) do |format|
+          format.text { render 'updated_posting_notification' }
+          format.html { render 'updated_posting_notification' }
+        end
+      end
+    end
   end
 
   def admin_alert_digest()

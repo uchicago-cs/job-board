@@ -46,7 +46,11 @@ class Posting < ActiveRecord::Base
     if not type.nil?
       write_attribute(:state, type)
       save
-      Notifier.employer_posting_status_change(self).deliver unless value == :pending
+      if value == :pending && !reviewer.nil?
+        Notifier.admin_updated_posting_notification(self).deliver
+      else
+        Notifier.employer_posting_status_change(self).deliver unless value == :pending
+      end
       return true
     else
       return false
