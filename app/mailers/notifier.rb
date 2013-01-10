@@ -32,6 +32,21 @@ class Notifier < ActionMailer::Base
   end
 
   def admin_new_posting_notification(posting)
+    Student.admins.each do |admin|
+      @admin = admin
+      if admin.alert_on_new_posting && !admin.digests
+        @to = admin.email
+        @subject = "UChicago CS Jobs Board: New Job Posting Notification"
+        @posting = posting
+        mail(:to => @to, :subject => @subject) do |format|
+          format.text { render 'new_posting_notification' }
+          format.html { render 'new_posting_notification' }
+        end
+      end
+    end
+  end
+
+  def admin_updated_posting_notification(posting)
 
   end
 

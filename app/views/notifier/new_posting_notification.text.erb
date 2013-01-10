@@ -1,0 +1,16 @@
+Hi <%= @admin.firstname %>! <%= @posting.employer.firstname %> <%= @posting.employer.lastname %> from <%= @posting.employer.company %> has submitted a new job posting to the UChicago CS job board. It needs your approval before it will become visible to everyone. Here are the details:
+
+Position: <%= @posting.title %>
+Company: <%= @posting.company %>
+Description: [Please log in to see]
+Location: <%= @posting.location %>
+URL: <%= @posting.url %>
+Deadline: <%= @posting.active_until.strftime("%d %B %Y") %>
+Contact: [Please log in to see]
+Attachment? <%= (@posting.attachment.exists?) ? "Yes" : "No" %>
+
+You may either approve or reject this account by logging into http://jobboard.cs.uchicago.edu.
+
+
+
+You received this notification because you are currently set up as administrator willing to approve new job postings. You may edit this preference by logging into the job board and going to your settings page.

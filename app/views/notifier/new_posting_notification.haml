@@ -1,0 +1,46 @@
+%h1{:style => "color: #7F3735; font-family: Helvetica, sans-serif; font-size: 24px;"} New Job Posting Notification
+
+%p Hi #{@admin.firstname}! #{@posting.employer.firstname} #{@posting.employer.lastname} from #{@posting.employer.company} has submitted a new job posting to the UChicago CS job board. It needs your approval before it will become visible to everyone. Here are the details:
+
+%table{:style => "border: 0; border-top: solid 5px #7F3735; border-collapse: collapse;"}
+  %tr
+    %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left;"} Position
+    %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= @posting.title
+  %tr
+    %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left;"} Company
+    %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= @posting.company
+  %tr
+    %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left;"} Description
+    %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}
+      - if @posting.rich_description
+        = @posting.description.html_safe
+      - else
+        = simple_format @posting.description
+  %tr
+    %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left"} Location
+    %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= @posting.location
+  %tr
+    %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left"} URL
+    %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= @posting.url
+  %tr
+    %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left"} Deadline
+    %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= @posting.active_until.strftime("%d %B %Y")
+  %tr
+    %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left"} Contact
+    %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= simple_format @posting.contact
+  %tr
+    %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left"} Attachment?
+    %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= (@posting.attachment.exists?) ? "Yes" : "No"
+
+%p
+  You may either approve or reject this posting, or request the employer make changes first, by logging into
+  %a{:style => "color: #155F83; text-decoration: none", :href => "http://jobboard.cs.uchicago.edu"} http://jobboard.cs.uchicago.edu
+  or following this link:
+  %a{:style => "color: #155F83; text-decoration: none", :href => "http://jobboard.cs.uchicago.edu#{posting_path(@posting)}"} View Posting
+
+%br
+%br
+%div{:style => "width: 100%; border: 0; border-top: solid 1px 7F3735;"}
+%br
+%br
+%p{:style => "font-size: small;"} You received this notification because you are currently set up as administrator willing to approve new job postings. You may edit this preference by logging into the job board and going to your settings page.
