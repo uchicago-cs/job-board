@@ -1,0 +1,33 @@
+%h2 Student Sign In
+
+= form_for(@student, :url => student_session_path) do |f|
+  %table.formtable
+    %colgroup
+      %col.form_label_col
+      %col.form_input_col
+    %tr
+      %td= f.label :cnet, "CNet ID"
+      %td= f.text_field :cnet
+    %tr
+      %td= f.label :password, "Password"
+      %td= f.password_field :password
+    %tr
+      %td
+      %td= f.submit "Sign In"
+
+%h2 Employer Sign In
+
+= form_for(@employer, :url => employer_session_path) do |f|
+  %table.formtable
+    %colgroup
+      %col.form_label_col
+      %col.form_input_col
+    %tr
+      %td= f.label :email, "Email"
+      %td= f.email_field :email
+    %tr
+      %td= f.label :password, "Password"
+      %td= f.password_field :password
+    %tr
+      %td
+      %td= f.submit "Sign In"
