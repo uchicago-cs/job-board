@@ -16,7 +16,7 @@ class ApplicationController < ActionController::Base
   end
 
   def deobfuscate_id
-    params[:id] = Obfuscation.deobfuscate(params[:id].to_i)
+    params[:id] = Obfuscation.deobfuscate(params[:id].to_i) if params[:id]
   end
 
 end
