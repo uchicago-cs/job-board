@@ -42,6 +42,10 @@ class Employer < ActiveRecord::Base
   private
 
   def alert_admins_of_new_employer
-    Notifier.admin_new_employer_notification(self).deliver
+    Student.admins.each do |admin|
+      if admin.alert_on_new_employer && !admin.digests
+        Notifier.admin_new_employer_notification(self, admin).deliver
+      end
+    end
   end
 end

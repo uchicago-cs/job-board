@@ -1,0 +1,17 @@
+Hi <%= @student.firstname %>! A new job posting just become available on the UChicago CS job board that might be of interest to you. Here's a quick overview of the details:
+
+Position: <%= @posting.title %>
+Company: <%= @posting.company %>
+Description: [Please log in to see]
+Location: <%= @posting.location %>
+URL: <%= @posting.url %>
+Deadline: <%= @posting.active_until.strftime("%d %B %Y") %>
+Contact: [Please log in to see]
+
+<% if @posting.attachment.exists? %>
+In addition, the employer also submitted an attachment that contains additional information. You can view it by logginging into http://jobboard.cs.uchicago.edu.
+<% end %>
+
+
+
+You received this notification because you have chosen to receive alerts when a new job matching the interests you provided is posted on the CS job board. You may edit your interests, disable email alerts, or consolidate alerts into a weekly summary email by logging into the job board and going to your settings page.

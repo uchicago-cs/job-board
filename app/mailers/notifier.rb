@@ -39,48 +39,36 @@ class Notifier < ActionMailer::Base
     end
   end
 
-  def admin_new_employer_notification(employer)
-    Student.admins.each do |admin|
-      @admin = admin
-      if admin.alert_on_new_employer && !admin.digests
-        @to = admin.email
-        @subject = "UChicago CS Jobs Board: New Employer Notification"
-        @employer = employer
-        mail(:to => @to, :subject => @subject) do |format|
-          format.text { render 'new_employer_notification' }
-          format.html { render 'new_employer_notification' }
-        end
-      end
+  def admin_new_employer_notification(employer, admin)
+    @admin = admin
+    @to = admin.email
+    @subject = "UChicago CS Jobs Board: New Employer Notification"
+    @employer = employer
+    mail(:to => @to, :subject => @subject) do |format|
+      format.text { render 'new_employer_notification' }
+      format.html { render 'new_employer_notification' }
     end
   end
 
-  def admin_new_posting_notification(posting)
-    Student.admins.each do |admin|
-      @admin = admin
-      if admin.alert_on_new_posting && !admin.digests
-        @to = admin.email
-        @subject = "UChicago CS Jobs Board: New Job Posting Notification"
-        @posting = posting
-        mail(:to => @to, :subject => @subject) do |format|
-          format.text { render 'new_posting_notification' }
-          format.html { render 'new_posting_notification' }
-        end
-      end
+  def admin_new_posting_notification(posting, admin)
+    @admin = admin
+    @to = admin.email
+    @subject = "UChicago CS Jobs Board: New Job Posting Notification"
+    @posting = posting
+    mail(:to => @to, :subject => @subject) do |format|
+      format.text { render 'new_posting_notification' }
+      format.html { render 'new_posting_notification' }
     end
   end
 
-  def admin_updated_posting_notification(posting)
-    Student.admins.each do |admin|
-      if (admin.alert_on_updated_posting || (posting.reviewer == admin && admin.alert_on_my_updated_posting)) && !admin.digests
-        @admin = admin
-        @posting = posting
-        @to = admin.email
-        @subject = "UChicago CS Jobs Board: Updated Posting Notification"
-        mail(:to => @to, :subject => @subject) do |format|
-          format.text { render 'updated_posting_notification' }
-          format.html { render 'updated_posting_notification' }
-        end
-      end
+  def admin_updated_posting_notification(posting, admin)
+    @admin = admin
+    @posting = posting
+    @to = admin.email
+    @subject = "UChicago CS Jobs Board: Updated Posting Notification"
+    mail(:to => @to, :subject => @subject) do |format|
+      format.text { render 'updated_posting_notification' }
+      format.html { render 'updated_posting_notification' }
     end
   end
 
@@ -88,8 +76,15 @@ class Notifier < ActionMailer::Base
 
   end
 
-  def student_job_alert(student, posting)
-
+  def student_job_alert(posting, student)
+    @student = student
+    @posting = posting
+    @to = student.email
+    @subject = "New position on the UChicago CS Jobs Board: #{@posting.title} at #{@posting.company}"
+    mail(:to => @to, :subject => @subject) do |format|
+      format.text { render 'student_job_alert' }
+      format.html { render 'student_job_alert' }
+    end
   end
 
   def student_alert_digest()

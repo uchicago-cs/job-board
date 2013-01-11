@@ -59,6 +59,18 @@ class Student < ActiveRecord::Base
     interested_in_full_time
   end
 
+  def is_interested_in? posting
+    return false if is_admin?
+    case posting.job_type_as_symbol
+      when :internship
+        return interested_in_internships?
+      when :parttime
+        return interested_in_part_time?
+      when :fulltime
+        return interested_in_full_time?
+    end
+  end
+
   private
 
   def role_symbol_to_id(_role)

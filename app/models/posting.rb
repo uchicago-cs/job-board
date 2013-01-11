@@ -47,7 +47,18 @@ class Posting < ActiveRecord::Base
       write_attribute(:state, type)
       save
       if value == :pending && !reviewer.nil?
-        Notifier.admin_updated_posting_notification(self).deliver
+        Student.admins.each do |admin|
+          if (admin.alert_on_updated_posting || (posting.reviewer == admin && admin.alert_on_my_updated_posting)) && !admin.digests
+            Notifier.admin_updated_posting_notification(self, admin).deliver
+          end
+        end
+      elsif value == :approved
+        Notifier.employer_posting_status_change(self).deliver
+        Student.all.each do |student|
+          if student.alert_on_new_recommendation && student.is_interested_in?(self)
+            Notifier.student_job_alert(self, student).deliver
+          end
+        end
       else
         Notifier.employer_posting_status_change(self).deliver unless value == :pending
       end
@@ -72,6 +83,10 @@ class Posting < ActiveRecord::Base
       when :changes_needed then "Changes Needed"
       when :approved then "Approved"
     end
+  end
+
+  def job_type_as_symbol
+    Posting.jobtype_id_to_symbol(jobtype)
   end
 
   def self.postings_pending_approval?
@@ -143,6 +158,10 @@ class Posting < ActiveRecord::Base
   end
 
   def alert_admins_of_new_posting
-    Notifier.admin_new_posting_notification(self).deliver
+    Student.admins.each do |admin|
+      if admin.alert_on_new_posting && !admin.digests
+        Notifier.admin_new_posting_notification(self, admin).deliver
+      end
+    end
   end
 end

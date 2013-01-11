@@ -1,0 +1,43 @@
+%h1{:style => "color: #7F3735; font-family: Helvetica, sans-serif; font-size: 24px;"} Here's a new job that might interest you...
+
+%p Hi #{@student.firstname}! A new job posting just become available on the UChicago CS job board that might be of interest to you. Here's a quick overview of the details:
+
+%table{:style => "border: 0; border-top: solid 5px #7F3735; border-collapse: collapse;"}
+  %tr
+    %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left;"} Position
+    %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= @posting.title
+  %tr
+    %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left;"} Company
+    %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= @posting.company
+  %tr
+    %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left;"} Description
+    %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}
+      - if @posting.rich_description
+        = @posting.description.html_safe
+      - else
+        = simple_format @posting.description
+  %tr
+    %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left"} Location
+    %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= @posting.location
+  %tr
+    %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left"} URL
+    %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= @posting.url
+  %tr
+    %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left"} Deadline
+    %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= @posting.active_until.strftime("%d %B %Y")
+  %tr
+    %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left"} Contact
+    %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= simple_format @posting.contact
+  %tr
+    %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left"} Attachment?
+    %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= (@posting.attachment.exists?) ? "Yes" : "No"
+
+- if @posting.attachment.exists?
+  %p In addition, the employer also submitted an attachment that contains additional information. You can view it by logginging into #{link_to "http://jobboard.cs.uchicago.edu", "http://jobboard.cs.uchicago.edu", :style => "color: #155F83; text-decoration: none"} or following this link: #{link_to "View Posting", "http://jobboard.cs.uchicago.edu#{posting_path(@posting)}", :style => "color: #155F83; text-decoration: none"}
+
+%br
+%br
+%div{:style => "width: 100%; border: 0; border-top: solid 1px 7F3735;"}
+%br
+%br
+%p{:style => "font-size: small;"} You received this notification because you have chosen to receive alerts when a new job matching the interests you provided is posted on the CS job board. You may edit your interests, disable email alerts, or consolidate alerts into a weekly summary email by logging into the job board and going to your settings page.
