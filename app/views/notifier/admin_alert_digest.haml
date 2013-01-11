@@ -1,0 +1,122 @@
+%h1{:style => "color: #7F3735; font-family: Helvetica, sans-serif; font-size: 24px;"} Daily Job Board Summary
+
+%p Hi #{@admin.firstname}! Here's what's happened on the UChicago CS job board in the last day that you would be interested in:
+%ul
+  - if not @new_postings.empty?
+    %li= pluralize(@new_postings.count, "new job posting")
+  - if not @new_employers.empty?
+    %li= pluralize(@new_employers.count, "new employer")
+  - if (not @updated_postings.empty?) && @admin.alert_on_updated_posting
+    %li= pluralize(@updated_postings.count, "revised job posting")
+  - elsif (not @updated_postings.empty?) && @admin.alert_on_my_updated_posting
+    %li #{pluralize(@updated_postings.count, "revised job posting")} which you had requested
+
+%p To take care of these, log into your account at #{link_to "http://jobboard.cs.uchicago.edu", "http://jobboard.cs.uchicago.edu", :style => "color: #155F83; text-decoration: none"}. Here's a quick overview:
+
+- if not @new_postings.empty?
+  %h2{:style => "color: #7F3735; font-family: Helvetica, sans-serif; font-size: 18px; font-style: italic;"} New Job Postings
+  %p These postings need your approval before they become publicly visible on the job board.
+  - @new_postings.each do |posting|
+    %table{:style => "border: 0; border-top: solid 5px #7F3735; border-collapse: collapse; width: 80%; margin-bottom: 30px;"}
+      %colgroup
+        %col{:style => "width: 25%;"}
+        %col{:style => "width: 75%;"}
+      %tr
+        %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left;"} Position
+        %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= posting.title
+      %tr
+        %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left;"} Company
+        %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= posting.company
+      %tr
+        %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left;"} Description
+        %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}
+          - if posting.rich_description
+            = posting.description.html_safe
+          - else
+            = simple_format posting.description
+      %tr
+        %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left"} Location
+        %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= posting.location
+      %tr
+        %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left"} URL
+        %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= posting.url
+      %tr
+        %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left"} Deadline
+        %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= posting.active_until.strftime("%d %B %Y")
+      %tr
+        %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left"} Contact
+        %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= simple_format posting.contact
+      %tr
+        %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left"} Attachment?
+        %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= (posting.attachment.exists?) ? "Yes" : "No"
+
+- if not @new_employers.empty?
+  %h2{:style => "color: #7F3735; font-family: Helvetica, sans-serif; font-size: 18px; font-style: italic;"} New Employers
+  %p These employer accounts need your approval before they can post jobs on the job board.
+  - @new_employers.each do |employer|
+    %table{:style => "border: 0; border-top: solid 5px #7F3735; border-collapse: collapse; width: 80%; margin-bottom: 30px;"}
+      %colgroup
+        %col{:style => "width: 25%;"}
+        %col{:style => "width: 75%;"}
+      %tr
+        %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left;"} Name
+        %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"} #{employer.firstname} #{employer.lastname}
+      %tr
+        %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left;"} Company
+        %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= employer.company
+      %tr
+        %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left;"} Email
+        %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= employer.email
+      %tr
+        %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left"} URL
+        %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= employer.url
+      %tr
+        %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left"} Note to Reviewer
+        %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= simple_format employer.note_to_reviewer
+
+- if not @updated_postings.empty?
+  %h2{:style => "color: #7F3735; font-family: Helvetica, sans-serif; font-size: 18px; font-style: italic;"} Revised Job Postings 
+  - if @admin.alert_on_updated_posting
+    %p These job postings had been sent back to their original writers for revision. They have now been resubmitted with changes. They need your approval before they become publicly visible.
+  - elsif @admin.alert_on_my_updated_posting
+    %p You previously sent these postings back to their original writers for revision. They have now been resubmitted with changes. They need your approval before they become publicly visible.
+  - @updated_postings.each do |posting|
+    %table{:style => "border: 0; border-top: solid 5px #7F3735; border-collapse: collapse; width: 80%; margin-bottom: 30px;"}
+      %colgroup
+        %col{:style => "width: 25%;"}
+        %col{:style => "width: 75%;"}
+      %tr
+        %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left;"} Position
+        %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= posting.title
+      %tr
+        %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left;"} Company
+        %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= posting.company
+      %tr
+        %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left;"} Description
+        %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}
+          - if posting.rich_description
+            = posting.description.html_safe
+          - else
+            = simple_format posting.description
+      %tr
+        %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left"} Location
+        %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= posting.location
+      %tr
+        %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left"} URL
+        %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= posting.url
+      %tr
+        %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left"} Deadline
+        %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= posting.active_until.strftime("%d %B %Y")
+      %tr
+        %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left"} Contact
+        %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= simple_format posting.contact
+      %tr
+        %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left"} Attachment?
+        %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= (posting.attachment.exists?) ? "Yes" : "No"
+
+%br
+%br
+%div{:style => "width: 100%; border: 0; border-top: solid 1px 7F3735;"}
+%br
+%br
+%p{:style => "font-size: small;"} You received this notification because you have chosen to receive daily summaries of administrative events on the Computer Science Department job board. You may edit your preferences regarding what alerts you receive, or turn off summaries and receive immediate notifications, by logging into the job board and going to your settings page.

@@ -72,8 +72,17 @@ class Notifier < ActionMailer::Base
     end
   end
 
-  def admin_alert_digest()
-
+  def admin_alert_digest(admin, new_postings, new_employers, updated_postings)
+    @admin = admin
+    @new_postings = new_postings
+    @new_employers = new_employers
+    @updated_postings = updated_postings
+    @to = admin.email
+    @subject = "UChicago CS Jobs Board Daily Summary"
+    mail(:to => @to, :subject => @subject) do |format|
+      format.text { render 'admin_alert_digest' }
+      format.html { render 'admin_alert_digest' }
+    end
   end
 
   def student_job_alert(posting, student)

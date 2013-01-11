@@ -46,12 +46,12 @@
       %tr
         %td= label_tag :digests, "Digests"
         %td
-          %p Do you want to receive email alerts as soon as they happen, or would you prefer to have a single summary sent at the end of the day?
+          %p Do you want to receive email alerts as soon as they happen, or would you prefer to have a single summary sent once a week?
           = f.radio_button :digests, "true"
-          = f.label :digests_true, "Yes, send me summaries of any changes to my job postings."
+          = f.label :digests_true, "Yes, send me summaries of any new postings."
           %br
           = f.radio_button :digests, "false"
-          = f.label :digest_false, "No, send me an email right away every time one of my job postings changes."
+          = f.label :digest_false, "No, send me an email right away every time a new job matching my interests appears."
       %tr
         %td
         %td= f.submit "Update"

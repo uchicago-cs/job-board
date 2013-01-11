@@ -1,0 +1,74 @@
+Hi <%= @admin.firstname %>! Here's what's happened on the UChicago CS job board in the last day that you would be interested in:
+
+<% if not @new_postings.empty? %>
+  * <%= pluralize(@new_postings.count, "new job posting") %>
+<% end %>
+<% if not @new_employers.empty? %>
+  * <%= pluralize(@new_employers.count, "new employer") %>
+<% end %>
+<% if not @updated_postings.empty? && @admin.alert_on_updated_posting %>
+  * <%= pluralize(@updated_postings.count, "revised job posting") %>
+<% elsif not @updated_postings.empty? && @admin.alert_on_my_updated_posting %>
+  * <%= pluralize(@updated_postings.count, "revised job posting") %> which you had requested
+<% end %>
+
+To take care of these, log into your account at http://jobboard.cs.uchicago.edu. Here's a quick overview:
+
+<% if not @new_postings.empty? %>
+== NEW JOB POSTINGS ==
+
+These postings need your approval before they become publicly visible on the job board.
+
+<% @new_postings.each do |posting| %>
+Position: <%= posting.title %>
+Company: <%= posting.company %>
+Description: [Please log in to see]
+Location: <%= posting.location %>
+URL: <%= posting.url %>
+Deadline: <%= posting.active_until.strftime("%d %B %Y") %>
+Contact: [Please log in to see]
+Attachment? <%= (posting.attachment.exists?) ? "Yes" : "No" %>
+
+<% end %>
+<% end %>
+
+<% if not @new_employers.empty? %>
+== NEW EMPLOYERS ==
+
+These employer accounts need your approval before they can post jobs on the job board.
+
+<% @new_employers.each do |employer| %>
+Name: <%= employer.firstname %> <%= employer.lastname %>
+Company: <%= employer.company %>
+Email: <%= employer.email %>
+URL: <%= employer.url %>
+Note to Reviewer: <%= employer.note_to_reviewer %>
+
+<% end %>
+<% end %>
+
+<% if not @updated_postings.empty? %>
+== REVISED JOB POSTINGS ==
+
+<% if @admin.alert_on_updated_posting %>
+These job postings had been sent back to their original writers for revision. They have now been resubmitted with changes. They need your approval before they become publicly visible.
+<% elsif @admin.alert_on_my_updated_posting %>
+You previously sent these postings back to their original writers for revision. They have now been resubmitted with changes. They need your approval before they become publicly visible.
+<% end %>
+
+<% @updated_postings.each do |posting| %>
+Position: <%= posting.title %>
+Company: <%= posting.company %>
+Description: [Please log in to see]
+Location: <%= posting.location %>
+URL: <%= posting.url %>
+Deadline: <%= posting.active_until.strftime("%d %B %Y") %>
+Contact: [Please log in to see]
+Attachment? <%= (posting.attachment.exists?) ? "Yes" : "No" %>
+
+<% end %>
+<% end %>
+
+
+
+You received this notification because you have chosen to receive daily summaries of administrative events on the Computer Science Department job board. You may edit your preferences regarding what alerts you receive, or turn off summaries and receive immediate notifications, by logging into the job board and going to your settings page.
