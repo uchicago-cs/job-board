@@ -12,6 +12,10 @@ class Student < ActiveRecord::Base
   before_create :get_ldap_info
   after_create :init_student
 
+  def to_param
+    Obfuscation.obfuscate(self.id).to_s
+  end
+
   def get_ldap_info
     if Devise::LdapAdapter.get_ldap_param(self.cnet, "uid")
       self.email = Devise::LdapAdapter.get_ldap_param(self.cnet, "mail")

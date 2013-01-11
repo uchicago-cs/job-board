@@ -8,6 +8,10 @@ class Posting < ActiveRecord::Base
 
   after_create :alert_admins_of_new_posting
 
+  def to_param
+    Obfuscation.obfuscate(self.id).to_s
+  end
+
   def active?
     active_until <= DateTime.now
   end

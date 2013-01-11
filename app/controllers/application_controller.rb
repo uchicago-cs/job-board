@@ -1,4 +1,6 @@
 class ApplicationController < ActionController::Base
+  require 'obfuscation' unless defined?(Obfuscation)
+
   protect_from_forgery
 
   rescue_from DeviseLdapAuthenticatable::LdapException do |exception|
@@ -11,6 +13,10 @@ class ApplicationController < ActionController::Base
 
   def current_ability
     @current_ability ||= Ability.new(current_student || current_employer)
+  end
+
+  def deobfuscate_id
+    params[:id] = Obfuscation.deobfuscate(params[:id].to_i)
   end
 
 end

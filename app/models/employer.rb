@@ -13,6 +13,10 @@ class Employer < ActiveRecord::Base
 
   after_create :alert_admins_of_new_employer
 
+  def to_param
+    Obfuscation.obfuscate(self.id).to_s
+  end
+
   def self.accounts_pending_approval?
     Employer.where(:approved => false).count > 0
   end

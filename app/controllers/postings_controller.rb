@@ -1,4 +1,6 @@
 class PostingsController < ApplicationController
+  before_filter :deobfuscate_id
+
   load_and_authorize_resource
 
   def index
