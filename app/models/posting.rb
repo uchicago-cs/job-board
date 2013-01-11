@@ -55,7 +55,7 @@ class Posting < ActiveRecord::Base
       elsif value == :approved
         Notifier.employer_posting_status_change(self).deliver
         Student.all.each do |student|
-          if student.alert_on_new_recommendation && student.is_interested_in?(self)
+          if student.alert_on_new_recommendation && !student.digests && student.is_interested_in?(self)
             Notifier.student_job_alert(self, student).deliver
           end
         end

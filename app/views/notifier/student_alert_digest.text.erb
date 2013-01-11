@@ -1,0 +1,17 @@
+Hi <%= @student.firstname %>! In the last week, <%= pluralize(@postings.count, "new job posting") %> became available on the UChicago CS job board that might be of interest to you. Here's a quick overview of the details:
+
+<% @postings.each do |posting| %>
+Position: <%= posting.title %>
+Company: <%= posting.company %>
+Description: [Please log in to see]
+Location: <%= posting.location %>
+URL: <%= posting.url %>
+Deadline: <%= posting.active_until.strftime("%d %B %Y") %>
+Contact: [Please log in to see]
+Attachment: <%= (posting.attachment.exists?) ? "Yes" : "No" %>
+
+<% end %>
+
+
+
+You received this notification because you have chosen to receive weekly alerts when a new job matching the interests you provided is posted on the CS job board. You may edit your interests or disable email alerts by logging into the job board and going to your settings page.

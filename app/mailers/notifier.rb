@@ -87,7 +87,15 @@ class Notifier < ActionMailer::Base
     end
   end
 
-  def student_alert_digest()
-
+  def student_alert_digest(student, postings)
+    @student = student
+    @postings = postings
+    @to = student.email
+    @subject = "UChicago CS Jobs Board Weekly Summary: #{postings.count} #{postings.count == 1 ? "Position" : "Positions"} of Interest"
+    mail(:to => @to, :subject => @subject) do |format|
+      format.text { render 'student_alert_digest' }
+      format.html { render 'student_alert_digest' }
+    end
   end
+
 end
