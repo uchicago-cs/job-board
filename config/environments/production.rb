@@ -70,9 +70,7 @@ TechJobs::Application.configure do
     :address              => 'smtp.cs.uchicago.edu',
     :port                 => 25,
     :domain               => 'cs.uchicago.edu',
-    :user_name            => 'jobboard-notifications',
-    :password             => '',
-    :authentication       => '',
+    :authentication       => nil,
     :enable_starttls_auto => true
   }
 

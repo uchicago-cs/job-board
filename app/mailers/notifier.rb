@@ -1,5 +1,5 @@
 class Notifier < ActionMailer::Base
-  default :from => "no-reply@cs.uchicago.edu"
+  default :from => "jobboard-notifications@cs.uchicago.edu"
   layout 'mailer'
 
   def employer_account_approved(employer)
