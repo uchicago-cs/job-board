@@ -68,7 +68,7 @@ TechJobs::Application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
     :address              => 'smtp.cs.uchicago.edu',
-    :port                 => 587,
+    :port                 => 25,
     :domain               => 'cs.uchicago.edu',
     :user_name            => 'jobboard-notifications',
     :password             => '',
