@@ -11,6 +11,9 @@ class Employer < ActiveRecord::Base
   attr_accessible :firstname, :lastname, :url, :company, :note_to_reviewer, :approved, :alert_on_approve, :alert_on_reject, :alert_on_changes_needed, :digests
   has_many :postings
 
+  validates :firstname, :lastname, :company, :presence => true  # presence of :email is handled by devise
+  validates :email, :uniqueness => true
+
   after_create :alert_admins_of_new_employer
 
   def to_param

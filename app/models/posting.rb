@@ -6,6 +6,8 @@ class Posting < ActiveRecord::Base
   belongs_to :student
   belongs_to :reviewer, :foreign_key => 'reviewed_by', :class_name => "Student"
 
+  validates :title, :company, :description, :location, :jobtype, :active_until, :contact, :presence => true
+
   after_create :alert_admins_of_new_posting
 
   def to_param
@@ -82,6 +84,16 @@ class Posting < ActiveRecord::Base
     taglist.each do |tag|
       tags << Tag.find_or_create_by_name(tag)
     end
+  end
+
+  def self.parse_tags(value)
+    taglist = value.split(";")
+    parsed_tags = []
+    taglist.each do |tag|
+      tmptag = Tag.new(:name => tag)
+      parsed_tags << tmptag unless parsed_tags.include?(tmptag)
+    end
+    return parsed_tags
   end
 
   def state_as_string

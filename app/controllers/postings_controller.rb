@@ -76,7 +76,12 @@ class PostingsController < ApplicationController
     @posting.attachment = params[:posting][:attachment]
     @posting.employer = current_employer
     @posting.rich_description = (params[:posting][:rich_description] == "t")
-    @posting.save
+    if not @posting.save
+      @posting.tags = Posting.parse_tags(params[:posting][:tags])
+      @tags = Tag.all
+      render :action => :new
+      return
+    end
 
     @posting.tags = params[:posting][:tags]
     @posting.state = :pending

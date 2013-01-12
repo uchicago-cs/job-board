@@ -2,7 +2,7 @@
 
 %fieldset
   %h3 Change Password
-  = form_for(@employer, :url => employer_update_password_path, :method => :post) do |f|
+  = form_for(@employer_with_password, :as => :employer,  :url => employer_update_password_path, :method => :post) do |f|
     = f.error_messages
     %table.formtable
       %colgroup

@@ -14,7 +14,7 @@ class EmployersController < ApplicationController
   end
 
   def edit
-    @employer = Employer.find(params[:id])
+    @employer = @employer_password = Employer.find(params[:id])
   end
 
   def create
@@ -44,12 +44,13 @@ class EmployersController < ApplicationController
   end
 
   def update_password
-    @employer = Employer.find(params[:id])
-    if @employer.update_with_password(params[:employer])
-      sign_in @employer, :bypass => true
+    @employer_with_password = Employer.find(params[:id])
+    if @employer_with_password.update_with_password(params[:employer])
+      sign_in @employer_with_password, :bypass => true
       flash[:notice] = "Password successfully updated."
       redirect_to root_path
     else
+      @employer = Employer.find(params[:id])
       render "edit"
     end
   end

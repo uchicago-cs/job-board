@@ -3,6 +3,9 @@ class Tag < ActiveRecord::Base
   has_and_belongs_to_many :students
   has_and_belongs_to_many :postings
 
+  validates :name, :presence => true
+  validates :name, :uniqueness => true
+
   def find_or_create_by_name tagname
     if not tagname.empty?
       tag = Tag.find_by_name(tagname)
