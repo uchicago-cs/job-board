@@ -1,5 +1,7 @@
+// Non-alphanumberic characters that should not behave as punctuation and trigger a new word event when auto-tagging posting descriptions
 alphaNumericExceptions = new Array(35, 43, 47); // '#', '+', '/'
 
+// Determine whether a character should be interpreted as the end of a previous word when auto-tagging posting descriptions
 function isAlphaNumeric(theChar) {
   if ((theChar >= 48 && theChar <= 57) ||           // 0-9
       (theChar >= 65 && theChar <= 90) ||           // A-Z
@@ -11,24 +13,23 @@ function isAlphaNumeric(theChar) {
   }
 }
 
-function newTag() {
+// Event handler when user clicks 'Add new tag' button
+function newTag(evt) {
+  // Stop propagation to prevent registering a click event immediately
+  evt.stopPropagation();
+
+  // Add an 'empty' tag
   $("<div class=\"token\"><span class=\"tokentext\"><i>New Tag: </i></span></div>").appendTo("#taglist");
   var tag = $(".token").last();
   var tagtextfield = tag.children('span');
-  $(document).keypress(function(evt) {
-    var key = evt.which;
-    var taglistdiv = document.getElementById('globaltaglist');
-    taglistdiv.innerHTML = taglistdiv.innerHTML.substr(0, taglistdiv.innerHTML.length - 1);
-    var taglistOrig = taglistdiv.innerHTML.split(";");
-    if(isAlphaNumeric(key)) {
-      tagtextfield.html(tagtextfield.html() + String.fromCharCode(key));
-    } else if(key == 8) { // Delete/Backspace
-      tagtextfield.html(tagtextfield.html().substr(0, tagtextfield.html().length - 1));
-      evt.preventDefault();
-      evt.returnFalse = false;
-    } else if(key == 13) { // Enter
-      $(document).unbind();
-      var newtagtext = tagtextfield.html().substring(16);
+
+  // Exit tag editing mode when the user clicks anywhere
+  $(document).click(function() {
+    $(document).unbind();
+    var newtagtext = tagtextfield.html().substring(16);
+
+    if(newtagtext.length > 0) {
+      // Store the tag if it has a non-zero value
       tagtextfield.html(newtagtext);
       tag.append(" <span class=\"removetag\">x</span>");
 
@@ -38,6 +39,40 @@ function newTag() {
       } else {
         $("#posting_tags").attr('value', curTagList + ";" + newtagtext);
       }
+    } else {
+      // If the tag is empty, just remove it
+      tag.remove();
+    }
+  });
+
+  // Handle typing a tag name (non-printable)
+  // (Non-printable characters are not captured by keypress event)
+  $(document).keydown(function(evt) {
+    var key = evt.which;
+    var taglistdiv = document.getElementById('globaltaglist');
+    taglistdiv.innerHTML = taglistdiv.innerHTML.substr(0, taglistdiv.innerHTML.length - 1);
+    var taglistOrig = taglistdiv.innerHTML.split(";");
+
+    if(key == 8) { // Delete/Backspace
+      tagtextfield.html(tagtextfield.html().substr(0, tagtextfield.html().length - 1));
+      return false;
+    }
+  });
+
+  // Handle typing a tag name (printable)
+  // (keydown event does not distinguish case)
+  $(document).keypress(function(evt) {
+    var key = evt.which;
+    var taglistdiv = document.getElementById('globaltaglist');
+    taglistdiv.innerHTML = taglistdiv.innerHTML.substr(0, taglistdiv.innerHTML.length - 1);
+    var taglistOrig = taglistdiv.innerHTML.split(";");
+
+    if(isAlphaNumeric(key) || key == 32 /* space */) {
+      // If the key is alphanumeric or a space, add it to the tag
+      tagtextfield.html(tagtextfield.html() + String.fromCharCode(key));
+      return false;
+    } else if(key == 13) { // Enter
+      $(document).click();
     }
   });
 }
@@ -63,7 +98,7 @@ $(document).ready(function() {
   var taglistOrig = taglistdiv.innerHTML.split(";");
   var taglist = taglistdiv.innerHTML.toLowerCase().split(";");
 
-  $("span.removetag").live('click', function() {
+  $("span.removetag").live('click', function(evt) {
     var textspan = $(this).parent().find('.tokentext');
     $(this).remove();
     var tagtext = $.trim(textspan.html());
