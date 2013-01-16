@@ -21,6 +21,9 @@ body {
 #page-wrap {
   position: relative;
   min-height: 100%;
+  background-image: url('/assets/body-bg.gif');
+  background-repeat: repeat-y;
+  background-position: center;
 }
 
 #page-header {
@@ -31,6 +34,7 @@ body {
   height: 96px;
   width: 100%;
   position: relative;
+  z-index: 10;
 }
 
 #page-header-wrapper {
@@ -61,8 +65,10 @@ body {
   width: 936px;
   margin: 0 auto;
   background-color: #F7F6ED;
-  padding: 10px;
-  height: 100%;
+  top: -96px;
+  padding: 96px 10px 0px 10px;
+  min-height: 100%;
+  z-index: 0;
 }
 
 #login {

@@ -94,9 +94,11 @@ $(document).ready(function() {
   });
     
   var taglistdiv = document.getElementById('globaltaglist');
-  taglistdiv.innerHTML = taglistdiv.innerHTML.substr(0, taglistdiv.innerHTML.length - 1);
-  var taglistOrig = taglistdiv.innerHTML.split(";");
-  var taglist = taglistdiv.innerHTML.toLowerCase().split(";");
+  if(taglistdiv) {
+    taglistdiv.innerHTML = taglistdiv.innerHTML.substr(0, taglistdiv.innerHTML.length - 1);
+    var taglistOrig = taglistdiv.innerHTML.split(";");
+    var taglist = taglistdiv.innerHTML.toLowerCase().split(";");
+  }
 
   $("span.removetag").live('click', function(evt) {
     var textspan = $(this).parent().find('.tokentext');

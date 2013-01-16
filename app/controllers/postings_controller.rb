@@ -15,7 +15,11 @@ class PostingsController < ApplicationController
        (@view == "owned" && !current_employer) ||
        (@view == "interests" && (!current_student || current_student.is_admin?)) ||
        (!["all", "owned", "interests", "active"].include?(@view))
-      @view = "active"
+      if current_employer
+        @view = "owned"
+      else
+        @view = "active"
+      end
     end
 
     # Get the appropriate postings for the given view
