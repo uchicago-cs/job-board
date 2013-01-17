@@ -165,7 +165,7 @@ function notification_display() {
         "background-color" : "#cccccc",
         "display" : "none",
         "border-radius" : "5px",
-        "z-index" : "10"
+        "z-index" : "11"
       })
       .delay(500)
       .fadeIn("fast")
