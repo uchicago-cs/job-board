@@ -26,6 +26,7 @@ function newTag(evt) {
   // Exit tag editing mode when the user clicks anywhere
   $(document).click(function() {
     $(document).unbind();
+    setRemoveTags();
     var newtagtext = tagtextfield.html().substring(16);
 
     if(newtagtext.length > 0) {
@@ -77,6 +78,20 @@ function newTag(evt) {
   });
 }
 
+function setRemoveTags() {
+  $("span.removetag").live('click', function(evt) {
+    var textspan = $(this).parent().find('.tokentext');
+    $(this).remove();
+    var tagtext = $.trim(textspan.html());
+    textspan.parent().remove();
+
+    var curtags = $("#posting_tags").attr('value');
+    var newtags = curtags.replace(tagtext, '').replace(";;", ";");
+    $("#posting_tags").attr('value', newtags);
+  });
+}
+
+
 $(document).ready(function() {
   notification_display();
 
@@ -100,16 +115,6 @@ $(document).ready(function() {
     var taglist = taglistdiv.innerHTML.toLowerCase().split(";");
   }
 
-  $("span.removetag").live('click', function(evt) {
-    var textspan = $(this).parent().find('.tokentext');
-    $(this).remove();
-    var tagtext = $.trim(textspan.html());
-    textspan.parent().remove();
-
-    var curtags = $("#posting_tags").attr('value');
-    var newtags = curtags.replace(tagtext, '').replace(";;", ";");
-    $("#posting_tags").attr('value', newtags);
-  });
 
   $("#addtag").click(newTag);
   var curword = "";
@@ -133,7 +138,7 @@ $(document).ready(function() {
             $(this).remove();
             var tagtext = $.trim(parent.html());
             parent.remove();
-                      
+
             var curtags = $("#posting_tags").attr('value');
             var newtags = curtags.replace(tagtext, '').replace(";;", ";");
             $("#posting_tags").attr('value', newtags);

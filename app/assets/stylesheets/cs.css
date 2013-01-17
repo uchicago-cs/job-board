@@ -55,6 +55,10 @@ body {
   margin-right: 20px;
 }
 
+#page-wordmark * {
+  border: 0;
+}
+
 #page-body {
   position: relative;
   height: 100%;
