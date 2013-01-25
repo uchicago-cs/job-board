@@ -59,6 +59,7 @@ class PostingsController < ApplicationController
     @posting = Posting.new
     @posting.contact = current_employer.email
     @posting.company = current_employer.company
+    @posting.active_until = Date.today + 1.month
     @tags = Tag.all
   end
 

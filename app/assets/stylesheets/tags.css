@@ -30,3 +30,9 @@ span.removetag:hover {
 #globaltaglist {
     display: none;
 }
+
+img.cursor {
+  margin: 0;
+  padding: 0;
+  float: right;
+}

@@ -19,7 +19,7 @@ function newTag(evt) {
   evt.stopPropagation();
 
   // Add an 'empty' tag
-  $("<div class=\"token\"><span class=\"tokentext\"><i>New Tag: </i></span></div>").appendTo("#taglist");
+  $("<div class=\"token\"><img class=\"cursor\" src=\"/assets/cursor.gif\"><span class=\"tokentext\"><i>New Tag:&nbsp;</i></span></div>").appendTo("#taglist");
   var tag = $(".token").last();
   var tagtextfield = tag.children('span');
 
@@ -27,7 +27,7 @@ function newTag(evt) {
   $(document).click(function() {
     $(document).unbind();
     setRemoveTags();
-    var newtagtext = tagtextfield.html().substring(16);
+    var newtagtext = tagtextfield.html().substring(21);
 
     if(newtagtext.length > 0) {
       // Store the tag if it has a non-zero value
@@ -40,6 +40,7 @@ function newTag(evt) {
       } else {
         $("#posting_tags").attr('value', curTagList + ";" + newtagtext);
       }
+      $("img.cursor").remove();
     } else {
       // If the tag is empty, just remove it
       tag.remove();
@@ -68,9 +69,12 @@ function newTag(evt) {
     taglistdiv.innerHTML = taglistdiv.innerHTML.substr(0, taglistdiv.innerHTML.length - 1);
     var taglistOrig = taglistdiv.innerHTML.split(";");
 
-    if(isAlphaNumeric(key) || key == 32 /* space */) {
-      // If the key is alphanumeric or a space, add it to the tag
+    if(isAlphaNumeric(key)) {
+      // If the key is alphanumeric, add it to the tag
       tagtextfield.html(tagtextfield.html() + String.fromCharCode(key));
+      return false;
+    } else if(key == 32) { // Space
+      tagtextfield.html(tagtextfield.html() + "&nbsp;");
       return false;
     } else if(key == 13) { // Enter
       $(document).click();

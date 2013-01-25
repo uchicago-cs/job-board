@@ -19,7 +19,7 @@ class Posting < ActiveRecord::Base
   end
 
   def visible?
-    (active_until <= DateTime.now) && (state == Posting.state_symbol_to_id(:approved))
+    (active_until >= DateTime.now) && (state == Posting.state_symbol_to_id(:approved))
   end
 
   def self.all_internships
@@ -145,17 +145,17 @@ class Posting < ActiveRecord::Base
 
   def self.jobtype_symbol_to_id(_jobtype)
     case _jobtype
-      when :internship then 0
+      when :internship then 2
       when :parttime then 1
-      when :fulltime then 2
+      when :fulltime then 0
     end
   end
 
   def self.jobtype_id_to_symbol(_jobtype)
     case _jobtype
-      when 0 then :internship
+      when 2 then :internship
       when 1 then :parttime
-      when 2 then :fulltime
+      when 0 then :fulltime
     end
   end
 
