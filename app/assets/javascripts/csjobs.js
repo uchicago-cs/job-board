@@ -17,6 +17,7 @@ function isAlphaNumeric(theChar) {
 function newTag(evt) {
   // Stop propagation to prevent registering a click event immediately
   evt.stopPropagation();
+  $("#addtag").blur();
 
   // Add an 'empty' tag
   $("<div class=\"token\"><img class=\"cursor\" src=\"/assets/cursor.gif\"><span class=\"tokentext\"><i>New Tag:&nbsp;</i></span></div>").appendTo("#taglist");
