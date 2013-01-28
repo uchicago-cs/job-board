@@ -23,6 +23,10 @@ namespace :deploy do
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
+
+  task :update_secure_data do
+    run "/var/www/jobboard/util/secure.sh"
+  end
 end
 
 after "deploy:restart", "deploy:cleanup"

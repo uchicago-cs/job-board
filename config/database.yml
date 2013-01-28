@@ -19,7 +19,11 @@ test:
   timeout: 5000
 
 production:
-  adapter: sqlite3
-  database: db/production.sqlite3
-  pool: 5
+  adapter: mysql2
+  database: jobboard
+  host: localhost
+  username: jobboard-user
+  password: [DATABASE PASSWORD WILL AUTOMATICALLY BE INSERTED HERE]
+  pool: 18
+  port: 3306
   timeout: 5000
