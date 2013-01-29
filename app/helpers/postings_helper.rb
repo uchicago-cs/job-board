@@ -16,4 +16,9 @@ module PostingsHelper
 
     return html.html_safe
   end
+
+  def editable_tag_for(tag)
+    html = "<div class=\"token\">#{tag.name} <span class=\"removetag\">x</span></div>"
+    return html.html_safe
+  end
 end

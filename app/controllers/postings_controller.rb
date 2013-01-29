@@ -60,6 +60,7 @@ class PostingsController < ApplicationController
     @posting.contact = current_employer.email
     @posting.company = current_employer.company
     @posting.active_until = Date.today + 1.month
+    @current_tags = []
     @tags = Tag.all
   end
 
@@ -82,7 +83,7 @@ class PostingsController < ApplicationController
     @posting.employer = current_employer
     @posting.rich_description = (params[:posting][:rich_description] == "t")
     if not @posting.save
-      @posting.tags = Posting.parse_tags(params[:posting][:tags])
+      @current_tags = Posting.parse_tags(params[:posting][:tags])
       @tags = Tag.all
       render :action => :new
       return

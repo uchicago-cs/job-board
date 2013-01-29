@@ -45,7 +45,11 @@
       %td
         = f.hidden_field :tags
         #taglist
-          %button#addtag{:type => "button"} +
+          #taglist_static
+            - @current_tags.each do |tag|
+              %div
+                = editable_tag_for(tag)
+          #taglist_editable{:contenteditable => true}
     %tr
       %td
         = f.label :jobtype, "Job Type", :class => "label_with_help"

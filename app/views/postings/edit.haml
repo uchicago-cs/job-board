@@ -44,11 +44,11 @@
       %td
         = f.hidden_field :tags, :value => @posting.tags.collect{|t| t.name}.join(';')
         #taglist
-          %button#addtag{:type => "button"} +
-          - @posting.tags.each do |tag|
-            .token
-              %span.tokentext= tag.name
-              %span.removetag x
+          #taglist_static
+            - @posting.tags.each do |tag|
+              %div
+                = editable_tag_for(tag)
+          #taglist_editable{:contenteditable => true}
     %tr
       %td
         = f.label :jobtype, "Job Type", :class => "label_with_help"

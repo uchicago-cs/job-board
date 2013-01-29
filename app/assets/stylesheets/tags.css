@@ -24,15 +24,29 @@ span.removetag:hover {
 #taglist {
     border: solid 1px #2e83b0;
     min-height: 25px;
+    width: 226px;
+}
+
+#taglist_static {
     padding: 2px;
+}
+
+#taglist_editable {
+    padding: 2px;
+    min-height: 17px;
+    border: 0;
+    outline: 0px solid transparent;
+}
+
+#taglist_editable:focus {
+    outline: 0px solid transparent;
 }
 
 #globaltaglist {
     display: none;
 }
 
-img.cursor {
-  margin: 0;
-  padding: 0;
-  float: right;
+.placeholder {
+  font-style: italic;
+  font-color: gray;
 }
