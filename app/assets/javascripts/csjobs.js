@@ -44,6 +44,7 @@ $(document).ready(function() {
   $('#taglist_editable').live('click', function() {
     removePlaceholder();
   }).live('focus', function() {
+    removePlaceholder();
     $(this).keypress(function(evt) {
       var key = evt.which;
       if(key == 13) { // Enter
@@ -57,6 +58,14 @@ $(document).ready(function() {
     });
   }).live('blur', function() {
     initPlaceholder();
+  }).autocomplete({
+    source: taglistOrig,
+    position: {my: "left+10 top"},
+    select: function(event, ui) {
+      newTag(ui.item.label);
+      $('#taglist_editable').empty();
+      return false;
+    }
   });
 
   $('.removetag').live('click', function(evt) {

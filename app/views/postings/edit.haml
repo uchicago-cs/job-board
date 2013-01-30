@@ -86,4 +86,4 @@
       %td= f.submit "Submit"
 
 #globaltaglist
-  = @tags.collect {|t| "#{t.name};"}.join
+  = @tags.collect{|t| t.name}.join(";")
