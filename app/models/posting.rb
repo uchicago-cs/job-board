@@ -141,6 +141,35 @@ class Posting < ActiveRecord::Base
     Posting.state_id_to_symbol(state) == :pending
   end
 
+  def plaintext
+    text = ""
+    File.open(Rails.root.to_s + "/lib/plaintext_template.txt").each do |line|
+      if line[0] != "#"
+        text += line
+      end
+    end
+
+    if rich_description
+      description_text = Nokogiri::HTML.parse(description)
+      description_text.css("br").each { |node| node.replace("\n") }
+    else
+      description_text = description
+    end
+
+    text.gsub!("{TITLE}", title)
+    text.gsub!("{COMPANY}", company)
+    text.gsub!("{DESCRIPTION}", description_text)
+    text.gsub!("{JOBTYPE}", Posting.jobtype_id_to_string(jobtype))
+    text.gsub!("{JOBTYPE_CAPITALIZED}", Posting.jobtype_id_to_string(jobtype).titleize)
+    text.gsub!("{CONTACT}", contact)
+    text.gsub!("{URL}", url)
+    text.gsub!("{LOCATION}", location)
+    text.gsub!("{JOBBOARD_URL}", "http://jobboard.cs.uchicago.edu/postings/#{Obfuscation.obfuscate(self.id).to_s}")
+    text.gsub!("{DEADLINE}", active_until.strftime("%d %B %Y"))
+
+    return text
+  end
+
   private
 
   def self.jobtype_symbol_to_id(_jobtype)
@@ -156,6 +185,14 @@ class Posting < ActiveRecord::Base
       when 2 then :internship
       when 1 then :parttime
       when 0 then :fulltime
+    end
+  end
+
+  def self.jobtype_id_to_string(_jobtype)
+    case _jobtype
+      when 2 then "internship"
+      when 1 then "part-time"
+      when 0 then "full-time"
     end
   end
 

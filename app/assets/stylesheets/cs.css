@@ -358,6 +358,13 @@ div.field_with_errors label {
   color: red;
 }
 
+textarea.plaintext {
+  background-color: #EEEEEE;
+  border: dashed 1px gray; 
+  padding: 10px;
+  height: 20em;
+}
+
 /* Opera fix */
 body:before {
   content: "";

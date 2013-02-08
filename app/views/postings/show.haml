@@ -56,3 +56,8 @@
     = f.submit "Approve", :name => "approve", :class => "approve_btn"
     = f.submit "Request Changes", :name => "request_changes", :class => "request_changes_btn"
     = f.submit "Reject", :name => "reject", :class => "reject_btn"
+
+  %br
+  %br
+  %h3 Plain Text
+  %textarea.plaintext{:readonly => true}= @posting.plaintext

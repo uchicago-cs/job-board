@@ -1,0 +1,26 @@
+# Modify the text below to change the plaintext posting template.
+# Lines beginning with # are comments. Braces {} mark variables.
+# Available variables are:
+#   {TITLE} => the job title
+#   {COMPANY} => the company name
+#   {DESCRIPTION} => the body of the position's description (can be multiple paragraphs)
+#   {JOBTYPE} => the type of job ("internship", "full-time", "part-time")
+#   {JOBTYPE_CAPITALIZED} => the type of job ("Internship", "Full-Time", "Part-Time")
+#   {CONTACT} => contact info (can be multiple paragraphs)
+#   {URL} => a URL for the job
+#   {LOCATION} => where the job is location
+#   {JOBBOARD_URL} => the URL for the job posting on the jobboard
+#   {DEADLINE} => the application deadline (formatted like "21 January 2013")
+#
+# To modify the substitions above, adjust the "plaintext" method in the postings model.
+#
+#
+{TITLE} at {COMPANY}
+{LOCATION}
+{URL}
+{JOBBOARD_URL}
+
+{DESCRIPTION}
+
+Contact:
+{CONTACT}
