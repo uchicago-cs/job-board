@@ -45,6 +45,7 @@
         - @postings_rejected.each do |posting|
           %li= link_to posting.title, edit_posting_path(posting)
     %p= link_to "Add a new job posting", new_posting_path
+    %p= link_to "Instructions", employer_instructions_path
 
   %form{:action => postings_path, :method => :get}
     - if current_student
