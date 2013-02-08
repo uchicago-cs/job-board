@@ -20,10 +20,12 @@
     - else
       %p There are no new employer accounts at the moment.
     - if Posting.postings_pending_approval?
-      %p There are new job postings pending approval.
-      %ul
-        - @postings_pending_approval.each do |posting|
-          %li= link_to "#{posting.title} (from #{posting.employer.firstname} #{posting.employer.lastname} at #{posting.employer.company})", posting_path(posting)
+      - pending_posts = @postings_pending_approval - current_student.reviewed_pending_posts
+      - if pending_posts.count > 0
+        %p There are new job postings pending approval:
+        %ul
+          - pending_posts.each do |posting|
+            %li= link_to "#{posting.title} (from #{posting.employer.firstname} #{posting.employer.lastname} at #{posting.employer.company})", posting_path(posting)
     - else
       %p There are no new job postings at the moment.
     - if current_student.reviewed_pending_posts.count > 0
