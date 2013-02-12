@@ -29,5 +29,6 @@ namespace :deploy do
   end
 end
 
+before "deploy:assets:precompile", "deploy:update_secure_data"
 after "deploy:restart", "deploy:cleanup"
 after "deploy", "whenever:update_crontab"
