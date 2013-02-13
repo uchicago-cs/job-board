@@ -20,8 +20,6 @@ namespace :deploy do
 
   task :stop do ; end
 
-  task :update_asset_mtimes do ; end
-
   task :restart, :roles => :app, :except => { :no_release => true } do
     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
   end
@@ -29,8 +27,13 @@ namespace :deploy do
   task :update_secure_data do
     run "/var/www/jobboard/util/secure.sh"
   end
+
+  task :chown_assets do
+    run "#{try_sudo} chown -R $USER:jobboard #{shared_path}/assets"
+  end
 end
 
+before "deploy:assets:update_asset_mtimes", "deploy:chown_assets"
 before "deploy:assets:precompile", "deploy:update_secure_data"
 after "deploy:restart", "deploy:cleanup"
 after "deploy", "whenever:update_crontab"
