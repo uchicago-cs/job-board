@@ -2,11 +2,66 @@
 
 %p= link_to "Return to Job Postings", postings_path
 
-%p Hello, employers!
-%p Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ultricies magna quis neque molestie sed semper felis elementum. Vestibulum in est felis, feugiat convallis neque. Morbi aliquam, libero vel tincidunt condimentum, neque augue hendrerit est, a dictum odio velit vitae mauris. In non pellentesque elit. Fusce tincidunt libero eu purus vestibulum vitae ultricies erat interdum. Phasellus ultrices, tortor vel ullamcorper commodo, dui neque ultricies ipsum, eu varius lorem lorem ac tortor. Nullam id arcu et nisi volutpat laoreet. Proin nec orci vitae ligula accumsan iaculis tempus vitae erat.
-%p Sed elementum convallis risus non eleifend. Aliquam porttitor tempor nisl, in egestas augue convallis semper. Maecenas lacus lectus, suscipit dapibus pulvinar sed, pretium porttitor nibh. Nullam hendrerit facilisis vestibulum. In sollicitudin, enim dapibus interdum tempor, arcu leo ultrices dolor, et vestibulum elit purus eu risus. Vestibulum sed lorem lacus. Aenean tincidunt vulputate ante at molestie. Phasellus eget sapien in mi consequat fringilla. Quisque quis metus at nulla placerat pharetra vel quis mi.
-%p Duis eu commodo justo. Aenean commodo dolor ut lacus semper eget rhoncus mi tempus. Fusce bibendum tellus at lorem iaculis sed aliquam augue rhoncus. In vitae est nec dolor volutpat pretium. Praesent mattis odio et risus consectetur eget fermentum velit iaculis. Ut dignissim hendrerit posuere. Nunc sit amet nulla lacus, vitae sollicitudin lacus. Mauris tincidunt dapibus lacus at porta. Nullam turpis nibh, tincidunt nec scelerisque non, tincidunt at ipsum.
-%p Integer urna metus, posuere vitae mattis eu, semper id lorem. Phasellus orci diam, lacinia ac aliquam vitae, gravida id lorem. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Etiam sodales, libero quis eleifend dignissim, purus ante faucibus nisi, sed pharetra nisl eros sed lectus. Nullam sed tincidunt enim. Morbi est lacus, accumsan et suscipit commodo, eleifend in nunc. Maecenas ac urna sed nisl dictum semper. Donec adipiscing quam quis tellus viverra ac dignissim nisi malesuada. Sed facilisis sapien sit amet mauris dapibus fermentum. In feugiat, mi in ornare accumsan, erat metus mollis erat, et vestibulum dui tortor eu dui. Curabitur ligula urna, rhoncus a feugiat vel, euismod at lectus. Ut non velit orci. Aliquam a justo ipsum. Curabitur magna mi, bibendum non malesuada fermentum, vehicula at enim. In vel tempor eros.
-%p Maecenas quam neque, facilisis quis fringilla quis, porttitor vitae massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Proin dapibus consectetur diam non luctus. Donec sed nisi diam, id pellentesque nulla. Nam dictum nisl sed felis pellentesque pharetra. Pellentesque adipiscing ultricies aliquet. Suspendisse ac convallis risus. Aenean quis risus a tellus congue semper. Pellentesque id luctus sem. Ut nisl turpis, blandit eget tempus et, posuere at lorem. Suspendisse potenti. In congue ante id libero posuere rhoncus. Nulla ornare sollicitudin massa ac lobortis. Etiam aliquet egestas felis, at placerat ipsum rhoncus ac.
+%p Welcome to the Department of Computer Science's Job Board! If you are interested in recruiting undergraduates, masters students, and PhD students in the Department of Computer Science, we encourage you to submit job postings to this job board.
+
+%p Please note that this job board is distinct from the (university-wide) Chicago Career Connections (CCC) site run by the Career Advancement office. Unlike the CCC site, our job board does not require students to create an account or submit a resumé before they can view job postings. Although this precludes doing in-depth tracking of job applicants, we find it is much more effective at getting the word out quickly about open positions (all positions submitted to the CS job board are publicly viewable). However, both sites are not mutually exclusive (in fact our job board is meant to complement CCC). If you prefer that students apply through CCC, please feel free to indicate so in the job posting. Nonetheless, we strongly encourage you to always provide an alternate application method: many of the Computer Science students do not have accounts on CCC, and may be discouraged from applying with your company if the only way to apply is through CCC.
+
+%p The process to submit a job posting is simple:
+
+%ol
+    %li 
+        Go to
+        = link_to 'Add a new job posting', new_posting_path
+    %li 
+        You will be asked for the following information:
+        %ul
+            %li 
+                %strong Title:
+                The title of the position (e.g., "Software Engineer", "Product Manager", etc.)
+            %li 
+                %strong Company:
+                The name of your company. If you are an individual looking to hire a student, just enter "Individual".
+            %li 
+                %strong Description:
+                A 2-3 paragraph description of the position. Please make sure to include a list of requirements for the position (languages, skills, etc.). You should also include specific instructions on how students can apply for this job. As noted above, if you would like students to apply through CCC, we strongly encourage you to list an additional application method for students who don't have CCC accounts.
+            %li 
+                %strong Location:
+                Where would the job applicant work?
+            %li 
+                %strong Tags:
+                You can specify a few short tags that describe the position (e.g., you could enter tag "Java" for a job that requires Java skills). This information is used by students to search for jobs matching their interests.
+            %li 
+                %strong Job Type:
+                You can specify whether the job is a full-time position, a part-time position, or an internship.
+            %li 
+                %strong Deadline:
+                The deadline by which students must apply to this position. Please note that, after this date, the job posting will no longer appear in our job board. If you decide to extend the deadline, you will be able to easily re-publish the job posting later on.
+            %li 
+                %strong Contact:
+                Contact information for students who have any questions about this position.
+            %li 
+                %strong URL:
+                URL of your company (optional)
+            %li 
+                %strong Attachment:
+                You can attach files to the posting, such as flyers, etc.
+    %li 
+        Once you submit the job posting, it will be sent to one of our administrators for approval. Please allow 24-48 hours for a response. You will get one of the following responses:
+        %ul
+            %li 
+                %strong Approved:
+                Your posting was approved
+            %li 
+                %strong Changes Requested:
+                The administrator has requested that you make certain changes before the posting is approved. You will be able to edit your posting, and re-submit it for approval.
+            %li 
+                %strong Rejected:
+                Your job posting was rejected. The administrator will include a note explaining why. This is generally only done when we suspect a posting to be spam, and not a legitimate job posting.
+
+    %li After your posting is approved, you can make changes to it (e.g., you can update the description, or extend the deadline). However, please note that changes will have to be reviewed by our administrators. While the updated posting is being reviewed, it will not be visible on the job board.
+
+%p 
+    If you have any questions, or run into any problems when submitting your job posting, please send an e-mail to
+    = link_to "jobboard-support@mailman.cs.uchicago.edu", "mailto:jobboard-support@mailman.cs.uchicago.edu"
 
 %p= link_to "Return to Job Postings", postings_path
