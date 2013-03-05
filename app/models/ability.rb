@@ -5,6 +5,7 @@ class Ability
     if user.kind_of? Employer
       can :manage, Employer, :id => user.id
       can [:create, :update, :destroy], Posting, :employer_id => user.id
+      cannot :index, Employer
       can :read, Posting do |posting|
         posting.visible? || posting.employer_id == user.id
       end

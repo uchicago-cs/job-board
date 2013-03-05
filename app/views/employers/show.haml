@@ -17,6 +17,13 @@
     %th Note to Reviewer:
     %td.preformatted
       #{simple_format @employer.note_to_reviewer}
+  - if @employer.approved
+    %tr
+      %th Number of Posts:
+      %td= @employer.postings.count
+    %tr
+      %th Registered Since:
+      %td= @employer.created_at.strftime("%d %B %Y")
   %tr
     %th Status:
     %td
@@ -24,8 +31,18 @@
         Approved
       - else
         Pending Approval
+  - if current_student && current_student.is_admin?
+    %tr
+      %th ID (Internal):
+      %td= @employer.id
+    %tr
+      %th ID (Public):
+      %td= @employer.obfuscated_id
 
-- if current_student && current_student.is_admin?
+- if current_student && current_student.is_admin? && !@employer.approved
   = form_for(@employer, :as => "employer", :url => employer_path(@employer)) do |f|
     = f.submit "Approve", :name => "approve", :class => "approve_btn"
-    = f.submit "Reject", :name => "reject", :class => "reject_btn", :confirm => "Are you sure you want to remove this employer? This will permanently delete it from our system."
+    = f.submit "Reject", :name => "reject", :class => "reject_btn", :confirm => "Are you sure you want to remove this employer? This will permanently delete them from our system."
+- elsif current_student && current_student.is_admin? && @employer.approved
+  = form_for(@employer, :as => "employer", :url => employer_path(@employer), :method => :delete) do |f|
+    = f.submit "Remove", :class => "reject_btn", :confirm => "Are you sure you want to remove this employer? This will permanently delete them from our system."

@@ -4,6 +4,7 @@ class EmployersController < ApplicationController
   load_and_authorize_resource
 
   def index
+    @employers = Employer.all
   end
 
   def show
@@ -14,7 +15,12 @@ class EmployersController < ApplicationController
   end
 
   def edit
-    @employer = @employer_password = Employer.find(params[:id])
+    @employer = @employer_with_password = Employer.find(params[:id])
+    if current_student && current_student.is_admin?
+      render 'employers/edit_for_admin'
+    else
+      render 'employers/edit'
+    end
   end
 
   def create
@@ -23,14 +29,14 @@ class EmployersController < ApplicationController
   def update
     @employer = Employer.find(params[:id])
     
-    if current_student && current_student.is_admin?
+    if current_student && current_student.is_admin? && !@employer.approved
       if params[:reject]
         redirect_to employer_delete_path(@employer) and return
       end
       if params[:approve]
         @employer.approve_account
       end
-    elsif current_employer
+    elsif current_employer || (current_student && current_student.is_admin? && @employer.approved)
       @employer.update_attributes(params[:employer])
     end
 
@@ -39,6 +45,7 @@ class EmployersController < ApplicationController
       redirect_to postings_path
     else
       flash[:alert] = "An error occurred."
+      @employer_with_password = @employer
       render :action => "edit"
     end
   end

@@ -46,6 +46,10 @@ class Employer < ActiveRecord::Base
     Notifier.employer_account_approved(self).deliver
   end
 
+  def obfuscated_id
+    Obfuscation.obfuscate(self.id)
+  end
+
   private
 
   def alert_admins_of_new_employer

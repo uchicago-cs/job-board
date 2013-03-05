@@ -58,3 +58,7 @@
         = form_tag(admins_path, :method => :post) do |f|
           = text_field_tag :cnet
           = submit_tag "Add Administrator"
+%fieldset
+  %h3 Users
+  %ul
+    %li= link_to "All Employers", employers_path

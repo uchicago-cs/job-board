@@ -1,0 +1,27 @@
+%h2 Edit Employer
+
+%fieldset
+  = form_for(@employer, :url => employer_path(@employer), :method => :put) do |f|
+    = f.error_messages
+    %table.formtable
+      %colgroup
+        %col.form_label_col
+        %col.form_field_col
+      %tr
+        %td= f.label :firstname, "First Name"
+        %td= f.text_field :firstname
+      %tr
+        %td= f.label :lastname, "Last Name"
+        %td= f.text_field :lastname
+      %tr
+        %td= f.label :email, "Email"
+        %td= f.text_field :email
+      %tr
+        %td= f.label :company, "Company"
+        %td= f.text_field :company
+      %tr
+        %td= f.label :url, "URL"
+        %td= f.text_field :url
+      %tr
+        %td
+          %td= f.submit "Update"

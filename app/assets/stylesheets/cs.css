@@ -160,6 +160,7 @@ fieldset {
 table.jobtable {
   border: 0;
   border-collapse: collapse;
+  width: 100%;
 }
 
 table.jobtable th {

@@ -1,0 +1,27 @@
+%h2 All Employers
+
+%p There #{@employers.one? ? 'is' : 'are'} currently #{pluralize @employers.count, 'employer'} registered.
+
+%fieldset
+  %table.jobtable
+    %thead
+      %tr
+        %th ID
+        %th Name
+        %th Company
+        %th Email
+        %th Number of Posts
+        %th View
+        %th Edit
+        %th Remove
+    %tbody
+      - @employers.each do |employer|
+        %tr
+          %td= employer.id
+          %td #{employer.firstname} #{employer.lastname}
+          %td= employer.company
+          %td= employer.email
+          %td= employer.postings.count
+          %td= link_to "View", employer_path(employer)
+          %td= link_to "Edit", edit_employer_path(employer)
+          %td= link_to "Remove", employer_path(employer), :method => :delete, :confirm => "Are you sure you want to remove this employer? This will permanently remove them and any posts they made from our system."
