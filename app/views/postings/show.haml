@@ -47,7 +47,7 @@
       %th Status
       %td= @posting.state_as_string
 
-- if current_student && current_student.is_admin?
+- if current_student && current_student.is_admin? && @posting.pending?
   = form_for(@posting, :as => "posting", :url => posting_path(@posting)) do |f|
     = f.label :comments, "Comments"
     %br
@@ -56,6 +56,9 @@
     = f.submit "Approve", :name => "approve", :class => "approve_btn"
     = f.submit "Request Changes", :name => "request_changes", :class => "request_changes_btn"
     = f.submit "Reject", :name => "reject", :class => "reject_btn"
+- elsif current_student && current_student.is_admin?
+  = form_for(@posting, :as => "posting", :url => posting_path(@posting), :method => :delete) do |f|
+    = f.submit "Remove", :class => "reject_btn", :confirm => "Are you sure you want to remove this posting? This will permanently remove it from our system."
 
   %br
   %br

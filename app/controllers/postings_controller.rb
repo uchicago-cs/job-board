@@ -135,6 +135,6 @@ class PostingsController < ApplicationController
     @posting = Posting.find(params[:id])
     @posting.destroy
 
-    redirect_to request.referer
+    redirect_to postings_path
   end
 end

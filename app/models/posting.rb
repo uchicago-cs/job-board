@@ -50,6 +50,10 @@ class Posting < ActiveRecord::Base
     Posting.where(:state => state_symbol_to_id(:pending))
   end
 
+  def pending?
+    Posting.state_symbol_to_id(state) == :pending
+  end
+
   # Override the state setter to take a symbol
   def state=(value)
     type = Posting.state_symbol_to_id(value)
