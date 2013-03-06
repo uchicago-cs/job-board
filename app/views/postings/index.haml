@@ -17,7 +17,7 @@
     = link_to "https://github.com/uchicago-cs/job-board", "https://github.com/uchicago-cs/job-board"
 
 %div#content
-  - columns = ["dateposted", "deadline", "organization", "position"]
+  - columns = ["organization", "position", "dateposted", "deadline"]
 
   - if current_student && current_student.is_admin?
     - columns << "remove" << "state"

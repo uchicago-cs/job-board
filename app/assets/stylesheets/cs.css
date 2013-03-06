@@ -214,11 +214,11 @@ td.preformatted * {
 }
 
 col.dateposted {
-  width: 15em;
+  width: 12em;
 }
 
 col.deadline {
-  width: 15em;
+  width: 12em;
 }
 
 col.organization {
@@ -226,7 +226,7 @@ col.organization {
 }
 
 col.position {
-  width: 20em;
+  width: 26em;
 }
 
 col.posting_description {
