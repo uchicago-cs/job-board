@@ -1,4 +1,4 @@
-Hi <%= @student.firstname %>! In the last week, <%= pluralize(@postings.count, "new job posting") %> became available on the UChicago CS job board that might be of interest to you. Here's a quick overview of the details:
+Hi <%= @student.firstname || @student.cnet %>! In the last week, <%= pluralize(@postings.count, "new job posting") %> became available on the UChicago CS job board that might be of interest to you. Here's a quick overview of the details:
 
 <% @postings.each do |posting| %>
 Position: <%= posting.title %>

@@ -19,8 +19,8 @@ class Student < ActiveRecord::Base
   def get_ldap_info
     if Devise::LdapAdapter.get_ldap_param(self.cnet, "uid")
       self.email = Devise::LdapAdapter.get_ldap_param(self.cnet, "mail")
-      self.firstname = Devise::LdapAdapter.get_ldap_param(self.cnet, "givenName")
-      self.lastname = Devise::LdapAdapter.get_ldap_param(self.cnet, "sn")
+      self.firstname = (Devise::LdapAdapter.get_ldap_param(self.cnet, "givenName") rescue nil)
+      self.lastname = (Devise::LdapAdapter.get_ldap_param(self.cnet, "sn") rescue nil)
       self.role = role_symbol_to_id(:user)
     end
   end

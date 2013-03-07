@@ -1,6 +1,9 @@
 #login
   - if student_signed_in?
-    %p.greeting Hello, #{current_student.firstname}!
+    - if current_student.firstname
+      %p.greeting Hello, #{current_student.firstname}!
+    - else
+      %p.greeting Hello, #{current_student.cnet}!
     %p= link_to 'My Settings', edit_student_path(current_student), :class => "login_link"
     %p= link_to 'Sign Out', destroy_student_session_path, :method => :delete, :class => "login_link"
   - elsif employer_signed_in?

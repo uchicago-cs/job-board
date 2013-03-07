@@ -1,4 +1,4 @@
-Hi <%= @student.firstname %>! A new job posting just became available on the UChicago CS job board that might be of interest to you. Here's a quick overview of the details:
+Hi <%= @student.firstname || @student.cnet %>! A new job posting just became available on the UChicago CS job board that might be of interest to you. Here's a quick overview of the details:
 
 Position: <%= @posting.title %>
 Company: <%= @posting.company %>
