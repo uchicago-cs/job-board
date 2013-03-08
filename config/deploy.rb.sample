@@ -6,6 +6,7 @@ set :scm, :git
 set :branch, "master"
 set :deploy_via, :remote_cache
 set :deploy_to, "/var/www/jobboard"
+set :whenever_command, "#{try_sudo} whenever"
 set :user, "[INSERT YOUR USERNAME HERE]"
 
 role :app, "jobboard.cs.uchicago.edu"
