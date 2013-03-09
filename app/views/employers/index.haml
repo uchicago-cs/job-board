@@ -6,11 +6,11 @@
   %table.jobtable
     %thead
       %tr
-        %th ID
-        %th Name
-        %th Company
-        %th Email
-        %th Number of Posts
+        %th{:class => sortable_class("id", @sort_by, @sort_order), "data-name" => "id"} ID
+        %th{:class => sortable_class("lastname", @sort_by, @sort_order), "data-name" => "lastname"} Name
+        %th{:class => sortable_class("company", @sort_by, @sort_order), "data-name" => "company"} Company
+        %th{:class => sortable_class("email", @sort_by, @sort_order), "data-name" => "email"} Email
+        %th{:class => sortable_class("number_of_posts", @sort_by, @sort_order), "data-name" => "number_of_posts"} Number of Posts
         %th View
         %th Edit
         %th Remove

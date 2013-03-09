@@ -98,6 +98,8 @@ $(document).ready(function() {
     $("#posting_tags").attr('value', tags.join(';'));
     return true;
   });
+
+  initSortable();
 });
 
 function newTag(tagtext) {
@@ -146,4 +148,23 @@ function removePlaceholder() {
   if($('#taglist_editable').html() == placeholder) {
     $('#taglist_editable').removeClass('placeholder').html('');
   }
+}
+
+function initSortable() {
+  var sorted_none = $("<img src='/assets/sort_none.png'>");
+  var sorted_up = $("<img src='/assets/sort_up.png'>");
+  var sorted_down = $("<img src='/assets/sort_down.png'>");
+  $(".sorted-none").append(sorted_none);
+  $(".sorted-ascending").append(sorted_down);
+  $(".sorted-descending").append(sorted_up);
+
+  $(".sorted-none img").click(function() {
+    window.location = "/employers?sort=" + $(this).parent().attr("data-name") + "&order=asc";
+  });
+  $(".sorted-ascending img").click(function() {
+    window.location = "/employers?sort=" + $(this).parent().attr("data-name") + "&order=desc";
+  });
+  $(".sorted-descending img").click(function() {
+    window.location = "/employers?sort=" + $(this).parent().attr("data-name") + "&order=asc";
+  });
 }

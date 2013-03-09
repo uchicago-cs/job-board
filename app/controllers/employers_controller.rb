@@ -4,7 +4,16 @@ class EmployersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @employers = Employer.all
+    @sort_by = params[:sort].nil? ? "id" : params[:sort]
+    @sort_by = "id" if not ["id", "lastname", "company", "email", "number_of_posts"].include? @sort_by
+    @sort_order = params[:order].nil? ? "asc" : params[:order]
+    @sort_order = "asc" if not ["asc", "desc"].include? @sort_order
+
+    if @sort_by == "number_of_posts"
+      @employers = Employer.find(:all, :include => :postings).sort_by{|e| e.postings.count * (@sort_order == "asc" ? -1 : 1)}
+    else
+      @employers = Employer.order("#{@sort_by} #{@sort_order}").all
+    end
   end
 
   def show
