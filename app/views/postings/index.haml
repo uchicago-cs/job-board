@@ -85,7 +85,15 @@
   - unless @fulltime.nil?
     %fieldset
       %h3 Full-Time Jobs
-      -if @fulltime.count > 0
+      - if @fulltime.count > 0
         = render 'postings/postings_table', :postings => @fulltime, :columns => columns
       - else
         %p No full-time jobs are available at this time.
+
+  - unless @entrepreneurial.nil?
+    %fieldset
+      %h3 Entrepreneurial Opportunities
+      - if @entrepreneurial.count > 0
+        = render 'postings/postings_table', :postings => @entrepreneurial, :columns => columns
+      - else
+        %p No entrepreneurial opportunities are availablae at this time.

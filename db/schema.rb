@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130108053628) do
+ActiveRecord::Schema.define(:version => 20130311225121) do
 
   create_table "employers", :force => true do |t|
     t.string   "email"
@@ -74,22 +74,23 @@ ActiveRecord::Schema.define(:version => 20130108053628) do
     t.string   "firstname"
     t.string   "lastname"
     t.integer  "role"
-    t.datetime "created_at",                                     :null => false
-    t.datetime "updated_at",                                     :null => false
-    t.integer  "sign_in_count",               :default => 0
+    t.datetime "created_at",                                       :null => false
+    t.datetime "updated_at",                                       :null => false
+    t.integer  "sign_in_count",                 :default => 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.boolean  "alert_on_new_employer",       :default => true
-    t.boolean  "alert_on_new_posting",        :default => true
-    t.boolean  "alert_on_updated_posting",    :default => true
-    t.boolean  "alert_on_my_updated_posting", :default => true
-    t.boolean  "digests",                     :default => false
-    t.boolean  "alert_on_new_recommendation", :default => true
-    t.boolean  "interested_in_internships",   :default => true
-    t.boolean  "interested_in_part_time",     :default => true
-    t.boolean  "interested_in_full_time",     :default => true
+    t.boolean  "alert_on_new_employer",         :default => true
+    t.boolean  "alert_on_new_posting",          :default => true
+    t.boolean  "alert_on_updated_posting",      :default => true
+    t.boolean  "alert_on_my_updated_posting",   :default => true
+    t.boolean  "digests",                       :default => false
+    t.boolean  "alert_on_new_recommendation",   :default => true
+    t.boolean  "interested_in_internships",     :default => true
+    t.boolean  "interested_in_part_time",       :default => true
+    t.boolean  "interested_in_full_time",       :default => true
+    t.boolean  "interested_in_entrepreneurial", :default => true
   end
 
   add_index "students", ["email"], :name => "index_students_on_email", :unique => true

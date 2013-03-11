@@ -40,6 +40,10 @@ class Employer < ActiveRecord::Base
     Posting.all_fulltime.where(:employer_id => self)
   end
 
+  def entrepreneurial_postings
+    Posting.all_entrepreneurial.where(:employer_id => self)
+  end
+
   def approve_account
     self.approved = true
     save

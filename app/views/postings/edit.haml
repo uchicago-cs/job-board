@@ -52,9 +52,9 @@
     %tr
       %td
         = f.label :jobtype, "Job Type", :class => "label_with_help"
-        %span.help{:alt => "Is the position an internship or a part-time or full-time job?"} ?
+        %span.help{:alt => "Is the position an internship, entrepreneurial opportunity, or a part-time or full-time job?"} ?
       %td
-        - ['Full Time', 'Part Time', 'Internship'].each_with_index do |jobtype, i|
+        - ['Full Time', 'Part Time', 'Internship', 'Entrepreneurial Opportunity'].each_with_index do |jobtype, i|
           = f.radio_button :jobtype, i
           = jobtype.humanize
     %tr

@@ -34,6 +34,10 @@ class Posting < ActiveRecord::Base
     Posting.where(:jobtype => jobtype_symbol_to_id(:fulltime))
   end
 
+  def self.all_entrepreneurial
+    Posting.where(:jobtype => jobtype_symbol_to_id(:entrepreneurial))
+  end
+
   def self.all_approved_internships
     Posting.where(:jobtype => jobtype_symbol_to_id(:internship), :state => state_symbol_to_id(:approved))
   end
@@ -44,6 +48,10 @@ class Posting < ActiveRecord::Base
 
   def self.all_approved_fulltime
     Posting.where(:jobtype => jobtype_symbol_to_id(:fulltime), :state => state_symbol_to_id(:approved))
+  end
+
+  def self.all_approved_entrepreneurial
+    Posting.where(:jobtype => jobtype_symbol_to_id(:entrepreneurial), :state => state_symbol_to_id(:approved))
   end
 
   def self.all_pending
@@ -178,6 +186,7 @@ class Posting < ActiveRecord::Base
 
   def self.jobtype_symbol_to_id(_jobtype)
     case _jobtype
+      when :entrepreneurial then 3
       when :internship then 2
       when :parttime then 1
       when :fulltime then 0
@@ -186,6 +195,7 @@ class Posting < ActiveRecord::Base
 
   def self.jobtype_id_to_symbol(_jobtype)
     case _jobtype
+      when 3 then :entrepreneurial
       when 2 then :internship
       when 1 then :parttime
       when 0 then :fulltime
@@ -194,6 +204,7 @@ class Posting < ActiveRecord::Base
 
   def self.jobtype_id_to_string(_jobtype)
     case _jobtype
+      when 3 then "entrepreneurial"
       when 2 then "internship"
       when 1 then "part-time"
       when 0 then "full-time"

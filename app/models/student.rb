@@ -5,7 +5,7 @@ class Student < ActiveRecord::Base
   devise :trackable, :ldap_authenticatable, :authentication_keys => [:cnet]
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :cnet, :firstname, :lastname, :role, :alert_on_new_employer, :alert_on_new_posting, :alert_on_updated_posting, :alert_on_my_updated_posting, :alert_on_new_recommendation, :digests, :email, :interested_in_internships, :interested_in_full_time, :interested_in_part_time
+  attr_accessible :cnet, :firstname, :lastname, :role, :alert_on_new_employer, :alert_on_new_posting, :alert_on_updated_posting, :alert_on_my_updated_posting, :alert_on_new_recommendation, :digests, :email, :interested_in_internships, :interested_in_full_time, :interested_in_part_time, :interested_in_entrepreneurial
   has_and_belongs_to_many :tags
   has_many :postings, :foreign_key => 'reviewed_by'
 
@@ -63,6 +63,10 @@ class Student < ActiveRecord::Base
     interested_in_full_time
   end
 
+  def interested_in_entrepreneurial?
+    interested_in_entrepreneurial
+  end
+
   def is_interested_in? posting
     return false if is_admin?
     case posting.job_type_as_symbol
@@ -72,6 +76,8 @@ class Student < ActiveRecord::Base
         return interested_in_part_time?
       when :fulltime
         return interested_in_full_time?
+      when :entrepreneurial
+        return interested_in_entrepreneurial?
     end
   end
 

@@ -1,4 +1,6 @@
 class AdminsController < ApplicationController
+  before_filter :deobfuscate_id
+
   def create
     @user = Student.find_by_cnet(params[:cnet])
 
