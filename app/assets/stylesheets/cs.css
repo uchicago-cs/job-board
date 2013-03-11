@@ -225,8 +225,16 @@ col.organization {
   width: 20em;
 }
 
+.organization {
+  text-align: left !important;
+}
+
 col.position {
   width: 26em;
+}
+
+.position {
+  text-align: left !important;
 }
 
 col.posting_description {

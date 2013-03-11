@@ -66,6 +66,14 @@
       = posting_view_select(current_employer, @view)
       %input{:type => "submit", :value => "Go →", :class => "view_change"}
 
+  - unless @fulltime.nil?
+    %fieldset
+      %h3 Full-Time Jobs
+      - if @fulltime.count > 0
+        = render 'postings/postings_table', :postings => @fulltime, :columns => columns
+      - else
+        %p No full-time jobs are available at this time.
+
   - unless @internships.nil?
     %fieldset
       %h3 Internships
@@ -76,19 +84,11 @@
 
   - unless @parttime.nil?
     %fieldset
-      %h3 Part-Time Jobs
+      %h3 Part-Time Work
       - if @parttime.count > 0
         = render 'postings/postings_table', :postings => @parttime, :columns => columns
       - else
         %p No part-time jobs are available at this time.
-
-  - unless @fulltime.nil?
-    %fieldset
-      %h3 Full-Time Jobs
-      - if @fulltime.count > 0
-        = render 'postings/postings_table', :postings => @fulltime, :columns => columns
-      - else
-        %p No full-time jobs are available at this time.
 
   - unless @entrepreneurial.nil?
     %fieldset

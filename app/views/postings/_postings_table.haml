@@ -14,12 +14,12 @@
   %thead
     %tr
       - columns.each do |col|
-        %th= colname[col]
+        %th{:class => col}= colname[col]
   %tbody
     - postings.each do |posting|
       %tr
         - columns.each do |col|
-          %td
+          %td{:class => col}
             - case col
               - when "dateposted"
                 = posting.created_at.strftime("%d %B %Y")
