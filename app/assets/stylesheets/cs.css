@@ -213,6 +213,10 @@ td.preformatted * {
   margin: 0;
 }
 
+td.preformatted p {
+  margin-bottom: 10px;
+}
+
 col.dateposted {
   width: 12em;
 }
