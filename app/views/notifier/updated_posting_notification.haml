@@ -31,6 +31,9 @@
     %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left"} Contact
     %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= simple_format @posting.contact
   %tr
+    %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left"} Job Type
+    %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= @posting.job_type_as_string
+  %tr
     %th{:style => "background-color: #CCC; font-weight: bold; vertical-align: top; padding: 3px 10px 3px 10px; text-align: left"} Attachment?
     %td{:style => "background-color: #CCC; vertical-align: top; padding: 3px 10px 3px 10px;"}= (@posting.attachment.exists?) ? "Yes" : "No"
 

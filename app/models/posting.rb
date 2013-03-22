@@ -117,6 +117,10 @@ class Posting < ActiveRecord::Base
     end
   end
 
+  def job_type_as_string
+    Posting.jobtype_id_to_string(jobtype).titleize
+  end
+
   def job_type_as_symbol
     Posting.jobtype_id_to_symbol(jobtype)
   end

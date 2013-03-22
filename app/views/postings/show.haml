@@ -38,6 +38,9 @@
     %td
       - @posting.tags.each do |tag|
         .token= tag.name
+  %tr
+    %th Job Type
+    %td= @posting.job_type_as_string
   - if @posting.attachment.exists?
     %tr
       %th Attachment

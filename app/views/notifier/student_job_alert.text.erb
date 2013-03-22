@@ -7,6 +7,7 @@ Location: <%= @posting.location %>
 URL: <%= @posting.url %>
 Deadline: <%= @posting.active_until.strftime("%d %B %Y") %>
 Contact: [Please log in to see]
+Job Type: <%= @posting.job_type_as_string %>
 
 <% if @posting.attachment.exists? %>
 In addition, the employer also submitted an attachment that contains additional information. You can view it by logginging into http://jobboard.cs.uchicago.edu.
