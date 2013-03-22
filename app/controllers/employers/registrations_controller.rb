@@ -12,8 +12,7 @@ class Employers::RegistrationsController < Devise::RegistrationsController
 
     resource.approved = false
     if resource.save
-      flash[:notice] = "Your account has been submitted for approval. You will receive an email once it has been approved."
-      redirect_to postings_path
+      render :after_registration
     else
       clean_up_passwords resource
       respond_with resource
