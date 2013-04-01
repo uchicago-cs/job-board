@@ -387,6 +387,10 @@ body:before {
   margin-top: -32767px;
 }
 
+.sorted-none, .sorted-ascending, .sorted-descending {
+  white-space: nowrap;
+}
+
 .sorted-none img, .sorted-ascending img, .sorted-descending img {
   position: relative;
   padding-left: 5px;
