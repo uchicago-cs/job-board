@@ -105,14 +105,18 @@ class PostingsController < ApplicationController
   def update
     @posting = Posting.find(params[:id])
 
-    if current_employer
+    if current_employer || (current_student && current_student.is_admin? && params[:edit])
       @posting.assign_attributes(params[:posting].except(:tags, :rich_description))
       @posting.rich_description = (params[:posting][:rich_description] == "t")
       @posting.comments = nil
-      @posting.state = :pending
+      @posting.state = :pending if current_employer
       @posting.tags.clear
       @posting.tags = params[:posting][:tags]
-      flash[:notice] = "Your job posting has been updated. Your changes will have to be approved by an administrator before the updated posting is published."
+      if current_employer
+        flash[:notice] = "Your job posting has been updated. Your changes will have to be approved by an administrator before the updated posting is published."
+      elsif current_student && current_student.is_admin?
+        flash[:notice] = "The job posting has been updated."
+      end
       next_page = @posting
     elsif current_student && current_student.is_admin?
       @posting.comments = params[:posting][:comments]

@@ -20,7 +20,7 @@
   - columns = ["organization", "position", "dateposted", "deadline"]
 
   - if current_student && current_student.is_admin?
-    - columns << "remove" << "state"
+    - columns << "edit" << "remove" << "state"
     - if Employer.accounts_pending_approval?
       %p There are new employer accounts pending approval:
       %ul

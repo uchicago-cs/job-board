@@ -5,6 +5,7 @@
     %h3 Reviewer Comments
     = simple_format @posting.comments
 
+= link_to "Edit", edit_posting_path(@posting)
 %table.job_posting
   %colgroup
     %col.posting_label
