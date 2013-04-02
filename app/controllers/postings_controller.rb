@@ -25,25 +25,25 @@ class PostingsController < ApplicationController
     # Get the appropriate postings for the given view
     case @view
       when "all"
-        @internships = Posting.all_internships.where("? >= ?", :active_until, DateTime.now)
-        @parttime = Posting.all_parttime.where("? >= ?", :active_until, DateTime.now)
-        @fulltime = Posting.all_fulltime.where("? >= ?", :active_until, DateTime.now)
-        @entrepreneurial = Posting.all_entrepreneurial.where("? >= ?", :active_until, DateTime.now)
+        @internships = Posting.all_internships.select{|p| p.active_until >= DateTime.now}
+        @parttime = Posting.all_parttime.select{|p| p.active_until >= DateTime.now}
+        @fulltime = Posting.all_fulltime.select{|p| p.active_until >= DateTime.now}
+        @entrepreneurial = Posting.all_entrepreneurial.select{|p| p.active_until >= DateTime.now}
       when "active"
-        @internships = Posting.all_approved_internships.where("? >= ?", :active_until, DateTime.now)
-        @parttime = Posting.all_approved_parttime.where("? >= ?", :active_until, DateTime.now)
-        @fulltime = Posting.all_approved_fulltime.where("? >= ?", :active_until, DateTime.now)
-        @entrepreneurial = Posting.all_approved_entrepreneurial.where("? >= ?", :active_until, DateTime.now)
+        @internships = Posting.all_approved_internships.select{|p| p.active_until >= DateTime.now}
+        @parttime = Posting.all_approved_parttime.select{|p| p.active_until >= DateTime.now}
+        @fulltime = Posting.all_approved_fulltime.select{|p| p.active_until >= DateTime.now}
+        @entrepreneurial = Posting.all_approved_entrepreneurial.select{|p| p.active_until >= DateTime.now}
       when "owned"
-        @internships = current_employer.internship_postings.where("? >= ?", :active_until, DateTime.now)
-        @parttime = current_employer.parttime_postings.where("? >= ?", :active_until, DateTime.now)
-        @fulltime = current_employer.fulltime_postings.where("? >= ?", :active_until, DateTime.now)
-        @entrepreneurial = current_employer.entrepreneurial_postings.where("? >= ?", :active_until, DateTime.now)
+        @internships = current_employer.internship_postings.select{|p| p.active_until >= DateTime.now}
+        @parttime = current_employer.parttime_postings.select{|p| p.active_until >= DateTime.now}
+        @fulltime = current_employer.fulltime_postings.select{|p| p.active_until >= DateTime.now}
+        @entrepreneurial = current_employer.entrepreneurial_postings.select{|p| p.active_until >= DateTime.now}
       when "interests"
-        @internships = Posting.all_approved_internships.where("? >= ?", :active_until, DateTime.now) if current_student.interested_in_internships?
-        @parttime = Posting.all_approved_parttime.where("? >= ?", :active_until, DateTime.now) if current_student.interested_in_part_time?
-        @fulltime = Posting.all_approved_fulltime.where("? >= ?", :active_until, DateTime.now) if current_student.interested_in_full_time?
-        @entrepreneurial = Posting.all_approved_entrepreneurial.where("? >= ?", :active_until, DateTime.now) if current_student.interested_in_entrepreneurial?
+        @internships = Posting.all_approved_internships.select{|p| p.active_until >= DateTime.now} if current_student.interested_in_internships?
+        @parttime = Posting.all_approved_parttime.select{|p| p.active_until >= DateTime.now} if current_student.interested_in_part_time?
+        @fulltime = Posting.all_approved_fulltime.select{|p| p.active_until >= DateTime.now} if current_student.interested_in_full_time?
+        @entrepreneurial = Posting.all_approved_entrepreneurial.select{|p| p.active_until >= DateTime.now} if current_student.interested_in_entrepreneurial?
     end
 
     if current_student && current_student.is_admin?
