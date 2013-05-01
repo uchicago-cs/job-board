@@ -7,14 +7,6 @@
       %strong Employers:
       Create an account to post new jobs and internships.
 
-  %p 
-    Welcome to the new departmental job board! Please note that we are still phasing in this job board; some job postings are still found on our
-    = link_to "old job board", "http://www.cs.uchicago.edu/info/student_jobs"
-  %p
-    This job board is still in beta; if you find any issues or bugs in it, please send an e-mail to
-    = link_to "jobboard-support@mailman.cs.uchicago.edu", "mailto:jobboard-support@mailman.cs.uchicago.edu"
-    The source code for this website is available on GitHub:
-    = link_to "https://github.com/uchicago-cs/job-board", "https://github.com/uchicago-cs/job-board"
 
 %div#content
   - columns = ["organization", "position", "dateposted", "deadline"]
@@ -97,3 +89,9 @@
         = render 'postings/postings_table', :postings => @entrepreneurial, :columns => columns
       - else
         %p No entrepreneurial opportunities are availablae at this time.
+
+  %p
+    If you find any issues or bugs in our job board, please send an e-mail to
+    = link_to "jobboard-support@mailman.cs.uchicago.edu", "mailto:jobboard-support@mailman.cs.uchicago.edu"
+    The source code for this website is available on GitHub:
+    = link_to "https://github.com/uchicago-cs/job-board", "https://github.com/uchicago-cs/job-board"
